@@ -13,7 +13,7 @@ import sys
 from django.core.wsgi import get_wsgi_application
 
 if sys.platform == 'win32':
-	.environ.setdefault("DJANGO_SETTINGS_MODULE", "lkbw.settings.dev")
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "lkbw.settings.dev")
 
 else:
 	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "lkbw.settings.production")
