@@ -54,6 +54,8 @@ class BlogPage(Page):
         ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
+		('date', blocks.DateBlock()),
+		('html', blocks.RawHTMLBlock()),
     ])
 	
     def main_image(self):
