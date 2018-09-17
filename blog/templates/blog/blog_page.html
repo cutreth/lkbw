@@ -40,7 +40,7 @@
 	
     {% for item in page.gallery_images.all %}
         <div style="float: left; margin: 10px">
-            {% image item.image fill-320x240 %}
+            {% image item.image width-600 %}
             <p>{{ item.caption }}</p>
         </div>
     {% endfor %}
@@ -50,9 +50,18 @@
 
 	<article>
 		{% for block in page.body2 %}
+			{%if block.block_type == 'image' %}
+			<h1> {{ block.value }} </h1>
+			{% image block.value width-200 %}
+			{% else %}
 			<section>{% include_block block %}</section>
+			{% endif %}
 		{% endfor %}
 	</article>
+	
+	
+	
+	
 	
 	
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
