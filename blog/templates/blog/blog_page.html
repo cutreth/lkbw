@@ -52,7 +52,7 @@
 		{% for block in page.body2 %}
 			{%if block.block_type == 'image' %}
 			<h1> {{ block.value }} </h1>
-			{% image block.value width-200 %}
+			{% image block.value width-600 %}
 			{% else %}
 			<section>{% include_block block %}</section>
 			{% endif %}
