@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 with open('/home/lkbw/lkbw/SecretKey.txt') as key:
 	SECRET_KEY = key.read().strip()
