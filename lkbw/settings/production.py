@@ -7,6 +7,17 @@ with open('/home/lkbw/lkbw/SecretKey.txt') as key:
 
 ALLOWED_HOSTS = ['lkbw.pythonanywhere.com', 'www.lilkevbigworld.com'] 
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lkbw$blog',
+        'USER': 'lkbw',
+        'PASSWORD': 'lkbwdbpw',
+        'HOST': 'lkbw.mysql.pythonanywhere-services.com',
+        'PORT': '',
+    }
+}
+
 try:
     from .local import *
 except ImportError:
