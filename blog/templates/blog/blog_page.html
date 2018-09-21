@@ -8,10 +8,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Clean Blog - Start Bootstrap Theme</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static '/startbootstrap-clean-blog-gh-pages/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,12 +21,8 @@
     <link href="{% static '/startbootstrap-clean-blog-gh-pages/css/clean-blog.min.css' %}" rel="stylesheet">
 	
 {% endblock %}
-		
+
 {% block content %}
-
-
-
-
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -169,14 +161,7 @@
     <!-- Custom scripts for this template -->
     <script src="{% static '/startbootstrap-clean-blog-gh-pages/js/clean-blog.min.js' %}"></script>
 
-
-
-
-
-
-
-
-
+    <!-- Initial Wagtail references to move up -->
     <h1>{{ page.title }}</h1>
     <p class="meta">{{ page.date }}</p>
 	
@@ -231,13 +216,6 @@
 		{% endfor %}
 	</article>
 	
-	
-	
-	
-	
-	
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 
-
-	
 {% endblock %}
