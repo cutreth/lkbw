@@ -14,7 +14,10 @@ DATABASES = {
         'USER': 'lkbw',
         'PASSWORD': 'lkbwdbpw',
         'HOST': 'lkbw.mysql.pythonanywhere-services.com',
-        'PORT': '',
+        'PORT': '',    
+	'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+   	},
     }
 }
 
