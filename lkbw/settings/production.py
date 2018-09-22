@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = False
 
-with open('/home/lkbw/lkbw/SecretKey.txt') as key:
+with open('/home/lkbw/private/SecretKey.txt') as key:
 	SECRET_KEY = key.read().strip()
 
 ALLOWED_HOSTS = ['lkbw.pythonanywhere.com', 'www.lilkevbigworld.com'] 
