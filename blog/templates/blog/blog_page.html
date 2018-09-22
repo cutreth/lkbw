@@ -82,6 +82,8 @@
                 <span class="caption text-muted">{{ block.value }}</span>
 			  {% elif block.block_type == 'heading' %}
 			    <h2 class="section-heading">{{ block.value }}</h2>
+			  {% elif block.block_type == 'quote' %}
+			    <blockquote class="blockquote">{{ block.value }}</blockquote>
 			  {% else %}
 			    <section>{% include_block block %}</section>
 			  {% endif %}

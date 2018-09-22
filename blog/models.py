@@ -61,6 +61,7 @@ class BlogPage(Page):
         ('image', ImageChooserBlock()),
 		('date', blocks.DateBlock()),
 		('html', blocks.RawHTMLBlock()),
+		('quote', blocks.BlockQuoteBlock()),
     ])
 	
     def main_image(self):
