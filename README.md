@@ -14,26 +14,11 @@ python3 ~/lkbw/manage.py <xxx> --settings=lkbw.settings.production
 
 To Do
 
--Get mysql working in PRD
--Update PRD blog pages to render real content and remove sample content
--Eventually delete PRD sqlite db
 -Add automatic site refresh to deploy script
 -Update Wagtail max image size
 -Enable automatic image cropping and compression
 -Tie images back to Lightroom (for updates after posting) and figure out metadata/watermarks
--Update model and admin page for Blog and Blog Index (change to Blog Section)
-
-Blog Section
--Title
--Intro
--Banner Image
-
-Blog Page
--Title
--Intro
--Banner Image
--Stream
-
+-Update model and admin page for Blog and Blog Index (change to Blog Section), duplicate existing templates
 
 
 Links
