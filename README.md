@@ -21,6 +21,20 @@ To Do
 -Update Wagtail max image size
 -Enable automatic image cropping and compression
 -Tie images back to Lightroom (for updates after posting) and figure out metadata/watermarks
+-Update model and admin page for Blog and Blog Index (change to Blog Section)
+
+Blog Section
+-Title
+-Intro
+-Banner Image
+
+Blog Page
+-Title
+-Intro
+-Banner Image
+-Stream
+
+
 
 Links
 

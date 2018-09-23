@@ -14,6 +14,66 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
+class BlogSectionPage(Page):
+
+	post_date = models.DateField("Post date")
+	banner_image = models.ForeignKey(
+		'wagtailimages.Image',
+		null=True, blank=True,
+		on_delete=models.SET_NULL,
+		related_name='+'
+	)
+	
+	search_fields = Page.search_fields + [
+	]
+	
+	content_panels = Page.content_panels + [
+		ImageChooserPanel('banner_image'),
+	]
+	
+	promote_panels = Page.promote_panels + [
+	]
+	
+	settings_panels = Page.settings_panels + [
+		FieldPanel('post_date'),
+	]
+
+	def get_context(self, request):
+		context = super().get_context(request)
+		blogpages = self.get_children().live().order_by('-first_published_at')
+		context['blogpages'] = blogpages
+		return context
+		
+class BlogPostPage(Page):
+
+	post_date = models.DateField("Post date")
+	intro = models.CharField(max_length=250)
+	body = StreamField([
+		('heading', blocks.CharBlock(classname="full title")),
+		('paragraph', blocks.RichTextBlock()),
+		('image', ImageChooserBlock()),
+		('date', blocks.DateBlock()),
+		('html', blocks.RawHTMLBlock()),
+		('quote', blocks.BlockQuoteBlock()),
+	])
+
+	search_fields = Page.search_fields + [
+		index.SearchField('intro'),
+		index.SearchField('body'),
+	]
+	
+	content_panels = Page.content_panels + [
+		FieldPanel('intro'),
+		StreamFieldPanel('body'),
+	]
+	
+	promote_panels = Page.promote_panels + [
+	]
+
+	settings_panels = Page.settings_panels + [
+		FieldPanel('post_date'),
+	]	
+	
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
 	
