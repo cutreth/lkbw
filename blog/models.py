@@ -16,7 +16,7 @@ from wagtail.snippets.models import register_snippet
 
 class BlogSectionPage(Page):
 
-	post_date = models.DateField("Post date")
+	post_date = models.DateField("Post date", null=True, blank=True)
 	banner_image = models.ForeignKey(
 		'wagtailimages.Image',
 		null=True, blank=True,
@@ -46,7 +46,7 @@ class BlogSectionPage(Page):
 		
 class BlogPostPage(Page):
 
-	post_date = models.DateField("Post date")
+	post_date = models.DateField("Post date", null=True, blank=True)
 	intro = models.CharField(max_length=250)
 	body = StreamField([
 		('heading', blocks.CharBlock(classname="full title")),
