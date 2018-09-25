@@ -25,6 +25,7 @@ To Do
 -Update model and admin page for Blog and Blog Index (change to Blog Section), duplicate existing templates
 
 -Pull "home" directory from Wagtail master, re-enable app in Settings
+---https://github.com/wagtail/wagtail/tree/master/wagtail/project_template/home
 
 
 Links
