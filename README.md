@@ -1,24 +1,18 @@
 # lkbw
 
-
 Notes
-
-pip install Wagtail==2.2.2
-pip install -r requirements.txt
-
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
 
 python3 ~/lkbw/manage.py <xxx> --settings=lkbw.settings.production
 
 To Do
 
--Update Wagtail max image size
--Enable automatic image cropping and compression
--Tie images back to Lightroom (for updates after posting) and figure out metadata/watermarks
+Enable automatic image cropping [lose 10% all around] and quality update [85] for original file
+Need to figure out flow to prevent double cropping when editing existing images
 
-
+https://willow.readthedocs.io/en/latest/guide/operations.html
+http://docs.wagtail.io/en/v2.2.2/advanced_topics/images/custom_image_model.html
+https://docs.djangoproject.com/en/2.1/topics/db/models/
+https://stackoverflow.com/questions/4269605/django-override-save-for-model
 
 Links
 
