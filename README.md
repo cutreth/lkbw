@@ -10,6 +10,7 @@ Need to figure out flow to prevent double cropping when editing existing images
 Configure section/post pages to use defined header images  
 Update presentation of images on posts to optionally include caption (image title)  
 Adjust header stream block with toggles for control over head type (reference CSS for options)  
+Adjust date stream block to be centered with control over formatting (header, body, etc.)  
   
 Build out stream block for embedded mapping  
 -https://github.com/Frojd/wagtail-geo-widget  
