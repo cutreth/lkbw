@@ -1,7 +1,7 @@
 # lkbw
 
-Enable automatic image cropping [lose 10% all around] and quality update [85] for original file
-Need to figure out flow to prevent double cropping when editing existing images
+Enable automatic image cropping [lose 10% all around] and quality update [85] for original file  
+Need to figure out flow to prevent double cropping when editing existing images  
   https://willow.readthedocs.io/en/latest/guide/operations.html
   http://docs.wagtail.io/en/v2.2.2/advanced_topics/images/custom_image_model.html
   https://docs.djangoproject.com/en/2.1/topics/db/models/
