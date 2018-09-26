@@ -84,6 +84,8 @@
 			    <h2 class="section-heading">{{ block.value }}</h2>
 			  {% elif block.block_type == 'quote' %}
 			    <blockquote class="blockquote">{{ block.value }}</blockquote>
+		          {% elif block.block_type == 'date' %}
+		            <h3 class="caption">{{ block.value }}</h3/>
 			  {% else %}
 			    <section>{% include_block block %}</section>
 			  {% endif %}
