@@ -15,6 +15,7 @@ Build out stream block for embedded mapping
 -https://github.com/Frojd/wagtail-geo-widget  
 -https://github.com/springload/wagtailgmaps  
 -https://github.com/UWKM/uwkm_streamfields  
+-https://developers.google.com/maps/documentation/javascript/adding-a-google-map  
   
 python3 ~/lkbw/manage.py <xxx> --settings=lkbw.settings.production  
   
