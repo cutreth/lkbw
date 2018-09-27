@@ -11,6 +11,8 @@ Update presentation of images on posts to optionally include caption (image titl
 Adjust header stream block with toggles for control over head type (reference CSS for options)  
 Adjust date stream block to be centered with control over formatting (header, body, etc.)  
   
+Enable emailing  
+  
 Clean up header and footer: comment out and remove cruft  
 Wire up menus  
 -https://github.com/rkhleics/wagtailmenus  
