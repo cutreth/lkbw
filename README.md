@@ -12,6 +12,7 @@ Adjust header stream block with toggles for control over head type (reference CS
 Adjust date stream block to be centered with control over formatting (header, body, etc.)  
   
 Enable emailing  
+--https://account.sendinblue.com/profile  
   
 Clean up header and footer: comment out and remove cruft  
 Wire up menus  
