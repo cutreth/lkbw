@@ -10,10 +10,22 @@ Need to figure out flow to prevent double cropping when editing existing images
 Update presentation of images on posts to optionally include caption (image title)  
 Adjust header stream block with toggles for control over head type (reference CSS for options)  
 Adjust date stream block to be centered with control over formatting (header, body, etc.)  
-Clean up header and footer: comment out and remove cruft
+  
+Clean up header and footer: comment out and remove cruft  
 Wire up menus  
 -https://github.com/rkhleics/wagtailmenus  
 -https://www.tivix.com/blog/working-with-wagtail-menus  
+  
+Configure better static file system (collectstatic)  
+Update core settings  
+-https://docs.wagtail.io/en/v2.2.2/advanced_topics/settings.html  
+Configure recurring tasks (publish posts, garbage cleanup, etc.)  
+-https://docs.wagtail.io/en/v2.2.2/reference/management_commands.html  
+  
+Enable caching and searching  
+-https://docs.wagtail.io/en/v2.2.2/advanced_topics/performance.html  
+Reconfigure tagging  
+-http://docs.wagtail.io/en/v2.2.2/reference/pages/model_recipes.html#tagging  
   
 Build out stream block for embedded mapping  
 -https://github.com/Frojd/wagtail-geo-widget  
