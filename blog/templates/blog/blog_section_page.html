@@ -52,14 +52,15 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/static/startbootstrap-clean-blog-gh-pages/img/home-bg.jpg')">
+	{% image page.banner_image width-1600 as banner_image %}
+    <header class="masthead" style="background-image: url('{{ banner_image.url }}')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+              <h1>{{ page.title }}</h1>
+              <span class="subheading">{{ page.intro }}</span>
             </div>
           </div>
         </div>

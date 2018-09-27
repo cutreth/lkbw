@@ -52,7 +52,8 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/static/startbootstrap-clean-blog-gh-pages/img/post-bg.jpg')">
+	{% image page.banner_image width-1600 as banner_image %}
+    <header class="masthead" style="background-image: url('{{ banner_image.url }}')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -61,8 +62,8 @@
               <h1>{{ page.title }}</h1>
               <h2 class="subheading">{{ page.intro }}</h2>
               <span class="meta">Posted by
-                <a href="#">Start Bootstrap</a>
-                on {{ page.date }}</span>
+                <a href="#">{{ page.owner }}</a>
+                on {{ page.post_date }}</span>
             </div>
           </div>
         </div>
