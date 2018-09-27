@@ -7,11 +7,13 @@ Need to figure out flow to prevent double cropping when editing existing images
 -https://docs.djangoproject.com/en/2.1/topics/db/models/  
 -https://stackoverflow.com/questions/4269605/django-override-save-for-model  
   
-Configure section/post pages to use defined header images  
 Update presentation of images on posts to optionally include caption (image title)  
 Adjust header stream block with toggles for control over head type (reference CSS for options)  
 Adjust date stream block to be centered with control over formatting (header, body, etc.)  
 Clean up header and footer: comment out and remove cruft
+Wire up menus  
+-https://github.com/rkhleics/wagtailmenus  
+-https://www.tivix.com/blog/working-with-wagtail-menus  
   
 Build out stream block for embedded mapping  
 -https://github.com/Frojd/wagtail-geo-widget  
