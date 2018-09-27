@@ -29,6 +29,7 @@ class BlogSectionPage(Page):
 	]
 	
 	content_panels = Page.content_panels + [
+		FieldPanel('intro'),
 		ImageChooserPanel('banner_image'),
 	]
 	
