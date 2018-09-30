@@ -102,4 +102,3 @@ python3 ~/lkbw/manage.py <xxx> --settings=lkbw.settings.production
   
 https://help.pythonanywhere.com/pages/DjangoStaticFiles  
 https://help.pythonanywhere.com/pages/environment-variables-for-web-apps  
->>>>>>> 244d914f6baa17988dfda7621b57e7ec5aca336b
