@@ -5,6 +5,8 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
+from wagtailgmaps.edit_handlers import MapFieldPanel
+
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core import blocks
@@ -57,6 +59,9 @@ class BlogPostPage(Page):
 		related_name='+'
 	)
 	
+	formatted_address = models.CharField(max_length=250, blank=True, null=True)
+	latlng_address = models.CharField(max_length=250, blank=True, null=True)
+	
 	body = StreamField([
 		('heading', blocks.CharBlock(classname="full title")),
 		('paragraph', blocks.RichTextBlock()),
@@ -74,6 +79,7 @@ class BlogPostPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('intro'),
 		ImageChooserPanel('banner_image'),
+		MapFieldPanel('formatted_address'),
 		StreamFieldPanel('body'),
 	]
 	

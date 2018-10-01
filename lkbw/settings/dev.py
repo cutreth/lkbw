@@ -3,13 +3,16 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'a7$qxptja8$(t4q*6&_a3gb)1e)7n5987#)e@9*g^cmt_!@29b'
-
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*'] 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\DjangoKey.txt") as key:
+	SECRET_KEY = key.read().strip()
+
+with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\GoogleKey.txt") as key:
+	WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
 
 try:
     from .local import *

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'wagtailgmaps',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -149,11 +150,15 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "lkbw"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'https://lilkevbigworld.com'
+
+
+#Mapping settings
+WAGTAIL_ADDRESS_MAP_CENTER = "Chicago, IL"
+WAGTAIL_ADDRESS_MAP_ZOOM = 8
