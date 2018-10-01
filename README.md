@@ -22,6 +22,8 @@ Wire up menus (based on other children from root: blog feed, contact us, about u
 -https://www.tivix.com/blog/working-with-wagtail-menus
 
 Clean up templates by removing if statements in stream block; define explicit templates instead
+Consider leveraging Google Embed Map API
+-https://developers.google.com/maps/documentation/embed/guide
 
 Configure better static file system (collectstatic)
 -https://help.pythonanywhere.com/pages/DjangoStaticFiles
