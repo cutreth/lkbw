@@ -4,7 +4,7 @@ from .base import *
 DEBUG = True
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['127.0.0.1'] 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
