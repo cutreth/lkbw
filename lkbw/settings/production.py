@@ -5,7 +5,7 @@ DEBUG = False
 with open('/home/lkbw/private/DjangoKey.txt') as key:
 	SECRET_KEY = key.read().strip()
 
-with open("/home/lkbw/private/GoogleKey.txt") as key:
+with open('/home/lkbw/private/GoogleKey.txt') as key:
 	WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
 
 ALLOWED_HOSTS = ['www.lilkevbigworld.com'] 
