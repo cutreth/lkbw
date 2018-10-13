@@ -86,7 +86,7 @@
 			  {% elif block.block_type == 'quote' %}
 			    <blockquote class="blockquote">{{ block.value }}</blockquote>
 		          {% elif block.block_type == 'date' %}
-		            <h2 class="caption">{{ block.value }}</h2/>
+		            <h2 class="caption">{{ block.value }}</h2>
 			  {% else %}
 			    <section>{% include_block block %}</section>
 			  {% endif %}
