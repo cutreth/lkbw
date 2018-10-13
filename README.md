@@ -1,5 +1,8 @@
 # lkbw
 
+Check if map control is respecting master zoom settings
+Figure out why a stand alone quote in the stream body isn't centered
+
 Enable automatic image cropping [lose 10% all around] and quality update [85] for original file
 Need to figure out flow to prevent double cropping when editing existing images (maybe inject into image rendition code?)
 -https://willow.readthedocs.io/en/latest/guide/operations.html
@@ -100,7 +103,7 @@ Build out stream block for embedded mapping
 -https://github.com/UWKM/uwkm_streamfields  
 -https://developers.google.com/maps/documentation/javascript/adding-a-google-map  
   
-python3 ~/lkbw/manage.py <xxx> --settings=lkbw.settings.production  
+python3 ~/lkbw/manage.py shell --settings=lkbw.settings.production  
   
 https://help.pythonanywhere.com/pages/DjangoStaticFiles  
 https://help.pythonanywhere.com/pages/environment-variables-for-web-apps  
