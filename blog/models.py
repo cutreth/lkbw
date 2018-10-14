@@ -1,20 +1,15 @@
-from django import forms
 from django.db import models
 
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from taggit.models import TaggedItemBase
-
-from wagtailgmaps.edit_handlers import MapFieldPanel
-
 from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.fields import StreamField
 from wagtail.core import blocks
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
-from wagtail.snippets.models import register_snippet
+
+from wagtailgmaps.edit_handlers import MapFieldPanel
+
 
 class BlogSectionPage(Page):
 
@@ -47,7 +42,8 @@ class BlogSectionPage(Page):
 		blogpages = self.get_children().live().order_by('-first_published_at')
 		context['blogpages'] = blogpages
 		return context
-		
+
+
 class BlogPostPage(Page):
 
 	post_date = models.DateField("Post date", null=True, blank=True)

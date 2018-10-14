@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
 
-	'home',
-	'search',
-	'blog',
+    'home',
+    'search',
+    'blog',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -159,6 +159,6 @@ WAGTAIL_SITE_NAME = "lkbw"
 BASE_URL = 'https://lilkevbigworld.com'
 
 
-#Mapping settings
+# Mapping settings
 WAGTAIL_ADDRESS_MAP_CENTER = "Chicago, IL"
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
