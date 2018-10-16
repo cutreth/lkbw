@@ -78,7 +78,7 @@
 		    {% for block in page.body %}
 			  {% if block.block_type == 'image' %}
 				<a href="#">
-                  {% image block.value width-800 class="img-fluid" %}
+                  {% image block.value width-800 class="img-fluid" max-width="100%" height="auto" %}
                 </a>
                 <span class="caption text-muted">{{ block.value }}</span>
 			  {% elif block.block_type == 'heading' %}
@@ -91,7 +91,9 @@
 			    <section>{% include_block block %}</section>
 			  {% endif %}
 		    {% endfor %}
-		    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{  page.formatted_address  }}&key=AIzaSyDNzJB-ZaHCnIuNXM633zHq2RPN7dHWqco" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-4by3">
+		      <iframe width="600" height="450" class="embed-responsive-item" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{  page.formatted_address  }}&key=AIzaSyDNzJB-ZaHCnIuNXM633zHq2RPN7dHWqco" allowfullscreen></iframe>
+            </div>
           </div>
 		</div>
 		  <p align="center">
