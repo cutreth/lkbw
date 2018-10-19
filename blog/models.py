@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField
@@ -9,6 +10,8 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
 
 from wagtailgmaps.edit_handlers import MapFieldPanel
+from wagtailgeowidget.blocks import GeoBlock
+from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 
 class Header (blocks.StructBlock):
@@ -17,6 +20,7 @@ class Header (blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/header.html'
+		icon = 'title'
 
 
 class Text (blocks.StructBlock):
@@ -25,6 +29,7 @@ class Text (blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/text.html'
+		icon = 'doc-full'
 
 
 class Pictures(blocks.StructBlock):
@@ -33,6 +38,7 @@ class Pictures(blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/pictures.html'
+		icon = 'image'
 
 
 class Aside(blocks.StructBlock):
@@ -41,6 +47,7 @@ class Aside(blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/aside.html'
+		icon = 'openquote'
 
 
 class Date(blocks.StructBlock):
@@ -49,6 +56,7 @@ class Date(blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/date.html'
+		icon = 'date'
 
 
 class Caption(blocks.StructBlock):
@@ -57,6 +65,58 @@ class Caption(blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/caption.html'
+		icon = 'form'
+
+
+class LocationStructValue(blocks.StructValue):
+
+	def latt(self):
+		self.point = geosgeometry_str_to_struct(self.get('latt_long'))
+		return self.point['y']
+
+	def long(self):
+		self.point = geosgeometry_str_to_struct(self.get('latt_long'))
+		return self.point['x']
+
+	def key(self):
+		return settings.GOOGLE_MAPS_V3_APIKEY
+
+	def zoom(self):
+		return settings.GEO_WIDGET_ZOOM
+
+	def center(self):
+		coords = self.latt() + ',' + self.long()
+		return coords
+
+
+class Location(blocks.StructBlock):
+
+	address = blocks.CharBlock(required=False)
+	latt_long = GeoBlock(address_field='address')
+
+	class Meta:
+		template = 'blog/location.html'
+		icon = 'site'
+		value_class = LocationStructValue
+
+
+class PlaceStructValue(blocks.StructBlock):
+
+	def key(self):
+		return settings.GOOGLE_MAPS_V3_APIKEY
+
+	def zoom(self):
+		return settings.GEO_WIDGET_ZOOM
+
+
+class Place(blocks.StructBlock):
+
+	q = blocks.CharBlock()
+
+	class Meta:
+		template = 'blog/place.html'
+		icon = 'site'
+		value_class = PlaceStructValue
 
 
 class BlogSectionPage(Page):
@@ -111,11 +171,13 @@ class BlogPostPage(Page):
 	body = StreamField([
 		('header', Header()),
 		('text', Text()),
-		('date', Date()),
-		('pictures', Pictures()),
-		('caption', Caption()),
 		('aside', Aside()),
-	], null=True, blank=True)
+		('caption', Caption()),
+		('pictures', Pictures()),
+		('date', Date()),
+		('location', Location()),
+		('place', Place()),
+	], blank=True)
 
 	search_fields = Page.search_fields + [
 		index.SearchField('intro'),
@@ -134,5 +196,4 @@ class BlogPostPage(Page):
 	] + Page.promote_panels
 
 	settings_panels = Page.settings_panels + [
-
 	]	

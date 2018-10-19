@@ -7,6 +7,7 @@ with open('/home/lkbw/private/DjangoKey.txt') as key:
 
 with open('/home/lkbw/private/GoogleKey.txt') as key:
     WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
+    GOOGLE_MAPS_V3_APIKEY = WAGTAIL_ADDRESS_MAP_KEY
 
 ALLOWED_HOSTS = ['www.lilkevbigworld.com'] 
 

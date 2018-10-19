@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'wagtailgmaps',
+    'wagtailgeowidget',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -162,3 +163,6 @@ BASE_URL = 'https://lilkevbigworld.com'
 # Mapping settings
 WAGTAIL_ADDRESS_MAP_CENTER = "Chicago, IL"
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
+
+GEO_WIDGET_DEFAULT_LOCATION = {'lat': 41.8781, 'lng': -87.6298}
+GEO_WIDGET_ZOOM = WAGTAIL_ADDRESS_MAP_ZOOM

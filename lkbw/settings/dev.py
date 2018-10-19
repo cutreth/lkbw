@@ -13,6 +13,7 @@ with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\DjangoKey.txt") as key
 
 with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\GoogleKey.txt") as key:
     WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
+    GOOGLE_MAPS_V3_APIKEY = WAGTAIL_ADDRESS_MAP_KEY
 
 try:
     from .local import *
