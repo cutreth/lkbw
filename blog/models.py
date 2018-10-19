@@ -11,7 +11,6 @@ from wagtail.search import index
 
 from wagtailgmaps.edit_handlers import MapFieldPanel
 from wagtailgeowidget.blocks import GeoBlock
-from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 
 class Header (blocks.StructBlock):
@@ -70,23 +69,16 @@ class Caption(blocks.StructBlock):
 
 class LocationStructValue(blocks.StructValue):
 
-	def latt(self):
-		self.point = geosgeometry_str_to_struct(self.get('latt_long'))
-		return self.point['y']
-
-	def long(self):
-		self.point = geosgeometry_str_to_struct(self.get('latt_long'))
-		return self.point['x']
-
-	def key(self):
+	@staticmethod
+	def key():
 		return settings.GOOGLE_MAPS_V3_APIKEY
 
-	def zoom(self):
+	@staticmethod
+	def zoom():
 		return settings.GEO_WIDGET_ZOOM
 
 	def center(self):
-		coords = self.latt() + ',' + self.long()
-		return coords
+		return self.get('latt_long')["lat"] + ',' + self.get('latt_long')["lng"]
 
 
 class Location(blocks.StructBlock):
@@ -100,12 +92,14 @@ class Location(blocks.StructBlock):
 		value_class = LocationStructValue
 
 
-class PlaceStructValue(blocks.StructBlock):
+class PlaceStructValue(blocks.StructValue):
 
-	def key(self):
+	@staticmethod
+	def key():
 		return settings.GOOGLE_MAPS_V3_APIKEY
 
-	def zoom(self):
+	@staticmethod
+	def zoom():
 		return settings.GEO_WIDGET_ZOOM
 
 
