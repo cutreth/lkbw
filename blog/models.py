@@ -177,7 +177,7 @@ class BlogPostPage(Page):
 		('date', Date()),
 		('location', Location()),
 		('place', Place()),
-	], blank=True)
+	], null=True, blank=True)
 
 	search_fields = Page.search_fields + [
 		index.SearchField('intro'),
