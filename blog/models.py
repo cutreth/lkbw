@@ -61,7 +61,7 @@ class Caption(blocks.StructBlock):
 
 class BlogSectionPage(Page):
 
-	post_date = models.DateField("Post date", null=True, blank=True)
+	post_date = models.DateField("Post date")
 	intro = models.CharField(max_length=250)
 	banner_image = models.ForeignKey(
 		'wagtailimages.Image',
@@ -75,15 +75,17 @@ class BlogSectionPage(Page):
 	
 	content_panels = Page.content_panels + [
 		FieldPanel('intro'),
-		ImageChooserPanel('banner_image'),
-	]
-	
-	promote_panels = Page.promote_panels + [
-	]
-	
-	settings_panels = Page.settings_panels + [
 		FieldPanel('post_date'),
+
 	]
+	
+	promote_panels = [
+		ImageChooserPanel('banner_image'),
+	] + Page.promote_panels
+	
+	settings_panels = [
+
+	] + Page.settings_panels
 
 	def get_context(self, request):
 		context = super().get_context(request)
@@ -94,7 +96,7 @@ class BlogSectionPage(Page):
 
 class BlogPostPage(Page):
 
-	post_date = models.DateField("Post date", null=True, blank=True)
+	post_date = models.DateField("Post date")
 	intro = models.CharField(max_length=250)
 	banner_image = models.ForeignKey(
 		'wagtailimages.Image',
@@ -113,7 +115,7 @@ class BlogPostPage(Page):
 		('pictures', Pictures()),
 		('caption', Caption()),
 		('aside', Aside()),
-	])
+	], null=True, blank=True)
 
 	search_fields = Page.search_fields + [
 		index.SearchField('intro'),
@@ -122,14 +124,15 @@ class BlogPostPage(Page):
 	
 	content_panels = Page.content_panels + [
 		FieldPanel('intro'),
-		ImageChooserPanel('banner_image'),
-		MapFieldPanel('formatted_address'),
+		FieldPanel('post_date'),
 		StreamFieldPanel('body'),
 	]
 	
-	promote_panels = Page.promote_panels + [
-	]
+	promote_panels = [
+		ImageChooserPanel('banner_image'),
+		MapFieldPanel('formatted_address'),
+	] + Page.promote_panels
 
 	settings_panels = Page.settings_panels + [
-		FieldPanel('post_date'),
+
 	]	
