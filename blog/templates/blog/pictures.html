@@ -1,0 +1,14 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% for block in block.value %}
+
+    {% for image in value.pictures %}
+
+        {% image image width-800 class="img-fluid" max-width="100%" height="auto" %}
+        {% image image width-800 as pic %}
+        <span class="caption text-muted"> {{ pic.alt }} </span>
+        <br>
+
+    {% endfor %}
+
+{% endfor %}

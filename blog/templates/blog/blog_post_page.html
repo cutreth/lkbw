@@ -76,24 +76,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
 		    {% for block in page.body %}
-			  {% if block.block_type == 'image' %}
-				<a href="#">
-                  {% image block.value width-800 class="img-fluid" max-width="100%" height="auto" %}
-                </a>
-                <span class="caption text-muted">{{ block.value }}</span>
-                <br>
-			  {% elif block.block_type == 'heading' %}
-			    <h2 class="section-heading">{{ block.value }}</h2>
-                <br>
-			  {% elif block.block_type == 'quote' %}
-			    <blockquote class="blockquote">{{ block.value }}</blockquote>
-		          {% elif block.block_type == 'date' %}
-		            <h2 class="caption">{{ block.value }}</h2>
-                    <br>
-			  {% else %}
-			    <section>{% include_block block %}</section>
-                <br>
-			  {% endif %}
+              <section>{% include_block block %}</section>
+              <br>
 		    {% endfor %}
             <div class="embed-responsive embed-responsive-4by3">
 		      <iframe width="600" height="450" class="embed-responsive-item" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{  page.formatted_address  }}&key=AIzaSyDNzJB-ZaHCnIuNXM633zHq2RPN7dHWqco"></iframe>

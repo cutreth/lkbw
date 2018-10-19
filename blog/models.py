@@ -11,6 +11,54 @@ from wagtail.search import index
 from wagtailgmaps.edit_handlers import MapFieldPanel
 
 
+class Header (blocks.StructBlock):
+
+	header = blocks.CharBlock()
+
+	class Meta:
+		template = 'blog/header.html'
+
+
+class Text (blocks.StructBlock):
+
+	text = blocks.RichTextBlock()
+
+	class Meta:
+		template = 'blog/text.html'
+
+
+class Pictures(blocks.StructBlock):
+
+	pictures = blocks.ListBlock(ImageChooserBlock())
+
+	class Meta:
+		template = 'blog/pictures.html'
+
+
+class Aside(blocks.StructBlock):
+
+	aside = blocks.BlockQuoteBlock()
+
+	class Meta:
+		template = 'blog/aside.html'
+
+
+class Date(blocks.StructBlock):
+
+	date = blocks.DateBlock()
+
+	class Meta:
+		template = 'blog/date.html'
+
+
+class Caption(blocks.StructBlock):
+
+	caption = blocks.CharBlock()
+
+	class Meta:
+		template = 'blog/caption.html'
+
+
 class BlogSectionPage(Page):
 
 	post_date = models.DateField("Post date", null=True, blank=True)
@@ -57,14 +105,14 @@ class BlogPostPage(Page):
 	
 	formatted_address = models.CharField(max_length=250, blank=True, null=True)
 	latlng_address = models.CharField(max_length=250, blank=True, null=True)
-	
+
 	body = StreamField([
-		('heading', blocks.CharBlock(classname="full title")),
-		('paragraph', blocks.RichTextBlock()),
-		('image', ImageChooserBlock()),
-		('date', blocks.DateBlock()),
-		('html', blocks.RawHTMLBlock()),
-		('quote', blocks.BlockQuoteBlock()),
+		('header', Header()),
+		('text', Text()),
+		('date', Date()),
+		('pictures', Pictures()),
+		('caption', Caption()),
+		('aside', Aside()),
 	])
 
 	search_fields = Page.search_fields + [
