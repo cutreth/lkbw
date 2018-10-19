@@ -19,7 +19,7 @@ class Header (blocks.StructBlock):
 	header = blocks.CharBlock()
 
 	class Meta:
-		template = 'blog/header.html'
+		template = 'blog/blocks/header.html'
 		icon = 'title'
 
 
@@ -28,7 +28,7 @@ class Text (blocks.StructBlock):
 	text = blocks.RichTextBlock()
 
 	class Meta:
-		template = 'blog/text.html'
+		template = 'blog/blocks/text.html'
 		icon = 'doc-full'
 
 
@@ -37,7 +37,7 @@ class Pictures(blocks.StructBlock):
 	pictures = blocks.ListBlock(ImageChooserBlock())
 
 	class Meta:
-		template = 'blog/pictures.html'
+		template = 'blog/blocks/pictures.html'
 		icon = 'image'
 
 
@@ -46,7 +46,7 @@ class Aside(blocks.StructBlock):
 	aside = blocks.BlockQuoteBlock()
 
 	class Meta:
-		template = 'blog/aside.html'
+		template = 'blog/blocks/aside.html'
 		icon = 'openquote'
 
 
@@ -55,7 +55,7 @@ class Date(blocks.StructBlock):
 	date = blocks.DateBlock()
 
 	class Meta:
-		template = 'blog/date.html'
+		template = 'blog/blocks/date.html'
 		icon = 'date'
 
 
@@ -64,7 +64,7 @@ class Caption(blocks.StructBlock):
 	caption = blocks.CharBlock()
 
 	class Meta:
-		template = 'blog/caption.html'
+		template = 'blog/blocks/caption.html'
 		icon = 'form'
 
 
@@ -95,7 +95,7 @@ class Location(blocks.StructBlock):
 	latt_long = GeoBlock(address_field='address')
 
 	class Meta:
-		template = 'blog/location.html'
+		template = 'blog/blocks/location.html'
 		icon = 'site'
 		value_class = LocationStructValue
 
@@ -114,7 +114,7 @@ class Place(blocks.StructBlock):
 	q = blocks.CharBlock()
 
 	class Meta:
-		template = 'blog/place.html'
+		template = 'blog/blocks/place.html'
 		icon = 'site'
 		value_class = PlaceStructValue
 
