@@ -113,6 +113,20 @@ class Place(blocks.StructBlock):
 		value_class = PlaceStructValue
 
 
+class BlogHomePage(Page):
+
+	banner_image = models.ForeignKey(
+		'wagtailimages.Image',
+		null=True, blank=True,
+		on_delete=models.SET_NULL,
+		related_name='+'
+	)
+
+	promote_panels = [
+		ImageChooserPanel('banner_image'),
+	] + Page.promote_panels
+
+
 class BlogSectionPage(Page):
 
 	post_date = models.DateField("Post date")
