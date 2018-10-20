@@ -126,6 +126,13 @@ class BlogHomePage(Page):
 		ImageChooserPanel('banner_image'),
 	] + Page.promote_panels
 
+	def get_context(self, request):
+		context = super().get_context(request)
+		blogsection = self.get_first_child()
+		blogpages = blogsection.get_children().live().order_by('-first_published_at')
+		context['blogpages'] = blogpages
+		return context
+
 
 class BlogSectionPage(Page):
 
