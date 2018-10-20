@@ -1,14 +1,48 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}<
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+    .column {
+        width: 100%;
+    }
+}
+</style>
+
+{% if block.value|length > 0 %}
+
 {% for block in block.value %}
 
-    {% for image in value.pictures %}
+    {% widthratio 100 value.pictures|length 1 as width %}
 
-        {% image image width-800 class="img-fluid" max-width="100%" height="auto" %}
-        {% image image width-800 as pic %}
-        <span class="caption text-muted"> {{ pic.alt }} </span>
-        <br>
-
-    {% endfor %}
+        <div class="row">
+          {% for image in value.pictures %}
+            <div class="column" style="width:{{ width }}%">
+              {% image image width-800 class="img-fluid"%}
+              {% image image width-800 as pic %}
+              <span class="caption text-muted"> {{ pic.alt }} </span>
+            </div>
+          {% endfor %}
+        </div>
 
 {% endfor %}
+
+{% endif %}
+
+
