@@ -67,28 +67,25 @@
     </header>
 
     <!-- Main Content -->
+
     <article>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
+
 		    {% for block in page.body %}
               <section>{% include_block block %}</section>
               <br>
 		    {% endfor %}
-            <div class="embed-responsive embed-responsive-4by3">
-		      <iframe width="600" height="450" class="embed-responsive-item" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{  page.formatted_address  }}&key=AIzaSyDNzJB-ZaHCnIuNXM633zHq2RPN7dHWqco"></iframe>
-              <br>
+
+            <!-- Pager -->
+            <div class="clearfix">
+              <a class="btn btn-primary float-right" href={% pageurl page.get_parent %}>Go back</a>
             </div>
+
           </div>
 		</div>
-          <br>
-		  <p align="center">
-		    <a href="{{ page.get_parent.url }}">Return to blog</a>
-          </p>
       </div>
-	  
-      
-	  
     </article>
 
     <hr>

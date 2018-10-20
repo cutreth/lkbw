@@ -67,29 +67,25 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-		  {% for post in blogpages %}
+
+		  {% for post in page.get_children %}
 		    {% with post=post.specific %}
 			  <div class="post-preview">
 			    <a href="{% pageurl post %}">
-				  <h2 class="post-title">
-				    {{ post.title }}
-				  </h2>
-				  <h3 class="post-subtitle">
-				    {{ post.intro }}
-				  </h3>
+				  <h2 class="post-title">{{ post.title }}</h2>
+				  <h3 class="post-subtitle">{{ post.intro }}</h3>
 				</a>
-				<p class="post-meta">Posted by
-				  <a href="#">{{ post.owner }}</a>
-				  on {{ post.post_date }}</p>
+				<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>
 			  </div>
 			  <hr>
             {% endwith %}
 		  {% endfor %}
-		
+
           <!-- Pager -->
           <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
           </div>
+
         </div>
       </div>
     </div>
