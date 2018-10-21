@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField
@@ -174,6 +175,19 @@ class BlogSectionPage(Page):
 	def get_context(self, request):
 		context = super().get_context(request)
 		blogpages = self.get_children().live().order_by('-first_published_at')
+
+		paginator = Paginator(blogpages, 2)
+
+		page = request.GET.get('page')
+		try:
+			blogpages = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			blogpages = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			blogpages = paginator.page(paginator.num_pages)
+
 		context['blogpages'] = blogpages
 		return context
 
