@@ -84,9 +84,26 @@
 		
           <!-- Pager -->
           <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
 
+<!--
+            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+-->
+
+            {% if blogpages.has_previous %}
+                <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
+            {% endif %}
+<!--
+            {% for page_num in blogpages.paginator.page_range %}
+              <li {% if page_num == blogpages.number %} class="active"{% endif %}>
+                <a href="?page={{ page_num }}" class="btn btn-group">{{ page_num }}</a>
+              </li>
+            {% endfor %}
+-->
+            {% if blogpages.has_next %}
+                <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
+              {% endif %}
+
+          </div>
         </div>
       </div>
     </div>

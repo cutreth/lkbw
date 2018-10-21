@@ -140,6 +140,20 @@ class BlogHomePage(Page):
 		context = super().get_context(request)
 		blogsection = self.get_first_child()
 		blogpages = blogsection.get_children().live().order_by('-first_published_at')
+
+
+		paginator = Paginator(blogpages, 2)
+
+		page = request.GET.get('page')
+		try:
+			blogpages = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			blogpages = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			blogpages = paginator.page(paginator.num_pages)
+
 		context['blogpages'] = blogpages
 		return context
 
