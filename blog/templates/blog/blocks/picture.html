@@ -9,6 +9,13 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+    max-height: 50vh;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #myImg{{ id_prefix }}:hover {opacity: 0.7;}
@@ -32,8 +39,9 @@
 .modal-content{{ id_prefix }} {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 1600px;
+    max-width: 95vw;
+    height: 75vh;
+    width: auto
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -41,7 +49,7 @@
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 1200px;
+    max-width: 95vw;
     text-align: center;
     color: #ccc;
     padding: 10px 0;
@@ -83,17 +91,18 @@
         width: 100%;
     }
 }
-W
+
 </style>
 
 <!-- Trigger the Modal -->
+
 {% image value.picture max-1000x1000 as pic %}
 <img src="{{ pic.url }}"
      width="{{ pic.width }}"
      height="{{ pic.height }}"
      alt="{{ pic.alt }}"
      id="myImg{{ id_prefix }}"
-     style="width:100%" />
+      />
 
 <!-- The Modal -->
 <div id="myModal{{ id_prefix }}" class="modal{{ id_prefix }}">
