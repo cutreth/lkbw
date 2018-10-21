@@ -13,6 +13,24 @@
 /* Hide the images by default */
 .mySlides{{ id_prefix }} {
   display: none;
+  max-width: 100%;
+}
+
+#myImg{{ id_prefix }} {
+    max-height: 60vh;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#preImg{{ id_prefix }} {
+    max-width: 100%;
+    max-height: 15vh;
+    width: auto;
+    height: auto;
 }
 
 /* Add a pointer when hovering over the thumbnail images */
@@ -29,7 +47,7 @@
   width: auto;
   padding: 16px;
   margin-top: -50px;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 40px;
   border-radius: 0 3px 3px 0;
@@ -47,6 +65,7 @@
 #prev{{ id_prefix }}:hover,
 #next{{ id_prefix }}:hover {
   background-color: rgba(0, 0, 0, 0.8);
+  color: white;
 }
 
 /* Number text (1/3 etc) */
@@ -96,12 +115,12 @@
 
         <div class="mySlides{{ id_prefix }}">
             <div class="numbertext{{ id_prefix }}">{{ forloop.counter }} / {{ count }}</div>
-            {% image picture height-600 as pic %}
+            {% image picture fill-1000x750 as pic %}
             <img src="{{ pic.url }}"
                  width="{{ pic.width }}"
                  height="{{ pic.height }}"
                  alt="{{ pic.alt }}"
-                 style="width:100%" />
+                 id="myImg{{ id_prefix }}" />
         </div>
 
     {% endfor %}
@@ -123,8 +142,8 @@
                  width="{{ pic.width }}"
                  height="{{ pic.height }}"
                  alt="{{ pic.alt }}"
-                 style="width:100%"
                  class="demo{{ id_prefix }} cursor{{ id_prefix }}"
+                 id="preImg{{ id_prefix }}"
                  onclick="currentSlide{{ id_prefix }}({{ forloop.counter }})" />
 
             </div>
