@@ -1,0 +1,170 @@
+{% load wagtailcore_tags wagtailimages_tags block_tags %}
+
+{% id_prefix as id_prefix %}
+{% widthratio value.pictures|length 1 1 as count %}
+
+<style>
+
+/* Position the image container (needed to position the left and right arrows) */
+.container{{ id_prefix }} {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides{{ id_prefix }} {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor{{ id_prefix }} {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+#prev{{ id_prefix }},
+#next{{ id_prefix }} {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+#next{{ id_prefix }} {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+#prev{{ id_prefix }}:hover,
+#next{{ id_prefix }}:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext{{ id_prefix }} {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container{{ id_prefix }} {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row{{ id_prefix }}:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column{{ id_prefix }} {
+  float: left;
+  width: 20%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo{{ id_prefix }} {
+  opacity: 0.6;
+}
+
+.active{{ id_prefix }},
+.demo{{ id_prefix }}:hover {
+  opacity: 1;
+}
+
+</style>
+
+<div class="container{{ id_prefix }}">
+
+    {% for picture in value.pictures %}
+
+        <div class="mySlides{{ id_prefix }}">
+            <div class="numbertext{{ id_prefix }}">{{ forloop.counter }} / {{ count }}</div>
+            {% image picture height-600 as pic %}
+            <img src="{{ pic.url }}"
+                 width="{{ pic.width }}"
+                 height="{{ pic.height }}"
+                 alt="{{ pic.alt }}"
+                 style="width:100%" />
+        </div>
+
+    {% endfor %}
+
+    <a id="prev{{ id_prefix }}" onclick="plusSlides{{ id_prefix }}(-1)">&#10094;</a>
+    <a id="next{{ id_prefix }}" onclick="plusSlides{{ id_prefix }}(1)">&#10095;</a>
+
+    <div class="caption-container{{ id_prefix }}">
+        <p id="caption{{ id_prefix }}"></p>
+    </div>
+
+    <div class="row{{ id_prefix }}">
+
+        {% for picture in value.pictures %}
+            <div class="column{{ id_prefix }}">
+
+            {% image picture fill-150x150 as pic %}
+            <img src="{{ pic.url }}"
+                 width="{{ pic.width }}"
+                 height="{{ pic.height }}"
+                 alt="{{ pic.alt }}"
+                 style="width:100%"
+                 class="demo{{ id_prefix }} cursor{{ id_prefix }}"
+                 onclick="currentSlide{{ id_prefix }}({{ forloop.counter }})" />
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script>
+
+var slideIndex = 1;
+showSlides{{ id_prefix }}(slideIndex);
+
+// Next/previous controls
+function plusSlides{{ id_prefix }}(n) {
+  showSlides{{ id_prefix }}(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide{{ id_prefix }}(n) {
+  showSlides{{ id_prefix }}(slideIndex = n);
+}
+
+function showSlides{{ id_prefix }}(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides{{ id_prefix }}");
+  var dots = document.getElementsByClassName("demo{{ id_prefix }}");
+  var captionText = document.getElementById("caption{{ id_prefix }}");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active{{ id_prefix }}", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active{{ id_prefix }}";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+
+</script>

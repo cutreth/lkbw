@@ -31,12 +31,21 @@ class Text (blocks.StructBlock):
 		icon = 'doc-full'
 
 
-class Pictures(blocks.StructBlock):
+class Gallery(blocks.StructBlock):
 
 	pictures = blocks.ListBlock(ImageChooserBlock())
 
 	class Meta:
-		template = 'blog/blocks/pictures.html'
+		template = 'blog/blocks/gallery.html'
+		icon = 'image'
+
+
+class Picture(blocks.StructBlock):
+
+	picture = ImageChooserBlock()
+
+	class Meta:
+		template = 'blog/blocks/picture.html'
 		icon = 'image'
 
 
@@ -188,7 +197,8 @@ class BlogPostPage(Page):
 		('text', Text()),
 		('aside', Aside()),
 		('caption', Caption()),
-		('pictures', Pictures()),
+		('gallery', Gallery()),
+		('picture', Picture()),
 		('date', Date()),
 		('location', Location()),
 		('place', Place()),
