@@ -15,6 +15,14 @@ with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\GoogleKey.txt") as key
     WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
     GOOGLE_MAPS_V3_APIKEY = WAGTAIL_ADDRESS_MAP_KEY
 
+# Wagtail search settings
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.db',
+    }
+}
+
 try:
     from .local import *
 except ImportError:
