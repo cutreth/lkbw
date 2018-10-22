@@ -136,11 +136,12 @@ class BlogHomePage(Page):
 		ImageChooserPanel('banner_image'),
 	] + Page.promote_panels
 
+	parent_page_types = []
+
 	def get_context(self, request):
 		context = super().get_context(request)
 		blogsection = self.get_first_child()
 		blogpages = blogsection.get_children().live().order_by('-first_published_at')
-
 
 		paginator = Paginator(blogpages, 2)
 
@@ -185,6 +186,8 @@ class BlogSectionPage(Page):
 	settings_panels = [
 
 	] + Page.settings_panels
+
+	parent_page_types = [BlogHomePage]
 
 	def get_context(self, request):
 		context = super().get_context(request)
@@ -231,6 +234,8 @@ class BlogPostPage(Page):
 		('location', Location()),
 		('place', Place()),
 	], null=True, blank=True)
+
+	parent_page_types = [BlogSectionPage]
 
 	search_fields = Page.search_fields + [
 		index.SearchField('intro'),
