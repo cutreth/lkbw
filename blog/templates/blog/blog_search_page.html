@@ -43,6 +43,12 @@
               </li>
             {% endfor %}
           </ul>
+          <form class="form-inline ml-auto" action="{% pageurl page %}" method="get">
+            <div class="my-0">
+              <input class="form-control" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+            </div>
+            <button href="#" class="btn-primary btn-sm ml-sm-2" type="submit" style="font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">Search</button>
+          </form>
         </div>
       </div>
     </nav>
@@ -70,73 +76,37 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
 
+          {% if search_results %}
 
-            <form action="{% pageurl page %}" method="get">
-            <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-            <input type="submit" value="Search" class="button">
-            </form>
+            <div class="post-preview">
+              {% for result in search_results %}
+                  <a href="{% pageurl result %}">
+                    <h3>{{ result }}</h3>
+                  </a>
+                  <p class="post-meta">
+                    {% if result.search_description %}
+                      {{ result.search_description }}
+                    {% else %}
+                      <br>
+                    {% endif %}
+                  </p>
+              {% endfor %}
+            </div>
 
-            {% if search_results %}
-                <ul>
-                    {% for result in search_results %}
-                        <li>
-                            <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                            {% if result.search_description %}
-                                {{ result.search_description }}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                {% if search_results.has_previous %}
-                    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-                {% endif %}
-
-                {% if search_results.has_next %}
-                    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-                {% endif %}
-            {% elif search_query %}
-                No results found
-            {% endif %}
-
-
-
-
-
-
-
-		  {% for post in blogpages %}
-		    {% with post=post.specific %}
-			  <div class="post-preview">
-			    <a href="{% pageurl post %}">
-				  <h2 class="post-title">{{ post.title }}</h2>
-				  <h3 class="post-subtitle">{{ post.intro }}</h3>
-				</a>
-				<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>
-			  </div>
-			  <hr>
-            {% endwith %}
-		  {% endfor %}
-		
-          <!-- Pager -->
-          <div class="clearfix">
-
-            {% if blogpages.has_previous %}
-                <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
-            {% endif %}
-
-            {% for page_num in blogpages.paginator.page_range %}
-              <li {% if page_num == blogpages.number %} class="active"{% endif %}>
-                <a href="?page={{ page_num }}" class="btn btn-group">{{ page_num }}</a>
-              </li>
-            {% endfor %}
-
-            {% if blogpages.has_next %}
-                <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
+            <div class="clearfix">
+              {% if search_results.has_previous %}
+                <a href="{% pageurl page %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}" class="btn btn-primary float-left">Previous</a>
               {% endif %}
-          </div>
 
+              {% if search_results.has_next %}
+                <a href="{% pageurl page %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}" class="btn btn-primary float-right">Next</a>
+              {% endif %}
+            </div>
 
+          {% elif search_query %}
+            No results found
+
+          {% endif %}
 
         </div>
       </div>
