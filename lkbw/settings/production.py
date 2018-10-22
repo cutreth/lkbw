@@ -24,10 +24,9 @@ WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.elasticsearch6',
         'INDEX': 'wagtail',
-        'URLS': 'https://search-lkbw-o36dz33nhninyp4zptohj24ezq.us-east-2.es.amazonaws.com',
         'TIMEOUT': 5,
         'HOSTS': [{
-            'host': 'YOURCLUSTER.REGION.es.amazonaws.com',
+            'host': 'https://search-lkbw-o36dz33nhninyp4zptohj24ezq.us-east-2.es.amazonaws.com',
             'port': 443,
             'use_ssl': True,
             'verify_certs': True,
