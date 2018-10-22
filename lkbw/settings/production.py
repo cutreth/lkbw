@@ -26,7 +26,7 @@ WAGTAILSEARCH_BACKENDS = {
         'INDEX': 'wagtail',
         'TIMEOUT': 5,
         'HOSTS': [{
-            'host': 'https://search-lkbw-o36dz33nhninyp4zptohj24ezq.us-east-2.es.amazonaws.com',
+            'host': 'search-lkbw-o36dz33nhninyp4zptohj24ezq.us-east-2.es.amazonaws.com',
             'port': 443,
             'use_ssl': True,
             'verify_certs': True,
