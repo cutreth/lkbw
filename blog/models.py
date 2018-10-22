@@ -171,6 +171,7 @@ class BlogSectionPage(Page):
 	)
 	
 	search_fields = Page.search_fields + [
+		index.SearchField('intro'),
 	]
 	
 	content_panels = Page.content_panels + [
