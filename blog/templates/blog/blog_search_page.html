@@ -2,7 +2,7 @@
 
 {% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}template-bloghomepage{% endblock %}
+{% block body_class %}template-blogsearchpage{% endblock %}
 
 {% block extra_css %}
 
@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href={% pageurl page %}>Lil Kev Big World</a>
+        <a class="navbar-brand" href={% pageurl page.get_parent %}>Lil Kev Big World</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -35,9 +35,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href={% pageurl page %}>Home</a>
+              <a class="nav-link" href={% pageurl page.get_parent %}>Home</a>
             </li>
-            {% for page in page.get_children %}
+            {% for page in page.get_parent.get_children %}
               <li class="nav-item">
                 <a class="nav-link" href={% pageurl page %}>{{ page }}</a>
               </li>
@@ -65,9 +65,45 @@
 
     <!-- Main Content -->
 
+
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <form action="{% pageurl page %}" method="get">
+            <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+            <input type="submit" value="Search" class="button">
+            </form>
+
+            {% if search_results %}
+                <ul>
+                    {% for result in search_results %}
+                        <li>
+                            <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+                            {% if result.search_description %}
+                                {{ result.search_description }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                {% if search_results.has_previous %}
+                    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% if search_results.has_next %}
+                    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+                {% endif %}
+            {% elif search_query %}
+                No results found
+            {% endif %}
+
+
+
+
+
+
 
 		  {% for post in blogpages %}
 		    {% with post=post.specific %}
@@ -88,112 +124,25 @@
             {% if blogpages.has_previous %}
                 <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
             {% endif %}
-<!--
+
             {% for page_num in blogpages.paginator.page_range %}
               <li {% if page_num == blogpages.number %} class="active"{% endif %}>
                 <a href="?page={{ page_num }}" class="btn btn-group">{{ page_num }}</a>
               </li>
             {% endfor %}
--->
+
             {% if blogpages.has_next %}
                 <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
               {% endif %}
-
           </div>
+
+
+
         </div>
       </div>
     </div>
 
     <hr>
-
-
-
-
-
-    <div>
-
-    <style>
-
-        .row-test {
-          display: flex;
-          flex-wrap: wrap;
-          padding: 0 4px;
-        }
-
-        /* Create four equal columns that sits next to each other */
-        .column-test {
-          flex: 25%;
-          max-width: 25%;
-          padding: 0 4px;
-        }
-
-        .column-test img {
-          margin-top: 8px;
-          vertical-align: middle;
-        }
-
-        /* Responsive layout - makes a two column-layout instead of four columns */
-        @media screen and (max-width: 800px) {
-          .column-test {
-            flex: 50%;
-            max-width: 50%;
-          }
-        }
-
-        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-          .column-test {
-            flex: 100%;
-            max-width: 100%;
-          }
-        }
-
-        .pic-test{
-            width: 100%;
-            height: auto;
-        }
-
-    </style>
-
-        <div class="row-test">
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/300/wedding?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/rocks?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/waterfall?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/paris?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/nature?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/mist?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/underwater?random=1">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/300/400/ocean?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/marriage?random=2">
-            <img class="pic-test" src="https://loremflickr.com/600/400/mountains?random=2">
-            <img class="pic-test" src="https://loremflickr.com/400/600/forest?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/sky?random=2">
-            <img class="pic-test" src="https://loremflickr.com/400/400/chicago?random=2">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/300/wedding?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/rocks?random=3">
-            <img class="pic-test" src="https://loremflickr.com/500/500/waterfall?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/paris?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/nature?random=3">
-            <img class="pic-test" src="https://loremflickr.com/600/600/mist?random=3">
-            <img class="pic-test" src="https://loremflickr.com/500/500/underwater?random=3">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/600/ocean?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/300/marriage?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/600/mountains?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/300/forest?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/sky?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/chicago?random=4">
-          </div>
-        </div>
-
-    </div>
-
 
     <!-- Footer -->
     {% comment %}

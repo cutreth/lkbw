@@ -9,6 +9,7 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
+from wagtail.search.models import Query
 
 from wagtailgmaps.edit_handlers import MapFieldPanel
 from wagtailgeowidget.blocks import GeoBlock
@@ -156,6 +157,50 @@ class BlogHomePage(Page):
 			blogpages = paginator.page(paginator.num_pages)
 
 		context['blogpages'] = blogpages
+		return context
+
+
+class BlogSearchPage(Page):
+
+	banner_image = models.ForeignKey(
+		'wagtailimages.Image',
+		null=True, blank=True,
+		on_delete=models.SET_NULL,
+		related_name='+'
+	)
+
+	promote_panels = [
+		ImageChooserPanel('banner_image'),
+	] + Page.promote_panels
+
+	parent_page_types = [BlogHomePage]
+
+	def get_context(self, request):
+		context = super().get_context(request)
+		search_query = request.GET.get('query', None)
+		page = request.GET.get('page', 1)
+
+		# Search
+		if search_query:
+			search_results = Page.objects.live().search(search_query)
+			query = Query.get(search_query)
+
+			# Record hit
+			query.add_hit()
+		else:
+			search_results = Page.objects.none()
+
+		# Pagination
+		paginator = Paginator(search_results, 10)
+		try:
+			search_results = paginator.page(page)
+		except PageNotAnInteger:
+			search_results = paginator.page(1)
+		except EmptyPage:
+			search_results = paginator.page(paginator.num_pages)
+
+		context['search_results'] = search_results
+		context['search_query'] = search_query
 		return context
 
 
