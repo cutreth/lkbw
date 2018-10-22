@@ -165,3 +165,11 @@ WAGTAIL_ADDRESS_MAP_ZOOM = 8
 
 GEO_WIDGET_DEFAULT_LOCATION = {'lat': 41.8781, 'lng': -87.6298}
 GEO_WIDGET_ZOOM = WAGTAIL_ADDRESS_MAP_ZOOM
+
+# Wagtail search settings
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.db',
+    }
+}
