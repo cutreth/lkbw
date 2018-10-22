@@ -106,6 +106,95 @@
 
     <hr>
 
+
+
+
+
+    <div>
+
+    <style>
+
+        .row-test {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0 4px;
+        }
+
+        /* Create four equal columns that sits next to each other */
+        .column-test {
+          flex: 25%;
+          max-width: 25%;
+          padding: 0 4px;
+        }
+
+        .column-test img {
+          margin-top: 8px;
+          vertical-align: middle;
+        }
+
+        /* Responsive layout - makes a two column-layout instead of four columns */
+        @media screen and (max-width: 800px) {
+          .column-test {
+            flex: 50%;
+            max-width: 50%;
+          }
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+          .column-test {
+            flex: 100%;
+            max-width: 100%;
+          }
+        }
+
+        .pic-test{
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
+
+        <div class="row-test">
+          <div class="column-test">
+            <img class="pic-test" src="https://loremflickr.com/400/300/wedding?random=1">
+            <img class="pic-test" src="https://loremflickr.com/300/400/rocks?random=1">
+            <img class="pic-test" src="https://loremflickr.com/300/400/waterfall?random=1">
+            <img class="pic-test" src="https://loremflickr.com/400/300/paris?random=1">
+            <img class="pic-test" src="https://loremflickr.com/400/300/nature?random=1">
+            <img class="pic-test" src="https://loremflickr.com/300/400/mist?random=1">
+            <img class="pic-test" src="https://loremflickr.com/400/300/underwater?random=1">
+          </div>
+          <div class="column-test">
+            <img class="pic-test" src="https://loremflickr.com/300/400/ocean?random=2">
+            <img class="pic-test" src="https://loremflickr.com/300/400/marriage?random=2">
+            <img class="pic-test" src="https://loremflickr.com/600/400/mountains?random=2">
+            <img class="pic-test" src="https://loremflickr.com/400/600/forest?random=2">
+            <img class="pic-test" src="https://loremflickr.com/300/400/sky?random=2">
+            <img class="pic-test" src="https://loremflickr.com/400/400/chicago?random=2">
+          </div>
+          <div class="column-test">
+            <img class="pic-test" src="https://loremflickr.com/400/300/wedding?random=3">
+            <img class="pic-test" src="https://loremflickr.com/400/300/rocks?random=3">
+            <img class="pic-test" src="https://loremflickr.com/500/500/waterfall?random=3">
+            <img class="pic-test" src="https://loremflickr.com/300/400/paris?random=3">
+            <img class="pic-test" src="https://loremflickr.com/300/400/nature?random=3">
+            <img class="pic-test" src="https://loremflickr.com/600/600/mist?random=3">
+            <img class="pic-test" src="https://loremflickr.com/500/500/underwater?random=3">
+          </div>
+          <div class="column-test">
+            <img class="pic-test" src="https://loremflickr.com/400/600/ocean?random=4">
+            <img class="pic-test" src="https://loremflickr.com/400/300/marriage?random=4">
+            <img class="pic-test" src="https://loremflickr.com/400/600/mountains?random=4">
+            <img class="pic-test" src="https://loremflickr.com/400/300/forest?random=4">
+            <img class="pic-test" src="https://loremflickr.com/300/400/sky?random=4">
+            <img class="pic-test" src="https://loremflickr.com/300/400/chicago?random=4">
+          </div>
+        </div>
+
+    </div>
+
+
     <!-- Footer -->
     {% comment %}
     <footer>
