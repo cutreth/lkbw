@@ -130,6 +130,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+WAGTAIL_USER_TIME_ZONES = ['America/Chicago', 'Asia/Bangkok', 'Asia/Kuala_Lumpur', 'America/Santiago', 'America/Lima', 'America/Buenos_Aires']
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
