@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.encoding import force_bytes
 
 @csrf_exempt
-def hello(request):
+def deploy(request):
     # Verify if request came from GitHub
     # ...
 
