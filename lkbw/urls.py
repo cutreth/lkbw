@@ -6,7 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from blog import views as blog_views
+from blog import views
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^api/deploy/$', blog_views.deploy, name='deploy'),
+    url(r'^api/deploy/$', views.deploy, name='deploy'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
