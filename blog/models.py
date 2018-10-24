@@ -324,7 +324,7 @@ class BlogPostPage(Page):
 	] + Page.promote_panels
 
 	settings_panels = Page.settings_panels + [
-		
+
 	]	
 
 	def get_context(self, request):
