@@ -113,10 +113,14 @@ class PlaceStructValue(blocks.StructValue):
 	def zoom():
 		return settings.GEO_WIDGET_ZOOM
 
+	def q(self):
+		return self.place
+
 
 class Place(blocks.StructBlock):
 
-	q = blocks.CharBlock()
+	place = blocks.CharBlock()
+	#Place IDs should be prefixed with place_id
 
 	class Meta:
 		template = 'blog/blocks/place.html'
