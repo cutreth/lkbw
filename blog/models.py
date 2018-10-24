@@ -143,7 +143,7 @@ class BlogHomePage(Page):
 		context = super().get_context(request)
 
 		blogsection = self.get_first_child()
-		blogpages = blogsection.get_children().live().order_by('-first_published_at')
+		blogpages = blogsection.get_children().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
 
 		paginator = Paginator(blogpages, 2)
 
@@ -212,7 +212,7 @@ class BlogSearchPage(Page):
 		context['search_query'] = search_query
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children()
+		menupages = homepage.get_children().in_menu()
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
@@ -254,7 +254,7 @@ class BlogSectionPage(Page):
 	def get_context(self, request):
 		context = super().get_context(request)
 
-		blogpages = self.get_children().live().order_by('-first_published_at')
+		blogpages = self.get_children().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
 
 		paginator = Paginator(blogpages, 2)
 
@@ -271,7 +271,7 @@ class BlogSectionPage(Page):
 		context['blogpages'] = blogpages
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children()
+		menupages = homepage.get_children().in_menu()
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
@@ -324,13 +324,14 @@ class BlogPostPage(Page):
 	] + Page.promote_panels
 
 	settings_panels = Page.settings_panels + [
+		
 	]	
 
 	def get_context(self, request):
 		context = super().get_context(request)
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children()
+		menupages = homepage.get_children().in_menu()
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
