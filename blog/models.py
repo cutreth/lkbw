@@ -21,7 +21,7 @@ class Header (blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/blocks/header.html'
-		icon = 'title'
+		icon = 'bold'
 
 
 class Text (blocks.StructBlock):
@@ -89,13 +89,13 @@ class LocationStructValue(blocks.StructValue):
 		return settings.GEO_WIDGET_ZOOM
 
 	def center(self):
-		return self.get('latt_long')["lat"] + ',' + self.get('latt_long')["lng"]
+		return self.get('location')["lat"] + ',' + self.get('location')["lng"]
 
 
 class Location(blocks.StructBlock):
 
 	address = blocks.CharBlock(required=False)
-	latt_long = GeoBlock(address_field='address')
+	location = GeoBlock(address_field='address')
 
 	class Meta:
 		template = 'blog/blocks/location.html'
@@ -295,12 +295,12 @@ class BlogPostPage(Page):
 
 	body = StreamField([
 		('header', Header()),
+		('date', Date()),
 		('text', Text()),
 		('aside', Aside()),
 		('caption', Caption()),
 		('gallery', Gallery()),
 		('picture', Picture()),
-		('date', Date()),
 		('location', Location()),
 		('place', Place()),
 	], null=True, blank=True)
