@@ -21,7 +21,7 @@ class Header (blocks.StructBlock):
 
 	class Meta:
 		template = 'blog/blocks/header.html'
-		icon = 'title'
+		icon = 'bold'
 
 
 class Text (blocks.StructBlock):
@@ -295,12 +295,12 @@ class BlogPostPage(Page):
 
 	body = StreamField([
 		('header', Header()),
+		('date', Date()),
 		('text', Text()),
 		('aside', Aside()),
 		('caption', Caption()),
 		('gallery', Gallery()),
 		('picture', Picture()),
-		('date', Date()),
 		('location', Location()),
 		('place', Place()),
 	], null=True, blank=True)
