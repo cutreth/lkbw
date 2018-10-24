@@ -12,6 +12,9 @@ with open('/home/lkbw/private/GoogleKey.txt') as key:
     WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
     GOOGLE_MAPS_V3_APIKEY = WAGTAIL_ADDRESS_MAP_KEY
 
+with open('/home/lkbw/private/GithubKey.txt') as key:
+    GITHUB_WEBHOOK_KEY = key.read().strip()
+
 # Wagtail search settings
 
 with open('/home/lkbw/private/AwsAccessKey.txt') as key:
