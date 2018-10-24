@@ -160,7 +160,7 @@ class BlogHomePage(Page):
 		context['blogpages'] = blogpages
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children()
+		menupages = homepage.get_children().in_menu()
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
