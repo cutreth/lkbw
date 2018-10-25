@@ -1,4 +1,5 @@
 import subprocess
+import json
 import hmac
 import string
 from hashlib import sha1
@@ -26,6 +27,8 @@ def deploy(request):
 
     # If request reached this point we are in a good shape
 
-    p = subprocess.call("~/scripts/deploy.sh", shell=True)
+    payload = json.loads(request)
     
-    return HttpResponse("Hard coded response")
+    p = subprocess.popen("~/scripts/deploy.sh", shell=True)
+    
+    return HttpResponse(payload["ref"])
