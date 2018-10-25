@@ -1,4 +1,6 @@
+import subprocess
 import hmac
+import string
 from hashlib import sha1
 
 from django.conf import settings
@@ -8,8 +10,6 @@ from django.utils.encoding import force_bytes
 
 @csrf_exempt
 def deploy(request):
-    # Verify if request came from GitHub
-    # ...
 
     # Verify the request signature
     header_signature = request.META.get('HTTP_X_HUB_SIGNATURE')
@@ -25,4 +25,9 @@ def deploy(request):
         return HttpResponseForbidden('Permission denied.')
 
     # If request reached this point we are in a good shape
-    return HttpResponse('pong')
+
+    bashCommand = ""
+    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+    return HttpResponse("Hello world")
