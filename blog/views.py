@@ -28,4 +28,4 @@ def deploy(request):
 
     subprocess.Popen(["bash", "./lkbw/deploy.sh"], shell=True)
     
-    return HttpResponse("Hello world")
+    return HttpResponse("Hard coded response")
