@@ -30,8 +30,8 @@ def deploy(request):
     payload = json.loads(request.body)
     ref = payload["ref"]
     
-    if ref == 'refs/heads/master'
+    if ref == 'refs/heads/master':
         p = subprocess.Popen("~/scripts/deploy.sh", shell=True)
         return HttpResponse('Deploying')
-    else
+    else:
         return HttpResponse('Not master')
