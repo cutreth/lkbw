@@ -27,7 +27,7 @@ def deploy(request):
 
     # If request reached this point we are in a good shape
 
-    payload = json.loads(request)
+    payload = json.loads(request.body)
     
     p = subprocess.popen("~/scripts/deploy.sh", shell=True)
     
