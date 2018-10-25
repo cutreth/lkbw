@@ -30,4 +30,4 @@ def deploy(request):
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
 
-    return HttpResponse(output)
+    return HttpResponse("Hello world")
