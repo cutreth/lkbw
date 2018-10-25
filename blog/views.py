@@ -26,8 +26,4 @@ def deploy(request):
 
     # If request reached this point we are in a good shape
 
-    bashCommand = ""
-    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-    output, error = process.communicate()
-
     return HttpResponse("Hello world")
