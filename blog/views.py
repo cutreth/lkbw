@@ -29,6 +29,6 @@ def deploy(request):
 
     payload = json.loads(request.body)
     
-    p = subprocess.popen("~/scripts/deploy.sh", shell=True)
+    p = subprocess.Popen("~/scripts/deploy.sh", shell=True)
     
     return HttpResponse(payload["ref"])
