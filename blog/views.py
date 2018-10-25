@@ -28,7 +28,10 @@ def deploy(request):
     # If request reached this point we are in a good shape
 
     payload = json.loads(request.body)
+    ref = payload["ref"]
     
-    p = subprocess.Popen("~/scripts/deploy.sh", shell=True)
-    
-    return HttpResponse(payload["ref"])
+    if ref == 'refs/heads/master'
+        p = subprocess.Popen("~/scripts/deploy.sh", shell=True)
+        return HttpResponse('Deploying')
+    else
+        return HttpResponse('Not master')
