@@ -26,6 +26,6 @@ def deploy(request):
 
     # If request reached this point we are in a good shape
 
-    subprocess.Popen(["bash", "./lkbw/deploy.sh"], shell=True)
+    p = subprocess.call("~/scripts/deploy.sh", shell=True)
     
     return HttpResponse("Hard coded response")
