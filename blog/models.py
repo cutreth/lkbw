@@ -191,11 +191,11 @@ class BlogSearchPage(Page):
 		context = super().get_context(request)
 
 		search_query = request.GET.get('query', None)
-		page = request.GET.get('page', 1)
+		search_page = request.GET.get('page', 1)
 
 		# Search
 		if search_query:
-			search_results = Page.objects.live().search(search_query)
+			search_results = Page.objects.live().type(BlogPostPage).search(search_query)
 			query = Query.get(search_query)
 
 			# Record hit
@@ -206,12 +206,13 @@ class BlogSearchPage(Page):
 		# Pagination
 		paginator = Paginator(search_results, 2)
 		try:
-			search_results = paginator.page(page)
+			search_results = paginator.page(search_page)
 		except PageNotAnInteger:
 			search_results = paginator.page(1)
 		except EmptyPage:
 			search_results = paginator.page(paginator.num_pages)
 
+		context['search_page'] = search_page
 		context['search_results'] = search_results
 		context['search_query'] = search_query
 
@@ -262,9 +263,9 @@ class BlogSectionPage(Page):
 
 		paginator = Paginator(blogpages, 2)
 
-		page = request.GET.get('page')
+		sect_page = request.GET.get('page')
 		try:
-			blogpages = paginator.page(page)
+			blogpages = paginator.page(sect_page)
 		except PageNotAnInteger:
 			# If page is not an integer, deliver first page.
 			blogpages = paginator.page(1)
@@ -272,6 +273,7 @@ class BlogSectionPage(Page):
 			# If page is out of range (e.g. 9999), deliver last page of results.
 			blogpages = paginator.page(paginator.num_pages)
 
+		context['sect_page'] = sect_page
 		context['blogpages'] = blogpages
 
 		homepage = self.get_site().root_page
@@ -333,6 +335,14 @@ class BlogPostPage(Page):
 
 	def get_context(self, request):
 		context = super().get_context(request)
+
+		sect_page = request.GET.get('sect_page')
+		context['sect_page'] = sect_page
+
+		search_page = request.GET.get('search_page')
+		search_query = request.GET.get('search_query')
+		context['search_page'] = search_page
+		context['search_query'] = search_query
 
 		homepage = self.get_site().root_page
 		menupages = homepage.get_children().in_menu()

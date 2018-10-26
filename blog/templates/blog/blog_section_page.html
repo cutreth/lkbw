@@ -69,7 +69,7 @@
 		  {% for post in blogpages %}
 		    {% with post=post.specific %}
 			  <div class="post-preview">
-			    <a href="{% pageurl post %}">
+			    <a href="{% pageurl post %}{% if sect_page %}?sect_page={{ sect_page }}{% endif %}">
 				  <h2 class="post-title">{{ post.title }}</h2>
 				  <h3 class="post-subtitle">{{ post.intro }}</h3>
 				</a>
@@ -85,13 +85,13 @@
             {% if blogpages.has_previous %}
                 <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
             {% endif %}
-<!--
+{% comment %}
             {% for page_num in blogpages.paginator.page_range %}
               <li {% if page_num == blogpages.number %} class="active"{% endif %}>
                 <a href="?page={{ page_num }}" class="btn btn-group">{{ page_num }}</a>
               </li>
             {% endfor %}
--->
+{% endcomment %}
             {% if blogpages.has_next %}
                 <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
               {% endif %}
