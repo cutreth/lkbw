@@ -17,7 +17,7 @@ def id_prefix():
 def cdn_url(value):
     aws_url = settings.AWS_CLOUDFRONT_URL
 
-    if aws_url:
+    if aws_url != '':
         old_url = settings.MEDIA_URL + '/images/'
         value = value.replace(old_url, aws_url)
 
