@@ -23,6 +23,16 @@ with open('/home/lkbw/private/AwsAccessKey.txt') as key:
 with open('/home/lkbw/private/AwsSecretKey.txt') as key:
     AWS_SECRET_KEY = key.read().strip()
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_KEY
+
+AWS_STORAGE_BUCKET_NAME = 'lkbw'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.elasticsearch6',
