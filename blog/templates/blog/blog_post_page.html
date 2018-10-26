@@ -78,7 +78,11 @@
 
             <!-- Pager -->
             <div class="clearfix">
-              <a class="btn btn-primary float-right" href={% pageurl page.get_parent %}>Go back</a>
+              {% if search_page and search_query %}
+                 <a class="btn btn-primary float-right" href="{% slugurl 'search' %}?page={{ search_page }}&query={{ search_query }}">Go back</a>
+              {% else %}
+                <a class="btn btn-primary float-right" href="{% pageurl page.get_parent %}{% if sect_page %}?page={{ sect_page }}{% endif %}">Go back</a>
+              {% endif %}
             </div>
 
           </div>
