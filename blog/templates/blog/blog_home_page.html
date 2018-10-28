@@ -61,7 +61,6 @@
     </header>
 
     <!-- Main Content -->
-
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -85,13 +84,6 @@
             {% if blogpages.has_previous %}
                 <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
             {% endif %}
-{% comment %}
-            {% for page_num in blogpages.paginator.page_range %}
-              <li {% if page_num == blogpages.number %} class="active"{% endif %}>
-                <a href="?page={{ page_num }}" class="btn btn-group">{{ page_num }}</a>
-              </li>
-            {% endfor %}
-{% endcomment %}
             {% if blogpages.has_next %}
                 <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
               {% endif %}
@@ -103,134 +95,20 @@
 
     <hr>
 
-    <div>
-
     <style>
-
-        .row-test {
-          display: flex;
-          flex-wrap: wrap;
-          padding: 0 4px;
-        }
-
-        /* Create four equal columns that sits next to each other */
-        .column-test {
-          flex: 25%;
-          max-width: 25%;
-          padding: 0 4px;
-        }
-
-        .column-test img {
-          margin-top: 8px;
-          vertical-align: middle;
-        }
-
-        /* Responsive layout - makes a two column-layout instead of four columns */
-        @media screen and (max-width: 800px) {
-          .column-test {
-            flex: 50%;
-            max-width: 50%;
-          }
-        }
-
-        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-          .column-test {
-            flex: 100%;
-            max-width: 100%;
-          }
-        }
-
-        .pic-test{
-            width: 100%;
-            height: auto;
-        }
-
+        .grid-item { width: 200px; }
+        .grid-item--width2 { width: 400px; }
     </style>
 
-        <div class="row-test">
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/300/dog?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/blue?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/waterfall?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/gecko?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/nature?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/blue?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/underwater?random=1">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/300/400/ocean?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/love?random=2">
-            <img class="pic-test" src="https://loremflickr.com/400/300/mountains?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/cute?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/sky?random=2">
-            <img class="pic-test" src="https://loremflickr.com/400/300/happy?random=2">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/300/red?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/rocks?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/gold?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/lion?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/boston?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/mist?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/metalic?random=3">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/300/400/cat?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/dolphin?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/300/valley?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/forest?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/plane?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/300/flag?random=4">
-          </div>
-        </div>
-
+    <div class="grid">
+      <div class="grid-item"><img src="http://p-hold.com/kitten/400/300"></div>
+      <div class="grid-item grid-item--width2"><img src="http://p-hold.com/puppy/400/300"></div>
+      <div class="grid-item"><img src="http://p-hold.com/beach/400/300"></div>
+      <div class="grid-item grid-item--width2"><img src="http://p-hold.com/airport/400/300"></div>
+      <div class="grid-item"><img src="http://p-hold.com/river/300/400"></div>
+      <div class="grid-item grid-item--width2"><img src="http://p-hold.com/tree/300/400"></div>
     </div>
 
-    <!-- Footer -->
-    {% comment %}
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-    {% endcomment %}
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static '/startbootstrap-clean-blog-gh-pages/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static '/startbootstrap-clean-blog-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="{% static '/startbootstrap-clean-blog-gh-pages/js/clean-blog.min.js' %}"></script>
+    <script src="{% static '/js/lkbw.js' %}"></script>
 
 {% endblock %}
