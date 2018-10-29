@@ -229,6 +229,7 @@ class BlogSectionPage(Page):
 
 	post_date = models.DateField("Post date")
 	intro = models.CharField(max_length=250)
+	order = models.PositiveIntegerField()
 	banner_image = models.ForeignKey(
 		'wagtailimages.Image',
 		null=True, blank=True,
@@ -243,7 +244,7 @@ class BlogSectionPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('intro'),
 		FieldPanel('post_date'),
-
+		FieldPanel('order'),
 	]
 	
 	promote_panels = [
@@ -264,6 +265,7 @@ class BlogSectionPage(Page):
 		paginator = Paginator(blogpages, 2)
 
 		sect_page = request.GET.get('page')
+
 		try:
 			blogpages = paginator.page(sect_page)
 		except PageNotAnInteger:
@@ -277,7 +279,7 @@ class BlogSectionPage(Page):
 		context['blogpages'] = blogpages
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children().in_menu()
+		menupages = BlogSectionPage.objects.all().child_of(homepage).order_by('order')
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
@@ -341,12 +343,13 @@ class BlogPostPage(Page):
 
 		search_page = request.GET.get('search_page')
 		search_query = request.GET.get('search_query')
+
 		context['search_page'] = search_page
 		context['search_query'] = search_query
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children().in_menu()
-
+		menupages = BlogSectionPage.objects.all().child_of(homepage).order_by('order')
+		
 		context['homepage'] = homepage
 		context['menupages'] = menupages
 
