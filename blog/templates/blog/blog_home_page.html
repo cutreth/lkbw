@@ -4,23 +4,7 @@
 
 {% block body_class %}template-bloghomepage{% endblock %}
 
-{% block extra_css %}
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static '/startbootstrap-clean-blog-gh-pages/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="{% static '/startbootstrap-clean-blog-gh-pages/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="{% static '/startbootstrap-clean-blog-gh-pages/css/clean-blog.min.css' %}" rel="stylesheet">
-
-{% endblock %}
+{% block extra_css %}{% endblock %}
 
 {% block content %}
 
@@ -61,7 +45,6 @@
     </header>
 
     <!-- Main Content -->
-
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -85,13 +68,6 @@
             {% if blogpages.has_previous %}
                 <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
             {% endif %}
-{% comment %}
-            {% for page_num in blogpages.paginator.page_range %}
-              <li {% if page_num == blogpages.number %} class="active"{% endif %}>
-                <a href="?page={{ page_num }}" class="btn btn-group">{{ page_num }}</a>
-              </li>
-            {% endfor %}
-{% endcomment %}
             {% if blogpages.has_next %}
                 <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
               {% endif %}
@@ -103,134 +79,138 @@
 
     <hr>
 
-    <div>
-
     <style>
 
-        .row-test {
-          display: flex;
-          flex-wrap: wrap;
-          padding: 0 4px;
+        * { box-sizing: border-box; }
+
+        /* force scrollbar */
+        html { overflow-y: scroll; }
+
+        body { font-family: sans-serif; }
+
+        /* ---- grid ---- */
+
+        .grid {
+          background: #DDD;
         }
 
-        /* Create four equal columns that sits next to each other */
-        .column-test {
-          flex: 25%;
-          max-width: 25%;
-          padding: 0 4px;
+        /* clear fix */
+        .grid:after {
+          content: '';
+          display: block;
+          clear: both;
         }
 
-        .column-test img {
-          margin-top: 8px;
-          vertical-align: middle;
+        /* ---- .grid-item ---- */
+
+        .grid-sizer,
+        .grid-item {
+          width: 33.333%;
         }
 
-        /* Responsive layout - makes a two column-layout instead of four columns */
-        @media screen and (max-width: 800px) {
-          .column-test {
-            flex: 50%;
-            max-width: 50%;
-          }
+        .grid-item {
+          float: left;
         }
 
-        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-          .column-test {
-            flex: 100%;
-            max-width: 100%;
-          }
-        }
-
-        .pic-test{
-            width: 100%;
-            height: auto;
+        .grid-item img {
+          display: block;
+          width: 100%;
         }
 
     </style>
 
-        <div class="row-test">
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/300/dog?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/blue?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/waterfall?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/gecko?random=1">
-            <img class="pic-test" src="https://loremflickr.com/400/300/nature?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/blue?random=1">
-            <img class="pic-test" src="https://loremflickr.com/300/400/underwater?random=1">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/300/400/ocean?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/love?random=2">
-            <img class="pic-test" src="https://loremflickr.com/400/300/mountains?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/cute?random=2">
-            <img class="pic-test" src="https://loremflickr.com/300/400/sky?random=2">
-            <img class="pic-test" src="https://loremflickr.com/400/300/happy?random=2">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/400/300/red?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/rocks?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/gold?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/lion?random=3">
-            <img class="pic-test" src="https://loremflickr.com/400/300/boston?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/mist?random=3">
-            <img class="pic-test" src="https://loremflickr.com/300/400/metalic?random=3">
-          </div>
-          <div class="column-test">
-            <img class="pic-test" src="https://loremflickr.com/300/400/cat?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/dolphin?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/300/valley?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/forest?random=4">
-            <img class="pic-test" src="https://loremflickr.com/300/400/plane?random=4">
-            <img class="pic-test" src="https://loremflickr.com/400/300/flag?random=4">
-          </div>
-        </div>
+    <h1>Masonry - imagesLoaded progress</h1>
 
+    <div class="grid">
+      <div class="grid-sizer"></div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
+      </div>
+      <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
+      </div>
     </div>
 
-    <!-- Footer -->
-    {% comment %}
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-    {% endcomment %}
+    <style>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static '/startbootstrap-clean-blog-gh-pages/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static '/startbootstrap-clean-blog-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        /* external css: flickity.css, fullscreen.css */
 
-    <!-- Custom scripts for this template -->
-    <script src="{% static '/startbootstrap-clean-blog-gh-pages/js/clean-blog.min.js' %}"></script>
+        * { box-sizing: border-box; }
+
+        body { font-family: sans-serif; }
+
+        .carousel {
+          background: #EEE;
+        }
+
+        .carousel-image {
+          display: block;
+          height: 300px;
+          /* set min-width, allow images to set cell width */
+          min-width: 150px;
+          max-width: 100%;
+          margin-right: 10px;
+          /* vertically center */
+          top: 50%;
+          transform: translateY(-50%)
+        }
+
+        .carousel.is-fullscreen .carousel-image {
+          height: auto;
+          max-height: 100%;
+        }
+
+    </style>
+
+    <h1>Flickity - fullscreen images natural size</h1>
+
+    <!-- Flickity HTML init -->
+    <div class="carousel" data-flickity='{ "fullscreen": true, "lazyLoad": 2 }'>
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/720/540/?image=517" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/540/720/?image=696" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/720/540/?image=56" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/800/500/?image=1084" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/720/540/?image=1080" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/640/640/?image=1074" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/720/540/?image=1069" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/800/500/?image=1062" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/720/540/?image=1002" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/640/640/?image=935" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/720/540/?image=855" />
+        <img class="carousel-image"
+          data-flickity-lazyload="https://picsum.photos/640/640/?image=824" />
+    </div>
 
 {% endblock %}
