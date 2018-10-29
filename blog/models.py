@@ -164,7 +164,7 @@ class BlogHomePage(Page):
 		context['blogpages'] = blogpages
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children().in_menu()
+		menupages = homepage.get_children().live().in_menu()
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
@@ -217,7 +217,7 @@ class BlogSearchPage(Page):
 		context['search_query'] = search_query
 
 		homepage = self.get_site().root_page
-		menupages = homepage.get_children().in_menu()
+		menupages = homepage.get_children().live().in_menu()
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
@@ -279,7 +279,7 @@ class BlogSectionPage(Page):
 		context['blogpages'] = blogpages
 
 		homepage = self.get_site().root_page
-		menupages = BlogSectionPage.objects.all().child_of(homepage).order_by('order')
+		menupages = BlogSectionPage.objects.all().child_of(homepage).live().order_by('order')
 
 		context['homepage'] = homepage
 		context['menupages'] = menupages
@@ -348,8 +348,8 @@ class BlogPostPage(Page):
 		context['search_query'] = search_query
 
 		homepage = self.get_site().root_page
-		menupages = BlogSectionPage.objects.all().child_of(homepage).order_by('order')
-		
+		menupages = BlogSectionPage.objects.all().child_of(homepage).live().order_by('order')
+
 		context['homepage'] = homepage
 		context['menupages'] = menupages
 
