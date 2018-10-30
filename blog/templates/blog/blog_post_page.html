@@ -11,7 +11,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <container class="container-fluid">
-        <div class="col-2 ">
+        <div class="col-2 mr-4">
           <a class="navbar-brand d-flex justify-content-start" href={% pageurl homepage %}>Lil Kev Big World</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,9 +28,9 @@
               {% endfor %}
             </ul>
           </div>
-          <div class="col-4 d-flex justify-content-lg-end">
+          <div class="col-lg-4 d-flex justify-content-lg-end">
             <form class="form-inline my-2 my-lg-0" action="{% slugurl "search" %}" method="get">
-              <input class="form-control mr-sm-2" type="search" aria-label="Search" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+              <input class="form-control mr-sm-2 w-50" type="search" aria-label="Search" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
               <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
