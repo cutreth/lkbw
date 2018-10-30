@@ -14,7 +14,7 @@ html5lib==1.0.1
 idna==2.7
 Pillow==5.2.0
 pytz==2018.5
-requests==2.19.1
+requests==2.20.0
 requests-aws4auth==0.9
 six==1.11.0
 Unidecode==1.0.22
