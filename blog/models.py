@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -11,7 +12,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
 from wagtail.search.models import Query
 
-from wagtailgmaps.edit_handlers import MapFieldPanel
 from wagtailgeowidget.blocks import GeoBlock
 
 
@@ -77,9 +77,11 @@ class LocationStructValue(blocks.StructValue):
     def key():
         return settings.GOOGLE_MAPS_V3_APIKEY
 
-    @staticmethod
-    def zoom():
-        return settings.GEO_WIDGET_ZOOM
+    def zoom_level(self):
+        zoom_level = self.get('zoom')
+        if not zoom_level:
+            zoom_level = settings.GEO_WIDGET_ZOOM
+        return zoom_level
 
     def center(self):
         return self.get('location')["lat"] + ',' + self.get('location')["lng"]
@@ -88,6 +90,8 @@ class LocationStructValue(blocks.StructValue):
 class Location(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
     location = GeoBlock(address_field='address')
+    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
+    satellite = blocks.BooleanBlock(required=False)
 
     class Meta:
         template = 'blog/blocks/location.html'
@@ -101,16 +105,20 @@ class PlaceStructValue(blocks.StructValue):
     def key():
         return settings.GOOGLE_MAPS_V3_APIKEY
 
-    @staticmethod
-    def zoom():
-        return settings.GEO_WIDGET_ZOOM
+    def zoom_level(self):
+        zoom_level = self.get('zoom')
+        if not zoom_level:
+            zoom_level = settings.GEO_WIDGET_ZOOM
+        return zoom_level
 
     def q(self):
         return self.place
 
 
 class Place(blocks.StructBlock):
-    place = blocks.CharBlock()
+    place = blocks.CharBlock(required=False)
+    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
+    satellite = blocks.BooleanBlock(required=False)
 
     # Place IDs should be prefixed with place_id
 
@@ -222,7 +230,6 @@ class BlogSearchPage(Page):
 
 
 class BlogSectionPage(Page):
-    post_date = models.DateField("Post date")
     order = models.PositiveIntegerField()
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -235,7 +242,6 @@ class BlogSectionPage(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel('post_date'),
         FieldPanel('order'),
     ]
 
@@ -289,8 +295,6 @@ class BlogPostPage(Page):
         related_name='+'
     )
 
-    formatted_address = models.CharField(max_length=250, blank=True, null=True)
-    latlng_address = models.CharField(max_length=250, blank=True, null=True)
 
     body = StreamField([
         ('header', Header()),
@@ -319,7 +323,6 @@ class BlogPostPage(Page):
 
     promote_panels = [
                          ImageChooserPanel('banner_image'),
-                         MapFieldPanel('formatted_address'),
                      ] + Page.promote_panels
 
     settings_panels = Page.settings_panels + [
