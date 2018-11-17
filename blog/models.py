@@ -1,7 +1,9 @@
 from django import forms
+from django.utils.functional import cached_property
 from django.db import models
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.forms import widgets
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField
@@ -99,6 +101,30 @@ class Location(blocks.StructBlock):
         value_class = LocationStructValue
 
 
+class PlaceWidget(forms.HiddenInput):
+    place_field = None
+
+    def __init__(self, *args, **kwargs):
+        self.place_field = kwargs.pop('place_field', self.place_field)
+
+        super(PlaceWidget, self).__init__(*args, **kwargs)
+
+
+class PlaceBlock(blocks.FieldBlock):
+    def __init__(self, place_field=None, required=True, **kwargs):
+        self.field_options = {}
+        self.place_field = place_field
+        super(PlaceBlock, self).__init__(**kwargs)
+
+    @cached_property
+    def field(self):
+        field_kwargs = {'widget': PlaceWidget(
+            place_field=self.place_field,
+        )}
+        field_kwargs.update(self.field_options)
+        return forms.CharField(**field_kwargs)
+
+
 class PlaceStructValue(blocks.StructValue):
 
     @staticmethod
@@ -117,6 +143,7 @@ class PlaceStructValue(blocks.StructValue):
 
 class Place(blocks.StructBlock):
     place = blocks.CharBlock(required=False)
+    location = PlaceBlock(place_field='place')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
 
