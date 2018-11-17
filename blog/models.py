@@ -99,10 +99,6 @@ class Location(blocks.StructBlock):
         value_class = LocationStructValue
 
 
-class PlaceBlock(blocks.FieldBlock):
-    temp = blocks.CharBlock()
-
-
 class PlaceStructValue(blocks.StructValue):
 
     @staticmethod
