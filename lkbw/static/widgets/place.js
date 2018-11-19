@@ -13,6 +13,7 @@ function GeoField(options) {
     this.srid = options.srid;
     this.sourceField = $(options.sourceSelector);
     this.addressField = $(options.addressSelector);
+    this.placeField =  $(options.placeSelector);
     this.latLngField = $(options.latLngDisplaySelector);
     this.geocoder = new google.maps.Geocoder();
 
@@ -102,6 +103,7 @@ GeoField.prototype.initEvents = function() {
 GeoField.prototype.initAutocomplete = function(field) {
     var self = this;
     var autocomplete = new google.maps.places.Autocomplete(field);
+    autocomplete.setFields(['place_id',]);
 
     autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
@@ -121,6 +123,9 @@ GeoField.prototype.initAutocomplete = function(field) {
         self.setMapPosition(latLng);
         self.updateLatLng(latLng);
         self.writeLocation(latLng);
+
+        var qId = place.place_id;
+        self.writePlace(qId);
     });
 };
 
@@ -225,6 +230,9 @@ GeoField.prototype.geocodeSearch = function(query) {
         self.setMapPosition(latLng);
         self.updateLatLng(latLng);
         self.writeLocation(latLng);
+
+        var qId = results[0].place_id;
+        self.writePlace(qId);
     });
 }
 
@@ -261,6 +269,13 @@ GeoField.prototype.writeLocation = function(latLng) {
     this.sourceField.val(value);
 }
 
+GeoField.prototype.writePlace = function(qId) {
+    var value = "place_id:" + qId
+
+    this.placeField.val(value);
+}
+
+
 function initializeGeoFields() {
     $(".geo-field").each(function(index, el) {
         var $el = $(el);
@@ -273,6 +288,7 @@ function initializeGeoFields() {
         var options = {
             mapEl: el,
             sourceSelector: $(data.sourceSelector),
+            placeSelector: $(data.placeSelector),
             latLngDisplaySelector: $(data.latLngDisplaySelector),
             zoom: data.zoom,
             srid: data.srid,

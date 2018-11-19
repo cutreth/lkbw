@@ -94,7 +94,7 @@ class LocationStructValue(blocks.StructValue):
 
 class Location(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
-    location = GeoBlock(address_field='address')
+    location = GeoBlock(address_field='address', place_field='place')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
 
@@ -106,11 +106,13 @@ class Location(blocks.StructBlock):
 
 class PlaceField(forms.HiddenInput):
     address_field = None
+    place_field = None
     id_prefix = 'id_'
     srid = None
 
     def __init__(self, *args, **kwargs):
         self.address_field = kwargs.pop('address_field', self.address_field)
+        self.place_field = kwargs.pop('place_field', self.place_field)
         self.srid = kwargs.pop('srid', self.srid)
         self.id_prefix = kwargs.pop('id_prefix', self.id_prefix)
         self.zoom = kwargs.pop('zoom', settings.GEO_WIDGET_ZOOM)
@@ -152,11 +154,15 @@ class PlaceField(forms.HiddenInput):
         address_selector = '#{}{}{}'.format(self.id_prefix,
                                             namespace,
                                             self.address_field)
+        place_selector = '#{}{}{}'.format(self.id_prefix,
+                                            namespace,
+                                            self.place_field)
 
         data = {
             'sourceSelector': source_selector,
             'defaultLocation': settings.GEO_WIDGET_DEFAULT_LOCATION,
             'addressSelector': address_selector,
+            'placeSelector': place_selector,
             'latLngDisplaySelector': '#_id_{}_latlng'.format(name),
             'zoom': self.zoom,
             'srid': self.srid,
@@ -201,10 +207,11 @@ class PlaceField(forms.HiddenInput):
 
 
 class PlaceBlock(blocks.FieldBlock):
-    def __init__(self, address_field=None, required=True, help_text=None,
+    def __init__(self, address_field=None, place_field=None, required=True, help_text=None,
                  **kwargs):
         self.field_options = {}
         self.address_field = address_field
+        self.place_field = place_field
         super(PlaceBlock, self).__init__(**kwargs)
 
     @cached_property
@@ -213,6 +220,7 @@ class PlaceBlock(blocks.FieldBlock):
             srid=4326,
             id_prefix='',
             address_field=self.address_field,
+            place_field=self.place_field,
         )}
         field_kwargs.update(self.field_options)
         return forms.CharField(**field_kwargs)
@@ -264,12 +272,11 @@ class PlaceStructValue(blocks.StructValue):
 
 
 class Place(blocks.StructBlock):
+    address = blocks.CharBlock(required=False)
     place = blocks.CharBlock(required=False)
-    location = PlaceBlock(address_field='place')
+    location = PlaceBlock(address_field='address', place_field='place')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
-
-    # Place IDs should be prefixed with place_id
 
     class Meta:
         template = 'blog/blocks/place.html'
