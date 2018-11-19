@@ -59,7 +59,12 @@ class Caption(blocks.StructBlock):
 
 
 class Gallery(blocks.StructBlock):
-    pictures = blocks.ListBlock(ImageChooserBlock())
+    pictures = blocks.ListBlock(blocks.StructBlock(
+        [
+            ('image', ImageChooserBlock()),
+            ('caption', blocks.CharBlock(required=False)),
+        ]
+    ))
 
     class Meta:
         template = 'blog/blocks/gallery.html'
@@ -67,7 +72,12 @@ class Gallery(blocks.StructBlock):
 
 
 class Picture(blocks.StructBlock):
-    picture = ImageChooserBlock()
+    picture = blocks.StructBlock(
+        [
+            ('image', ImageChooserBlock()),
+            ('caption', blocks.CharBlock(required=False)),
+        ]
+    )
 
     class Meta:
         template = 'blog/blocks/picture.html'

@@ -115,11 +115,11 @@
 
         <div class="mySlides{{ id_prefix }}">
             <div class="numbertext{{ id_prefix }}">{{ forloop.counter }} / {{ count }}</div>
-            {% image picture fill-1000x750 as pic %}
+            {% image picture.image fill-1000x750 as pic %}
             <img src="{{ pic.url|cdn_url }}"
                  width="{{ pic.width }}"
                  height="{{ pic.height }}"
-                 alt="{{ pic.alt }}"
+                 alt="{{ picture.caption }}"
                  id="myImg{{ id_prefix }}" />
         </div>
 
@@ -137,11 +137,11 @@
         {% for picture in value.pictures %}
             <div class="column{{ id_prefix }}">
 
-            {% image picture fill-150x150 as pic %}
+            {% image picture.image fill-150x150 as pic %}
             <img src="{{ pic.url|cdn_url }}"
                  width="{{ pic.width }}"
                  height="{{ pic.height }}"
-                 alt="{{ pic.alt }}"
+                 alt="{{ picture.caption }}"
                  class="demo{{ id_prefix }} cursor{{ id_prefix }}"
                  id="preImg{{ id_prefix }}"
                  onclick="currentSlide{{ id_prefix }}({{ forloop.counter }})" />
