@@ -15,8 +15,6 @@ except:
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
-from wagtailgeowidget.blocks import GeoBlock
-
 import blog.do as do
 
 
@@ -74,34 +72,6 @@ class Caption(blocks.StructBlock):
     class Meta:
         template = 'blog/blocks/caption.html'
         icon = 'form'
-
-
-class LocationStructValue(blocks.StructValue):
-
-    @staticmethod
-    def key():
-        return settings.GOOGLE_MAPS_V3_APIKEY
-
-    def zoom_level(self):
-        zoom_level = self.get('zoom')
-        if not zoom_level:
-            zoom_level = settings.GEO_WIDGET_ZOOM
-        return zoom_level
-
-    def center(self):
-        return self.get('location')["lat"] + ',' + self.get('location')["lng"]
-
-
-class Location(blocks.StructBlock):
-    address = blocks.CharBlock(required=False)
-    location = GeoBlock(address_field='address', place_field='place')
-    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
-    satellite = blocks.BooleanBlock(required=False)
-
-    class Meta:
-        template = 'blog/blocks/location.html'
-        icon = 'site'
-        value_class = LocationStructValue
 
 
 class PlaceField(forms.HiddenInput):
@@ -253,6 +223,35 @@ class PlaceBlock(blocks.FieldBlock):
         }
 
         return super(PlaceBlock, self).to_python(value)
+
+
+class LocationStructValue(blocks.StructValue):
+
+    @staticmethod
+    def key():
+        return settings.GOOGLE_MAPS_V3_APIKEY
+
+    def zoom_level(self):
+        zoom_level = self.get('zoom')
+        if not zoom_level:
+            zoom_level = settings.GEO_WIDGET_ZOOM
+        return zoom_level
+
+    def center(self):
+        return self.get('location')["lat"] + ',' + self.get('location')["lng"]
+
+
+class Location(blocks.StructBlock):
+    address = blocks.CharBlock(required=False)
+    place = blocks.CharBlock(required=False)
+    location = PlaceBlock(address_field='address', place_field='place')
+    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
+    satellite = blocks.BooleanBlock(required=False)
+
+    class Meta:
+        template = 'blog/blocks/location.html'
+        icon = 'site'
+        value_class = LocationStructValue
 
 
 class PlaceStructValue(blocks.StructValue):
