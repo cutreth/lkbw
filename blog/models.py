@@ -34,10 +34,9 @@ class BlogHomePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
 
-        blogsection = self.get_first_child()
-        blogpages = blogsection.get_children().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
+        blogpages = self.get_descendants().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
 
-        paginator = Paginator(blogpages, 2)
+        paginator = Paginator(blogpages, 20)
 
         page = request.GET.get('page')
         try:
@@ -91,7 +90,7 @@ class BlogSearchPage(Page):
             search_results = Page.objects.none()
 
         # Pagination
-        paginator = Paginator(search_results, 2)
+        paginator = Paginator(search_results, 10)
         try:
             search_results = paginator.page(search_page)
         except PageNotAnInteger:
@@ -143,7 +142,7 @@ class BlogSectionPage(Page):
 
         blogpages = self.get_children().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
 
-        paginator = Paginator(blogpages, 2)
+        paginator = Paginator(blogpages, 10)
 
         sect_page = request.GET.get('page')
 

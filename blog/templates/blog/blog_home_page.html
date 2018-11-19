@@ -88,78 +88,73 @@
 
     <hr>
 
+    <h1>Masonry - imagesLoaded progress</h1>
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
     <style>
-
-        * { box-sizing: border-box; }
-
-        /* force scrollbar */
-        html { overflow-y: scroll; }
-
-        body { font-family: sans-serif; }
 
         /* ---- grid ---- */
 
-        .grid {
-          background: #DDD;
+        .grid-holder {
+
         }
 
-        /* clear fix */
+        .grid {
+          column-count: 4;
+          column-gap: .5em;
+        }
+
+        /* clearfix */
         .grid:after {
           content: '';
           display: block;
           clear: both;
         }
 
-        /* ---- .grid-item ---- */
-
-        .grid-sizer,
-        .grid-item {
-          width: 33.333%;
-        }
+        /* ---- grid-item ---- */
 
         .grid-item {
-          float: left;
+          float: none;
+          display: inline-block;
+          margin: 0 0 .5em;
         }
 
-        .grid-item img {
-          display: block;
-          width: 100%;
+        .grid-item img{
+          max-width: 100%;
         }
 
     </style>
 
-    <h1>Masonry - imagesLoaded progress</h1>
-
-    <div class="grid">
-      <div class="grid-sizer"></div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
-      </div>
-      <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
-      </div>
+    <div class="grid-holder">
+        <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 450, "horizontalOrder": "true", "fitWidth": "true", }'>
+            <div class="grid-sizer"></div>
+            {% for post in blogpages %}
+                {% with post=post.specific %}
+                    <div class="grid-item">
+                        {% image post.banner_image fill-400x400 as pic %}
+                        <a href="{{ post.url }}">
+                            <img src="{{ pic.url|cdn_url }}"
+                                 width="{{ pic.width }}"
+                                 height="{{ pic.height }}"
+                                 alt="{{ pic.alt }}"
+                                 id="myImg{{ id_prefix }}"
+                            />
+                        </a>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
     </div>
+
+
+
+
+
+
+
+
+    <h1>Flickity - fullscreen images natural size</h1>
 
     <style>
 
@@ -191,8 +186,6 @@
         }
 
     </style>
-
-    <h1>Flickity - fullscreen images natural size</h1>
 
     <!-- Flickity HTML init -->
     <div class="carousel" data-flickity='{ "fullscreen": true, "lazyLoad": 2 }'>
