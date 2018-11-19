@@ -34,22 +34,6 @@ class Text(blocks.StructBlock):
         icon = 'doc-full'
 
 
-class Gallery(blocks.StructBlock):
-    pictures = blocks.ListBlock(ImageChooserBlock())
-
-    class Meta:
-        template = 'blog/blocks/gallery.html'
-        icon = 'image'
-
-
-class Picture(blocks.StructBlock):
-    picture = ImageChooserBlock()
-
-    class Meta:
-        template = 'blog/blocks/picture.html'
-        icon = 'image'
-
-
 class Aside(blocks.StructBlock):
     aside = blocks.BlockQuoteBlock()
 
@@ -72,6 +56,22 @@ class Caption(blocks.StructBlock):
     class Meta:
         template = 'blog/blocks/caption.html'
         icon = 'form'
+
+
+class Gallery(blocks.StructBlock):
+    pictures = blocks.ListBlock(ImageChooserBlock())
+
+    class Meta:
+        template = 'blog/blocks/gallery.html'
+        icon = 'image'
+
+
+class Picture(blocks.StructBlock):
+    picture = ImageChooserBlock()
+
+    class Meta:
+        template = 'blog/blocks/picture.html'
+        icon = 'image'
 
 
 class PlaceField(forms.HiddenInput):
