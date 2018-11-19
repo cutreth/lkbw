@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'storages',
     'modelcluster',
     'taggit',
-    'wagtailgmaps',
     'wagtailgeowidget',
 
     'django.contrib.admin',

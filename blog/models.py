@@ -1,131 +1,19 @@
-from django import forms
 from django.db import models
-from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+try:
+    from django.contrib.gis.geos.point import Point
+except:
+    Point = None
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField
-from wagtail.core import blocks
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
 from wagtail.search.models import Query
 
-from wagtailgeowidget.blocks import GeoBlock
-
-
-class Header(blocks.StructBlock):
-    header = blocks.CharBlock()
-
-    class Meta:
-        template = 'blog/blocks/header.html'
-        icon = 'bold'
-
-
-class Text(blocks.StructBlock):
-    text = blocks.RichTextBlock()
-
-    class Meta:
-        template = 'blog/blocks/text.html'
-        icon = 'doc-full'
-
-
-class Gallery(blocks.StructBlock):
-    pictures = blocks.ListBlock(ImageChooserBlock())
-
-    class Meta:
-        template = 'blog/blocks/gallery.html'
-        icon = 'image'
-
-
-class Picture(blocks.StructBlock):
-    picture = ImageChooserBlock()
-
-    class Meta:
-        template = 'blog/blocks/picture.html'
-        icon = 'image'
-
-
-class Aside(blocks.StructBlock):
-    aside = blocks.BlockQuoteBlock()
-
-    class Meta:
-        template = 'blog/blocks/aside.html'
-        icon = 'openquote'
-
-
-class Date(blocks.StructBlock):
-    date = blocks.DateBlock()
-
-    class Meta:
-        template = 'blog/blocks/date.html'
-        icon = 'date'
-
-
-class Caption(blocks.StructBlock):
-    caption = blocks.CharBlock()
-
-    class Meta:
-        template = 'blog/blocks/caption.html'
-        icon = 'form'
-
-
-class LocationStructValue(blocks.StructValue):
-
-    @staticmethod
-    def key():
-        return settings.GOOGLE_MAPS_V3_APIKEY
-
-    def zoom_level(self):
-        zoom_level = self.get('zoom')
-        if not zoom_level:
-            zoom_level = settings.GEO_WIDGET_ZOOM
-        return zoom_level
-
-    def center(self):
-        return self.get('location')["lat"] + ',' + self.get('location')["lng"]
-
-
-class Location(blocks.StructBlock):
-    address = blocks.CharBlock(required=False)
-    location = GeoBlock(address_field='address')
-    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
-    satellite = blocks.BooleanBlock(required=False)
-
-    class Meta:
-        template = 'blog/blocks/location.html'
-        icon = 'site'
-        value_class = LocationStructValue
-
-
-class PlaceStructValue(blocks.StructValue):
-
-    @staticmethod
-    def key():
-        return settings.GOOGLE_MAPS_V3_APIKEY
-
-    def zoom_level(self):
-        zoom_level = self.get('zoom')
-        if not zoom_level:
-            zoom_level = settings.GEO_WIDGET_ZOOM
-        return zoom_level
-
-    def q(self):
-        return self.place
-
-
-class Place(blocks.StructBlock):
-    place = blocks.CharBlock(required=False)
-    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
-    satellite = blocks.BooleanBlock(required=False)
-
-    # Place IDs should be prefixed with place_id
-
-    class Meta:
-        template = 'blog/blocks/place.html'
-        icon = 'site'
-        value_class = PlaceStructValue
+import blog.blocks as blocks
 
 
 def get_menu(page):
@@ -297,15 +185,15 @@ class BlogPostPage(Page):
 
 
     body = StreamField([
-        ('header', Header()),
-        ('date', Date()),
-        ('text', Text()),
-        ('aside', Aside()),
-        ('caption', Caption()),
-        ('gallery', Gallery()),
-        ('picture', Picture()),
-        ('location', Location()),
-        ('place', Place()),
+        ('header', blocks.Header()),
+        ('date', blocks.Date()),
+        ('text', blocks.Text()),
+        ('aside', blocks.Aside()),
+        ('caption', blocks.Caption()),
+        ('gallery', blocks.Gallery()),
+        ('picture', blocks.Picture()),
+        ('location', blocks.Location()),
+        ('place', blocks.Place()),
     ], null=True, blank=True)
 
     parent_page_types = [BlogSectionPage]
