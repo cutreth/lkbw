@@ -96,11 +96,11 @@
 
 <!-- Trigger the Modal -->
 
-{% image value.picture max-1200x1200 as pic %}
+{% image value.picture.image max-1200x1200 as pic %}
 <img src="{{ pic.url|cdn_url }}"
      width="{{ pic.width }}"
      height="{{ pic.height }}"
-     alt="{{ pic.alt }}"
+     alt="{{ value.picture.caption }}"
      id="myImg{{ id_prefix }}"
       />
 
