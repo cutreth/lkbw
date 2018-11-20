@@ -57,102 +57,72 @@
 
     <style>
 
-        .grid-holder {
-
-        }
-
+        * { box-sizing: border-box; }
+        /* force scrollbar */
+        html { overflow-y: scroll; }
+        body { font-family: sans-serif; }
+        /* ---- grid ---- */
         .grid {
-          column-count: 3;
-          column-gap: .5em;
+          background: #DDD;
         }
-
-        /* clearfix */
+        /* clear fix */
         .grid:after {
           content: '';
           display: block;
           clear: both;
         }
-
+        /* ---- .grid-item ---- */
+        .grid-sizer,
         .grid-item {
-          float: none;
-          display: inline-block;
-          margin: 0 auto .5em;
-          width: 400px;
+          width: 33.333%;
+        }
+        .grid-item {
+          float: left;
+        }
+        .grid-item img {
+          display: block;
+          width: 100%;
         }
 
-        .grid-item img{
-          max-width: 90%;
-        }
-
-        @media only screen and (max-width: 775px) {
-            .grid {
-                column-count: 1;
-            }
-        }
-
-        @media only screen and (min-width: 776px) and (max-width: 1350px){
-            .grid {
-                column-count: 2;
-            }
-        }
-
-        @media only screen and (min-width: 1351px) {
-            .grid {
-                column-count: 3;
-            }
-        }
 
     </style>
 
     <!-- Main Content -->
-    <div class="container">
-      <div class="row">
-        <div class="grid-holder">
-          <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 400, "horizontalOrder": "true" }'>
-            <div class="grid-sizer"></div>
-              {% for post in blogpages %}
-                {% with post=post.specific %}
-                  <div class="grid-item">
-                    {% image post.banner_image max-400x500 as pic %}
-                      <a href="{{ post.url }}">
-                        <img
-                             src="{{ pic.url|cdn_url }}"
-                             width="{{ pic.width }}"
-                             height="{{ pic.height }}"
-                             alt="{{ pic.alt }}"
-                             id="myImg{{ id_prefix }}"
-                        />
-                      </a>
-                  </div>
-                {% endwith %}
-              {% endfor %}
-            </div>
+
+    <div class="grid-holder">
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
+        <div class="grid-sizer"></div>
+          {% for post in blogpages %}
+            {% with post=post.specific %}
+              <div class="grid-item">
+                {% image post.banner_image max-400x500 as pic %}
+                  <a href="{{ post.url }}">
+                    <img
+                         src="{{ pic.url|cdn_url }}"
+                         width="{{ pic.width }}"
+                         height="{{ pic.height }}"
+                         alt="{{ pic.alt }}"
+                         id="myImg{{ id_prefix }}"
+                    />
+                  </a>
+              </div>
+            {% endwith %}
+          {% endfor %}
         </div>
-
-
-
-        <div class="col-lg-8 col-md-10 mx-auto">
-
-          <!-- Pager -->
-          <div class="clearfix">
-
-            {% if blogpages.has_previous %}
-                <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
-            {% endif %}
-            {% if blogpages.has_next %}
-                <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
-              {% endif %}
-
-          </div>
-        </div>
-      </div>
     </div>
 
+    <div class="col-lg-8 col-md-10 mx-auto">
 
+      <!-- Pager -->
+      <div class="clearfix">
 
-
-
-
-
+        {% if blogpages.has_previous %}
+            <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
+        {% endif %}
+        {% if blogpages.has_next %}
+            <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
+          {% endif %}
+      </div>
+    </div>
 
 {% endblock %}
