@@ -12,12 +12,8 @@
 
     <style>
 
-        * { box-sizing: border-box; }
-        html { overflow-y: scroll; }
-        body { font-family: sans-serif; }
-
         .grid {
-
+          background: transparent;
         }
         /* clear fix */
         .grid:after {
@@ -108,36 +104,39 @@
     </header>
 
     <!-- Main Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+		    {% for block in page.body %}
+              <section>{% include_block block %}</section>
+              <br>
+		    {% endfor %}
+          </div>
+        </div>
+      </div>
+    </article>
+
     <div class="grid-holder col-12 mx-auto">
       <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "horizontalOrder": "true", "percentPosition": "true" }'>
         <div class="grid-sizer"></div>
-          {% for post in blogpages %}
-            {% with post=post.specific %}
-              <div class="grid-item">
-                {% image post.banner_image max-800x800 as pic %}
-                  <a href="{{ post.url }}">
-                    <img
-                       src="{{ pic.url|cdn_url }}"
-                       width="{{ pic.width }}"
-                       height="{{ pic.height }}"
-                       alt="{{ pic.alt }}"
-                       id="myImg{{ id_prefix }}"
-                    />
-                  </a>
-              </div>
-            {% endwith %}
-          {% endfor %}
-        </div>
-    </div>
-
-    <!-- Pager -->
-    <div class="clearfix">
-      {% if blogpages.has_previous %}
-        <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
-      {% endif %}
-      {% if blogpages.has_next %}
-        <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
-      {% endif %}
+        {% for post in blogpages %}
+          {% with post=post.specific %}
+            <div class="grid-item">
+              {% image post.banner_image max-800x800 as pic %}
+                <a href="{{ post.url }}">
+                  <img
+                     src="{{ pic.url|cdn_url }}"
+                     width="{{ pic.width }}"
+                     height="{{ pic.height }}"
+                     alt="{{ pic.alt }}"
+                     id="myImg{{ id_prefix }}"
+                  />
+                </a>
+            </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
     </div>
 
 {% endblock %}
