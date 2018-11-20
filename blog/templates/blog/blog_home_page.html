@@ -58,12 +58,10 @@
     <style>
 
         * { box-sizing: border-box; }
-        /* force scrollbar */
         html { overflow-y: scroll; }
         body { font-family: sans-serif; }
-        /* ---- grid ---- */
+
         .grid {
-          background: #DDD;
         }
         /* clear fix */
         .grid:after {
@@ -71,7 +69,7 @@
           display: block;
           clear: both;
         }
-        /* ---- .grid-item ---- */
+
         .grid-sizer,
         .grid-item {
           width: 33.333%;
@@ -90,14 +88,12 @@
                 width: 100%;
             }
         }
-
         @media only screen and (min-width: 601px) and (max-width: 1200px) {
             .grid-sizer,
             .grid-item {
                 width: 50%;
             }
         }
-
         @media only screen and (min-width: 1201px) {
             .grid-sizer,
             .grid-item {
@@ -105,11 +101,9 @@
             }
         }
 
-
     </style>
 
     <!-- Main Content -->
-
     <div class="grid-holder">
       <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition":, "true", "horizontalOrder": "true" }'>
         <div class="grid-sizer"></div>
@@ -119,11 +113,11 @@
                 {% image post.banner_image max-600x600 as pic %}
                   <a href="{{ post.url }}">
                     <img
-                         src="{{ pic.url|cdn_url }}"
-                         width="{{ pic.width }}"
-                         height="{{ pic.height }}"
-                         alt="{{ pic.alt }}"
-                         id="myImg{{ id_prefix }}"
+                       src="{{ pic.url|cdn_url }}"
+                       width="{{ pic.width }}"
+                       height="{{ pic.height }}"
+                       alt="{{ pic.alt }}"
+                       id="myImg{{ id_prefix }}"
                     />
                   </a>
               </div>
@@ -132,18 +126,17 @@
         </div>
     </div>
 
-    <div class="col-lg-8 col-md-10 mx-auto">
 
-      <!-- Pager -->
-      <div class="clearfix">
 
-        {% if blogpages.has_previous %}
-            <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
-        {% endif %}
-        {% if blogpages.has_next %}
-            <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
-          {% endif %}
-      </div>
+    <!-- Pager -->
+    <div class="clearfix">
+      {% if blogpages.has_previous %}
+        <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
+      {% endif %}
+      {% if blogpages.has_next %}
+        <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
+      {% endif %}
     </div>
+
 
 {% endblock %}
