@@ -8,6 +8,60 @@
 
 {% block content %}
 
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+    <style>
+
+        * { box-sizing: border-box; }
+        html { overflow-y: scroll; }
+        body { font-family: sans-serif; }
+
+        .grid {
+
+        }
+        /* clear fix */
+        .grid:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
+
+        .grid-sizer,
+        .grid-item {
+          width: 33.333%;
+        }
+        .grid-item {
+          float: left;
+          padding: .25em .25em .25em;
+        }
+        .grid-item img {
+          display: block;
+          max-height: 66.666vh;
+          width: 100%;
+          height: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .grid-sizer,
+            .grid-item {
+                width: 100%;
+            }
+        }
+        @media only screen and (min-width: 601px) and (max-width: 1200px) {
+            .grid-sizer,
+            .grid-item {
+                width: 50%;
+            }
+        }
+        @media only screen and (min-width: 1201px) {
+            .grid-sizer,
+            .grid-item {
+                width: 33.333%;
+            }
+        }
+
+    </style>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <container class="container-fluid">
@@ -53,64 +107,14 @@
       </div>
     </header>
 
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-
-    <style>
-
-        * { box-sizing: border-box; }
-        html { overflow-y: scroll; }
-        body { font-family: sans-serif; }
-
-        .grid {
-        }
-        /* clear fix */
-        .grid:after {
-          content: '';
-          display: block;
-          clear: both;
-        }
-
-        .grid-sizer,
-        .grid-item {
-          width: 33.333%;
-        }
-        .grid-item {
-          float: left;
-        }
-        .grid-item img {
-          display: block;
-          width: 100%;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .grid-sizer,
-            .grid-item {
-                width: 100%;
-            }
-        }
-        @media only screen and (min-width: 601px) and (max-width: 1200px) {
-            .grid-sizer,
-            .grid-item {
-                width: 50%;
-            }
-        }
-        @media only screen and (min-width: 1201px) {
-            .grid-sizer,
-            .grid-item {
-                width: 33.333%;
-            }
-        }
-
-    </style>
-
     <!-- Main Content -->
-    <div class="grid-holder">
-      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition":, "true", "horizontalOrder": "true" }'>
+    <div class="grid-holder col-12 mx-auto">
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "horizontalOrder": "true", "percentPosition": "true" }'>
         <div class="grid-sizer"></div>
           {% for post in blogpages %}
             {% with post=post.specific %}
               <div class="grid-item">
-                {% image post.banner_image max-600x600 as pic %}
+                {% image post.banner_image max-800x800 as pic %}
                   <a href="{{ post.url }}">
                     <img
                        src="{{ pic.url|cdn_url }}"
@@ -126,8 +130,6 @@
         </div>
     </div>
 
-
-
     <!-- Pager -->
     <div class="clearfix">
       {% if blogpages.has_previous %}
@@ -137,6 +139,5 @@
         <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
       {% endif %}
     </div>
-
 
 {% endblock %}
