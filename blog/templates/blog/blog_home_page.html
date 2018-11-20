@@ -84,18 +84,39 @@
           width: 100%;
         }
 
+        @media only screen and (max-width: 600px) {
+            .grid-sizer,
+            .grid-item {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (min-width: 601px) and (max-width: 1200px) {
+            .grid-sizer,
+            .grid-item {
+                width: 50%;
+            }
+        }
+
+        @media only screen and (min-width: 1201px) {
+            .grid-sizer,
+            .grid-item {
+                width: 33.333%;
+            }
+        }
+
 
     </style>
 
     <!-- Main Content -->
 
     <div class="grid-holder">
-      <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition":, "true", "horizontalOrder": "true" }'>
         <div class="grid-sizer"></div>
           {% for post in blogpages %}
             {% with post=post.specific %}
               <div class="grid-item">
-                {% image post.banner_image max-400x500 as pic %}
+                {% image post.banner_image max-600x600 as pic %}
                   <a href="{{ post.url }}">
                     <img
                          src="{{ pic.url|cdn_url }}"
