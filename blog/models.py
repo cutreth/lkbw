@@ -25,6 +25,23 @@ class BlogHomePage(Page):
         related_name='+'
     )
 
+    body = StreamField([
+        ('header', blocks.Header()),
+        ('date', blocks.Date()),
+        ('text', blocks.Text()),
+        ('aside', blocks.Aside()),
+        ('caption', blocks.Caption()),
+        ('gallery', blocks.Gallery()),
+        ('picture', blocks.Picture()),
+        ('location', blocks.Location()),
+        ('place', blocks.Place()),
+    ], null=True, blank=True)
+
+    content_panels = Page.content_panels +\
+                     [
+                         StreamFieldPanel('body'),
+                     ]
+
     promote_panels = [
                          ImageChooserPanel('banner_image'),
                      ] + Page.promote_panels
@@ -176,7 +193,6 @@ class BlogPostPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
 
     body = StreamField([
         ('header', blocks.Header()),
