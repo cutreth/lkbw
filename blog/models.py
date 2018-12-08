@@ -130,6 +130,8 @@ class BlogSearchPage(Page):
 
 class BlogSectionPage(Page):
     order = models.PositiveIntegerField()
+    hide_date = models.BooleanField(default=False)
+    hide_intro = models.BooleanField(default=False)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -142,6 +144,8 @@ class BlogSectionPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('order'),
+        FieldPanel('hide_date'),
+        FieldPanel('hide_intro'),
     ]
 
     promote_panels = [
@@ -250,6 +254,7 @@ class BlogPostPage(Page):
 
 class BlogProjectPage(Page):
     post_date = models.DateField("Post date")
+    intro = models.CharField(max_length=250, null=True, blank=True)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -272,10 +277,12 @@ class BlogProjectPage(Page):
     parent_page_types = [BlogSectionPage]
 
     search_fields = Page.search_fields + [
+        index.SearchField('intro'),
         index.SearchField('body'),
     ]
 
     content_panels = Page.content_panels + [
+        FieldPanel('intro'),
         FieldPanel('post_date'),
         StreamFieldPanel('body'),
     ]
@@ -311,7 +318,7 @@ class BlogProjectPage(Page):
 
 class BlogGalleryPage(Page):
     post_date = models.DateField("Post date")
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=250, null=True, blank=True)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -374,6 +381,8 @@ class BlogGalleryPage(Page):
 
 
 class BlogTrackerPage(Page):
+    post_date = models.DateField("Post date")
+    intro = models.CharField(max_length=250, null=True, blank=True)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -393,13 +402,16 @@ class BlogTrackerPage(Page):
         ('place', blocks.Place()),
     ], null=True, blank=True)
 
-    parent_page_types = [BlogHomePage]
+    parent_page_types = [BlogSectionPage]
 
     search_fields = Page.search_fields + [
+        index.SearchField('intro'),
         index.SearchField('body'),
     ]
 
     content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+        FieldPanel('post_date'),
         StreamFieldPanel('body'),
     ]
 
