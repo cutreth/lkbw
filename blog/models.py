@@ -246,3 +246,187 @@ class BlogPostPage(Page):
         context['menupages'] = menupages
 
         return context
+
+
+class BlogProjectPage(Page):
+    post_date = models.DateField("Post date")
+    banner_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    body = StreamField([
+        ('header', blocks.Header()),
+        ('date', blocks.Date()),
+        ('text', blocks.Text()),
+        ('aside', blocks.Aside()),
+        ('caption', blocks.Caption()),
+        ('gallery', blocks.Gallery()),
+        ('picture', blocks.Picture()),
+        ('location', blocks.Location()),
+        ('place', blocks.Place()),
+    ], null=True, blank=True)
+
+    parent_page_types = [BlogSectionPage]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('post_date'),
+        StreamFieldPanel('body'),
+    ]
+
+    promote_panels = [
+                         ImageChooserPanel('banner_image'),
+                     ] + Page.promote_panels
+
+    settings_panels = Page.settings_panels + [
+
+    ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        sect_page = request.GET.get('sect_page')
+        context['sect_page'] = sect_page
+
+        search_page = request.GET.get('search_page')
+        search_query = request.GET.get('search_query')
+
+        context['search_page'] = search_page
+        context['search_query'] = search_query
+
+        homepage = self.get_site().root_page
+        menupages = BlogSectionPage.objects.all().child_of(homepage).live().in_menu().order_by('order')
+
+        context['homepage'] = homepage
+        context['menupages'] = menupages
+
+        return context
+
+
+class BlogGalleryPage(Page):
+    post_date = models.DateField("Post date")
+    intro = models.CharField(max_length=250)
+    banner_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    body = StreamField([
+        ('header', blocks.Header()),
+        ('date', blocks.Date()),
+        ('text', blocks.Text()),
+        ('aside', blocks.Aside()),
+        ('caption', blocks.Caption()),
+        ('gallery', blocks.Gallery()),
+        ('picture', blocks.Picture()),
+        ('location', blocks.Location()),
+        ('place', blocks.Place()),
+    ], null=True, blank=True)
+
+    parent_page_types = [BlogSectionPage]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+        index.SearchField('body'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+        FieldPanel('post_date'),
+        StreamFieldPanel('body'),
+    ]
+
+    promote_panels = [
+                         ImageChooserPanel('banner_image'),
+                     ] + Page.promote_panels
+
+    settings_panels = Page.settings_panels + [
+
+    ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        sect_page = request.GET.get('sect_page')
+        context['sect_page'] = sect_page
+
+        search_page = request.GET.get('search_page')
+        search_query = request.GET.get('search_query')
+
+        context['search_page'] = search_page
+        context['search_query'] = search_query
+
+        homepage = self.get_site().root_page
+        menupages = BlogSectionPage.objects.all().child_of(homepage).live().in_menu().order_by('order')
+
+        context['homepage'] = homepage
+        context['menupages'] = menupages
+
+        return context
+
+
+class BlogTrackerPage(Page):
+    banner_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    body = StreamField([
+        ('header', blocks.Header()),
+        ('date', blocks.Date()),
+        ('text', blocks.Text()),
+        ('aside', blocks.Aside()),
+        ('caption', blocks.Caption()),
+        ('gallery', blocks.Gallery()),
+        ('picture', blocks.Picture()),
+        ('location', blocks.Location()),
+        ('place', blocks.Place()),
+    ], null=True, blank=True)
+
+    parent_page_types = [BlogHomePage]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+    ]
+
+    promote_panels = [
+                         ImageChooserPanel('banner_image'),
+                     ] + Page.promote_panels
+
+    settings_panels = Page.settings_panels + [
+
+    ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        sect_page = request.GET.get('sect_page')
+        context['sect_page'] = sect_page
+
+        search_page = request.GET.get('search_page')
+        search_query = request.GET.get('search_query')
+
+        context['search_page'] = search_page
+        context['search_query'] = search_query
+
+        homepage = self.get_site().root_page
+        menupages = BlogSectionPage.objects.all().child_of(homepage).live().in_menu().order_by('order')
+
+        context['homepage'] = homepage
+        context['menupages'] = menupages
+
+        return context
