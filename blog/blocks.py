@@ -63,6 +63,7 @@ class Gallery(blocks.StructBlock):
         [
             ('image', ImageChooserBlock()),
             ('caption', blocks.CharBlock(required=False)),
+            ('date', blocks.DateBlock(Required=False)),
         ]
     ))
 
@@ -76,6 +77,7 @@ class Picture(blocks.StructBlock):
         [
             ('image', ImageChooserBlock()),
             ('caption', blocks.CharBlock(required=False)),
+            ('date', blocks.DateBlock(Required=False)),
         ]
     )
 
@@ -257,6 +259,7 @@ class Location(blocks.StructBlock):
     location = PlaceBlock(address_field='address', place_field='place')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
+    date = blocks.DateBlock(required=False)
 
     class Meta:
         template = 'blog/blocks/location.html'
@@ -286,6 +289,7 @@ class Place(blocks.StructBlock):
     location = PlaceBlock(address_field='address', place_field='place')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
+    date = blocks.DateBlock(required=False)
 
     class Meta:
         template = 'blog/blocks/place.html'
