@@ -56,6 +56,11 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
+# Whitenoise
+
+#STATIC_HOST = 'https://d1e9v6y517kw0o.cloudfront.net/'
+#STATIC_URL = STATIC_HOST + '/static/'
+
 # PRD infastructure settings
 
 ALLOWED_HOSTS = ['www.lilkevbigworld.com'] 
