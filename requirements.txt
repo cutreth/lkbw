@@ -1,5 +1,6 @@
 beautifulsoup4==4.6.0
 boto3==1.9.32
+Brotli==1.0.7
 certifi==2018.8.24
 chardet==3.0.4
 Django==2.0.8
@@ -23,3 +24,4 @@ wagtail==2.2.2
 wagtailgeowidget==4.0.3
 webencodings==0.5.1
 Willow==1.1
+whitenoise==4.1.2
