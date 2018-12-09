@@ -47,3 +47,53 @@
         width: 25%;
     }
 }
+
+
+
+
+
+/* external css: flickity.css */
+
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  margin-right: 40px;
+  overflow: hidden;
+}
+
+/* position dots in gallery */
+.flickity-page-dots {
+  bottom: 10px;
+}
+/* white circles */
+.flickity-page-dots .dot {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  background: transparent;
+  border: 2px solid white;
+}
+/* fill-in selected dot */
+.flickity-page-dots .dot.is-selected {
+  background: white;
+}
+
+.carousel-cell img {
+  display: block;
+  max-height: 66vh;
+  height: 400px;
+  max-width: 66vw;
+  width: auto;
+}
+
+@media screen and ( min-width: 1000px ) {
+  .carousel-cell img {
+    height: 800px;
+  }
+}
