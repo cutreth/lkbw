@@ -8,60 +8,6 @@
 
 {% block content %}
 
-    <style>
-
-        .grid {
-          background: transparent;
-        }
-        /* clear fix */
-        .grid:after {
-          content: '';
-          display: block;
-          clear: both;
-        }
-
-        .grid-sizer,
-        .grid-item {
-          width: 25%;
-        }
-        .grid-item {
-          float: left;
-          padding: .25em .25em .25em;
-        }
-        .grid-item img {
-          display: block;
-          max-height: 66vh;
-          width: 100%;
-          height: auto;
-        }
-
-        @media only screen and (max-width: 500px) {
-            .grid-sizer,
-            .grid-item {
-                width: 100%;
-            }
-        }
-        @media only screen and (min-width: 501px) and (max-width: 1000px) {
-            .grid-sizer,
-            .grid-item {
-                width: 50%;
-            }
-        }
-        @media only screen and (min-width: 1001px) and (max-width: 1500px) {
-            .grid-sizer,
-            .grid-item {
-                width: 33%;
-            }
-        }
-        @media only screen and (min-width: 1501px) {
-            .grid-sizer,
-            .grid-item {
-                width: 25%;
-            }
-        }
-
-    </style>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <container class="container-fluid">
@@ -120,9 +66,28 @@
         </div>
       </div>
     </article>
+    
+    <div class="carousel">
+      {% for post in blogpages %}
+      {% with post=post.specific %}
+        <div class="carousel-cell">
+          {% image post.banner_image max-800x800 as pic %}
+            <a href="{{ post.url }}">
+              <img
+                 src="{{ pic.url|cdn_url }}"
+                 width="{{ pic.width }}"
+                 height="{{ pic.height }}"
+                 alt="{{ pic.alt }}"
+                 id="myImg{{ id_prefix }}"
+              />
+            </a>
+        </div>
+      {% endwith %}
+      {% endfor %}
+    </div>
 
     <div class="grid-holder col-12 mx-auto">
-      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "horizontalOrder": "true", "percentPosition": "true" }'>
+      <div class="grid">
         <div class="grid-sizer"></div>
         {% for post in blogpages %}
           {% with post=post.specific %}
@@ -141,6 +106,9 @@
           {% endwith %}
         {% endfor %}
       </div>
+      {% if blogpages.has_next %}
+        <a class="pagination_next" href="?page={{ blogpages.next_page_number }}"></a>
+      {% endif %}
     </div>
 
 {% endblock %}
