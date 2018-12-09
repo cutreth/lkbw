@@ -257,6 +257,12 @@ class BlogPostPage(Page):
         context['homepage'] = homepage
         context['menupages'] = menupages
 
+        hide_date = self.get_parent().specific.hide_date
+        hide_intro = self.get_parent().specific.hide_intro
+
+        context['hide_date'] = hide_date
+        context['hide_intro'] = hide_intro
+
         return context
 
 
