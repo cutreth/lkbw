@@ -30,7 +30,7 @@
         }
         .grid-item img {
           display: block;
-          max-height: 66vh;
+          max-height: 600px;
           width: 100%;
           height: auto;
         }
@@ -122,7 +122,7 @@
     </article>
 
     <div class="grid-holder col-12 mx-auto">
-      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "horizontalOrder": "true", "percentPosition": "true" }'>
+      <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": "true" }'>
         <div class="grid-sizer"></div>
         {% for post in blogpages %}
           {% with post=post.specific %}
