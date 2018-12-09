@@ -66,25 +66,6 @@
         </div>
       </div>
     </article>
-    
-    <div class="carousel">
-      {% for post in blogpages %}
-      {% with post=post.specific %}
-        <div class="carousel-cell">
-          {% image post.banner_image max-800x800 as pic %}
-            <a href="{{ post.url }}">
-              <img
-                 src="{{ pic.url|cdn_url }}"
-                 width="{{ pic.width }}"
-                 height="{{ pic.height }}"
-                 alt="{{ pic.alt }}"
-                 id="myImg{{ id_prefix }}"
-              />
-            </a>
-        </div>
-      {% endwith %}
-      {% endfor %}
-    </div>
 
     <div class="grid-holder col-12 mx-auto">
       <div class="grid">
@@ -109,6 +90,25 @@
       {% if blogpages.has_next %}
         <a class="pagination_next" href="?page={{ blogpages.next_page_number }}"></a>
       {% endif %}
+    </div>
+
+    <div class="carousel">
+      {% for post in blogpages %}
+      {% with post=post.specific %}
+        <div class="carousel-cell">
+          {% image post.banner_image max-800x800 as pic %}
+            <a href="{{ post.url }}">
+              <img
+                 src="{{ pic.url|cdn_url }}"
+                 width="{{ pic.width }}"
+                 height="{{ pic.height }}"
+                 alt="{{ pic.alt }}"
+                 id="myImg{{ id_prefix }}"
+              />
+            </a>
+        </div>
+      {% endwith %}
+      {% endfor %}
     </div>
 
 {% endblock %}
