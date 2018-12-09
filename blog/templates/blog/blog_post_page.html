@@ -47,10 +47,10 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
               <h1>{{ page.title }}</h1>
-              <h2 class="subheading">{{ page.intro }}</h2>
-              <span class="meta">Posted by
+              {% if hide_intro is False %}<h2 class="subheading">{{ page.intro }}</h2>{% endif %}
+              {% if hide_date is False %}<span class="meta">Posted by
                 <a href="#">{{ page.owner }}</a>
-                on {{ page.post_date }}</span>
+                on {{ page.post_date }}</span>{% endif %}
             </div>
           </div>
         </div>
@@ -67,15 +67,6 @@
               <section>{% include_block block %}</section>
               <br>
 		    {% endfor %}
-
-            <!-- Pager -->
-            <div class="clearfix">
-              {% if search_page and search_query %}
-                 <a class="btn btn-primary float-right" href="{% slugurl 'search' %}?page={{ search_page }}&query={{ search_query }}">Go back</a>
-              {% else %}
-                <a class="btn btn-primary float-right" href="{% pageurl page.get_parent %}{% if sect_page %}?page={{ sect_page }}{% endif %}">Go back</a>
-              {% endif %}
-            </div>
 
           </div>
 		</div>

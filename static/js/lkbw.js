@@ -1,12 +1,22 @@
-// external js: masonry.pkgd.js, imagesloaded.pkgd.js
+var elem = document.querySelector('.grid');
 
-// init Masonry after all images have loaded
-var $grid = $('.grid').imagesLoaded( function() {
-  $grid.masonry({
-    itemSelector: '.grid-item',
-    percentPosition: true,
-    columnWidth: '.grid-sizer'
-  });
+var msnry = new Masonry( elem, {
+  itemSelector: 'none',
+  columnWidth: '.grid-sizer',
+  horizontalOrder: true,
+  percentPosition: true,
+});
+
+imagesLoaded( elem, function() {
+  msnry.options.itemSelector = '.grid_item';
+  var items = grid.querySelectorAll('.grid_item');
+  msnry.append( items );
 });
 
 
+var infScroll = new InfiniteScroll( elem, {
+    path: '?page={{#}}',
+    append: 'grid_item',
+    outlayer: msnry,
+    history: false,
+});

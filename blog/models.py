@@ -11,12 +11,6 @@ from wagtail.search.models import Query
 import blog.blocks as blocks
 
 
-def get_menu(page):
-    homepage = page.get_site().root_page
-    menupages = BlogSectionPage.objects.all().child_of(homepage).live().in_menu().order_by('order')
-    return menupages
-
-
 class BlogHomePage(Page):
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -256,6 +250,12 @@ class BlogPostPage(Page):
 
         context['homepage'] = homepage
         context['menupages'] = menupages
+
+        hide_date = self.get_parent().specific.hide_date
+        hide_intro = self.get_parent().specific.hide_intro
+
+        context['hide_date'] = hide_date
+        context['hide_intro'] = hide_intro
 
         return context
 

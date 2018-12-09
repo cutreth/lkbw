@@ -1,7 +1,6 @@
 import subprocess
 import json
 import hmac
-import string
 from hashlib import sha1
 
 from django.conf import settings
