@@ -114,10 +114,10 @@
           <div class="clearfix">
 
             {% if blogpages.has_previous %}
-                <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Newer Posts</a>
+                <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Older Posts</a>
             {% endif %}
             {% if blogpages.has_next %}
-                <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Older Posts</a>
+                <a href="?page={{ blogpages.next_page_number }}" class="btn btn-primary float-right">Newer Posts</a>
               {% endif %}
           </div>
 

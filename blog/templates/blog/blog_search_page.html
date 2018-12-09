@@ -62,7 +62,7 @@
 
             <div class="post-preview">
               {% for result in search_results %}
-                  <a href="{% pageurl result %}{% if search_page and search_query %}?search_page={{ search_page }}&search_query={{ search_query }}{% endif %}">
+                  <a href="{% pageurl result %}">
                     <h3>{{ result }}</h3>
                   </a>
                   <p class="post-meta">
