@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags block_tags %}
+
+{% block body_class %}template-blogtrackerpage{% endblock %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <container class="container-fluid">
+        <div class="col-2 mr-4">
+          <a class="navbar-brand d-flex justify-content-start" href={% pageurl homepage %}>Lil Kev Big World</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse col-10" id="navbarResponsive">
+          <div class="col-8 d-flex justify-content-start">
+            <ul class="navbar-nav mr-1 ml-1">
+              {% for page in menupages %}
+                <li class="nav-item">
+                  <a class="nav-link" href={% pageurl page %}>{{ page }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col-lg-4 d-flex justify-content-lg-end">
+            <form class="form-inline my-2 my-lg-0" action="{% slugurl "search" %}" method="get">
+              <input class="form-control mr-sm-2 w-50" type="search" aria-label="Search" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+              <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </container>
+    </nav>
+
+    <!-- Page Header -->
+	{% image page.banner_image fill-1600x800 as banner_image %}
+    <header class="masthead" style="background-image: url('{{ banner_image.url|cdn_url }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ page.title }}</h1>
+              {% if hide_intro is False %}<h2 class="subheading">{{ page.intro }}</h2>{% endif %}
+              {% if hide_date is False %}<span class="meta">Posted by
+                <a href="#">{{ page.owner }}</a>
+                on {{ page.post_date }}</span>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+
+		    {% for block in page.body %}
+              <section>{% include_block block %}</section>
+              <br>
+		    {% endfor %}
+
+            <!-- Pager -->
+            <div class="clearfix">
+              {% if search_page and search_query %}
+                 <a class="btn btn-primary float-right" href="{% slugurl 'search' %}?page={{ search_page }}&query={{ search_query }}">Go back</a>
+              {% else %}
+                <a class="btn btn-primary float-right" href="{% pageurl page.get_parent %}{% if sect_page %}?page={{ sect_page }}{% endif %}">Go back</a>
+              {% endif %}
+            </div>
+
+          </div>
+		</div>
+      </div>
+    </article>
+
+    <hr>
+
+{% endblock %}

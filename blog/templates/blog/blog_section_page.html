@@ -63,9 +63,48 @@
 			  <div class="post-preview">
 			    <a href="{% pageurl post %}{% if sect_page %}?sect_page={{ sect_page }}{% endif %}">
 				  <h2 class="post-title">{{ post.title }}</h2>
-				  {% if page.hide_intro is not True %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
+				  {% if page.hide_intro is False %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
 				</a>
-				{% if page.hide_date is not True %}<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>{% endif %}
+				{% if page.hide_date is False %}<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>{% endif %}
+			  </div>
+			  <hr>
+            {% endwith %}
+		  {% endfor %}
+
+		  {% for post in bloggalleries %}
+		    {% with post=post.specific %}
+			  <div class="post-preview">
+			    <a href="{% pageurl post %}{% if sect_page %}?sect_page={{ sect_page }}{% endif %}">
+				  <h2 class="post-title">{{ post.title }}</h2>
+				  {% if page.hide_intro is False %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
+				</a>
+				{% if page.hide_date is False %}<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>{% endif %}
+			  </div>
+			  <hr>
+            {% endwith %}
+		  {% endfor %}
+
+		  {% for post in blogprojects %}
+		    {% with post=post.specific %}
+			  <div class="post-preview">
+			    <a href="{% pageurl post %}{% if sect_page %}?sect_page={{ sect_page }}{% endif %}">
+				  <h2 class="post-title">{{ post.title }}</h2>
+				  {% if page.hide_intro is False %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
+				</a>
+				{% if page.hide_date is False %}<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>{% endif %}
+			  </div>
+			  <hr>
+            {% endwith %}
+		  {% endfor %}
+
+		  {% for post in blogtrackers %}
+		    {% with post=post.specific %}
+			  <div class="post-preview">
+			    <a href="{% pageurl post %}{% if sect_page %}?sect_page={{ sect_page }}{% endif %}">
+				  <h2 class="post-title">{{ post.title }}</h2>
+				  {% if page.hide_intro is False %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
+				</a>
+				{% if page.hide_date is False %}<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>{% endif %}
 			  </div>
 			  <hr>
             {% endwith %}
