@@ -173,14 +173,6 @@ class BlogSectionPage(Page):
         context['sect_page'] = sect_page
         context['blogpages'] = blogpages
 
-        bloggalleries = self.get_children().live().type(BlogGalleryPage).order_by('-bloggallerypage__post_date', 'title')
-        blogprojects = self.get_children().live().type(BlogProjectPage).order_by('-blogprojectpage__post_date', 'title')
-        blogtrackers = self.get_children().live().type(BlogTrackerPage).order_by('-blogtrackerpage__post_date', 'title')
-
-        context['bloggalleries'] = bloggalleries
-        context['blogprojects'] = blogprojects
-        context['blogtrackers'] = blogtrackers
-
         homepage = self.get_site().root_page
         menupages = BlogSectionPage.objects.all().child_of(homepage).live().in_menu().order_by('order')
 
