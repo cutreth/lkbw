@@ -86,13 +86,19 @@ body { font-family: sans-serif; }
 
 .carousel-cell img {
   display: block;
-  max-height: 66vh;
-  height: 400px;
-  max-width: 66vw;
+  max-height: 75vh;
+  height: 250px;
+  max-width: 75vw;
   width: auto;
 }
 
-@media screen and ( min-width: 1000px ) {
+@media screen and (min-width: 501px) and (max-width: 1000px) {
+  .carousel-cell img {
+    height: 400px;
+  }
+}
+
+@media screen and ( min-width: 1001px ) {
   .carousel-cell img {
     height: 800px;
   }
