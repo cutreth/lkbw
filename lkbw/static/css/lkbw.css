@@ -87,15 +87,15 @@ body { font-family: sans-serif; }
 
 .carousel-cell img {
   display: block;
-  max-height: 75vh;
-  height: 250px;
-  max-width: 75vw;
+  max-height: 80vh;
+  height: 200px;
+  max-width: 80vw;
   width: auto;
 }
 
 @media screen and (min-width: 500px) {
   .carousel-cell img {
-    height: 250px;
+    height: 200px;
   }
 }
 
