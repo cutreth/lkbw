@@ -97,15 +97,6 @@
   width: auto;
 }
 
-
-.caption {
-  background: #FAFAFA;
-  margin: 0;
-  padding: 10px;
-  text-align: center;
-}
-
-
 .carousel.is-fullscreen .carousel-cell {
   width: 100%;
   height: 100%;
