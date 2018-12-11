@@ -80,12 +80,15 @@ $carousel.on( 'select.flickity', function() {
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
-    center: new google.maps.LatLng(2.8,-187.3),
+    zoom: 10,
+    center: new google.maps.LatLng(0,0),
     mapTypeId: 'terrain'
   });
 
   var payload = document.getElementsByClassName('data');
+
+  var bounds = new google.maps.LatLngBounds();
+  var infowindow = new google.maps.InfoWindow();
 
   for (var i = 0; i < payload.length; i++) {
     var lat = payload.item(i).attributes.lat.value;
@@ -95,6 +98,11 @@ function initMap() {
       position: latLng,
       map: map
     });
+
+    bounds.extend(marker.position);
+
   }
+
+  map.fitBounds(bounds);
 
 }
