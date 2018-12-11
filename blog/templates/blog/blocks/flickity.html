@@ -4,27 +4,21 @@
 
 <style>
 
-/* Container for image text */
-.caption-container{{ id_prefix }} {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white;
-}
-
 </style>
 
-<div class="carousel">
+<div class="carousel" id="imageViewer">
   {% for picture in value.pictures %}
     <div class="carousel-cell">
-      {% image picture.image fill-1000x750 as pic %}
+      {% image picture.image height-800 as pic %}
         <img
           src="{{ pic.url|cdn_url }}"
           width="{{ pic.width }}"
           height="{{ pic.height }}"
-          alt="{{ pic.alt }}"
+          alt="{{ picture.caption }}"
           id="myImg{{ id_prefix }}"
         />
     </div>
   {% endfor %}
 </div>
+
+<p class="caption"></p>
