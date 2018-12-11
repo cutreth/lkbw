@@ -1,4 +1,67 @@
-// init Masonry
+
+//Tracker
+
+var map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: new google.maps.LatLng(0,0),
+    mapTypeId: 'terrain'
+  });
+
+  var payload = document.getElementsByClassName('data');
+
+  var bounds = new google.maps.LatLngBounds();
+  var infowindow = new google.maps.InfoWindow({
+      content: '',
+  });
+
+  for (var i = 0; i < payload.length; i++) {
+    var lat = payload.item(i).attributes.lat.value;
+    var lng = payload.item(i).attributes.lng.value;
+    var latLng = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+      label: '',
+      title: String(i + 1),
+      data: payload.item(i).attributes.address.value,
+    });
+
+    if (i == 0) {
+      var path = []
+    }
+
+    path.push({lat: parseFloat(lat), lng: parseFloat(lng)})
+
+    var flightPath = new google.maps.Polyline({
+      path: path,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+  var blank_content = ''
+  google.maps.event.addListener(marker,'click', (function(marker,blank_content,infowindow){
+    return function() {
+      infowindow.setContent(marker.data);
+      infowindow.open(map,marker);
+    };
+  })(marker,blank_content,infowindow));
+
+  flightPath.setMap(map);
+
+  bounds.extend(marker.position);
+
+  }
+
+  map.fitBounds(bounds);
+
+}
+
+// Masonry
 
 var $grid = $('.grid').masonry({
   itemSelector: '.grid-item', // select none at first
@@ -27,10 +90,7 @@ $grid.infiniteScroll({
   history: false,
 });
 
-
-
-
-// external js: flickity.pkgd.js
+// Flickity
 
 var $carousel = $('.carousel').flickity({
   imagesLoaded: true,
@@ -57,7 +117,7 @@ $carousel.on( 'scroll.flickity', function() {
 });
 
 
-// jQuery
+//
 $carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
 
     if (isFullscreen) {
@@ -70,5 +130,6 @@ $carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
 
 $carousel.on( 'select.flickity', function() {
   // set image caption using img's alt
-  $caption.text( flkty.selectedElement.firstElementChild.alt );
+  var capt = $(flkty.selectedElement.firstElementChild.id);
+  capt.text( flkty.selectedElement.firstElementChild.alt );
 });

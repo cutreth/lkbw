@@ -1,7 +1,7 @@
 
+//Tracker
 
 var map;
-
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -61,10 +61,7 @@ function initMap() {
 
 }
 
-
-
-
-// init Masonry
+// Masonry
 
 var $grid = $('.grid').masonry({
   itemSelector: '.grid-item', // select none at first
@@ -93,12 +90,7 @@ $grid.infiniteScroll({
   history: false,
 });
 
-
-
-
-
-
-// external js: flickity.pkgd.js
+// Flickity
 
 var $carousel = $('.carousel').flickity({
   imagesLoaded: true,
@@ -125,7 +117,7 @@ $carousel.on( 'scroll.flickity', function() {
 });
 
 
-// jQuery
+//
 $carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
 
     if (isFullscreen) {
@@ -141,8 +133,3 @@ $carousel.on( 'select.flickity', function() {
   var capt = $(flkty.selectedElement.firstElementChild.id);
   capt.text( flkty.selectedElement.firstElementChild.alt );
 });
-
-
-
-
-
