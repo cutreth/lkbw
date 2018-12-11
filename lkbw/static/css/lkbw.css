@@ -1,3 +1,5 @@
+/* Masonry grid on homepage */
+
 .grid {
   background: transparent;
 }
@@ -49,15 +51,7 @@
     }
 }
 
-
-
-
-
-/* external css: flickity.css */
-
-* { box-sizing: border-box; }
-
-body { font-family: sans-serif; }
+/* Flickity block */
 
 .carousel {
   background: #EEE;
@@ -91,6 +85,10 @@ body { font-family: sans-serif; }
   height: 200px;
   max-width: 80vw;
   width: auto;
+}
+
+.carousel.is-fullscreen .carousel-cell {
+  height: 100%;
 }
 
 @media screen and (min-width: 500px) {
