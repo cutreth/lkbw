@@ -88,7 +88,9 @@ function initMap() {
   var payload = document.getElementsByClassName('data');
 
   var bounds = new google.maps.LatLngBounds();
-  var infowindow = new google.maps.InfoWindow();
+  var infowindow = new google.maps.InfoWindow({
+      content: '',
+  });
 
   for (var i = 0; i < payload.length; i++) {
     var lat = payload.item(i).attributes.lat.value;
@@ -99,6 +101,7 @@ function initMap() {
       map: map,
       label: '',
       title: String(i + 1),
+      data: payload.item(i).attributes.address.value,
     });
 
     if (i == 0) {
@@ -114,6 +117,14 @@ function initMap() {
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
+
+  var blank_content = ''
+  google.maps.event.addListener(marker,'click', (function(marker,blank_content,infowindow){
+    return function() {
+      infowindow.setContent(marker.data);
+      infowindow.open(map,marker);
+    };
+  })(marker,blank_content,infowindow));
 
   flightPath.setMap(map);
 

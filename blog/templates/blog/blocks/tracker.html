@@ -4,7 +4,7 @@
 
 {% for place in value.places %}
 <div id="payload" class="invisible">
-  <div class="data" lat="{{ place.lat }}" lng="{{ place.lng }}">
+  <div class="data" lat="{{ place.lat }}" lng="{{ place.lng }}" address="{{ place }}">
   </div>
 </div>
 {% endfor %}
