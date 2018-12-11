@@ -309,3 +309,19 @@ class Place(blocks.StructBlock):
         template = 'blog/blocks/place.html'
         icon = 'site'
         value_class = PlaceStructValue
+
+
+class TrackerStructValue(blocks.StructValue):
+
+    @staticmethod
+    def key():
+        return settings.GOOGLE_MAPS_V3_APIKEY
+
+
+class Tracker(blocks.StructBlock):
+    places = blocks.ListBlock(PlaceBlock())
+
+    class Meta:
+        template = 'blog/blocks/tracker.html'
+        icon = 'site'
+        value_class = TrackerStructValue
