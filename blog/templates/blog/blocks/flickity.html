@@ -1,0 +1,30 @@
+{% load wagtailcore_tags wagtailimages_tags block_tags %}
+
+{% id_prefix as id_prefix %}
+
+<style>
+
+/* Container for image text */
+.caption-container{{ id_prefix }} {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+</style>
+
+<div class="carousel">
+  {% for picture in value.pictures %}
+    <div class="carousel-cell">
+      {% image picture.image fill-1000x750 as pic %}
+        <img
+          src="{{ pic.url|cdn_url }}"
+          width="{{ pic.width }}"
+          height="{{ pic.height }}"
+          alt="{{ pic.alt }}"
+          id="myImg{{ id_prefix }}"
+        />
+    </div>
+  {% endfor %}
+</div>

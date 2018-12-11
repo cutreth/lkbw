@@ -58,6 +58,20 @@ class Caption(blocks.StructBlock):
         icon = 'form'
 
 
+class Flickity(blocks.StructBlock):
+    pictures = blocks.ListBlock(blocks.StructBlock(
+        [
+            ('image', ImageChooserBlock()),
+            ('caption', blocks.CharBlock(required=False)),
+            ('date', blocks.DateBlock(Required=False)),
+        ]
+    ))
+
+    class Meta:
+        template = 'blog/blocks/flickity.html'
+        icon = 'image'
+
+
 class Gallery(blocks.StructBlock):
     pictures = blocks.ListBlock(blocks.StructBlock(
         [
