@@ -30,6 +30,7 @@ class BlogHomePage(Page):
         ('picture', blocks.Picture()),
         ('location', blocks.Location()),
         ('place', blocks.Place()),
+        ('tracker', blocks.Tracker()),
     ], null=True, blank=True)
 
     content_panels = Page.content_panels +\
@@ -204,6 +205,7 @@ class BlogPostPage(Page):
         ('picture', blocks.Picture()),
         ('location', blocks.Location()),
         ('place', blocks.Place()),
+        ('tracker', blocks.Tracker()),
     ], null=True, blank=True)
 
     parent_page_types = [BlogSectionPage]

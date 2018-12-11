@@ -73,3 +73,28 @@ $carousel.on( 'select.flickity', function() {
   var capt = $(flkty.selectedElement.firstElementChild.id);
   capt.text( flkty.selectedElement.firstElementChild.alt );
 });
+
+
+
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 2,
+    center: new google.maps.LatLng(2.8,-187.3),
+    mapTypeId: 'terrain'
+  });
+
+  var payload = document.getElementsByClassName('data');
+
+  for (var i = 0; i < payload.length; i++) {
+    var lat = payload.item(i).attributes.lat.value;
+    var lng = payload.item(i).attributes.lng.value;
+    var latLng = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+  }
+
+}
