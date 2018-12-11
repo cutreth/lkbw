@@ -70,5 +70,6 @@ $carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
 
 $carousel.on( 'select.flickity', function() {
   // set image caption using img's alt
-  $caption.text( flkty.selectedElement.firstElementChild.alt );
+  var capt = $(flkty.selectedElement.firstElementChild.id);
+  capt.text( flkty.selectedElement.firstElementChild.alt );
 });

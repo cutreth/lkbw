@@ -15,10 +15,10 @@
           width="{{ pic.width }}"
           height="{{ pic.height }}"
           alt="{{ picture.caption }}"
-          id="myImg{{ id_prefix }}"
+          id="#myImg{{ id_prefix }}"
         />
     </div>
   {% endfor %}
 </div>
 
-<p class="caption"></p>
+<p class="caption" id="myImg{{ id_prefix }}"></p>
