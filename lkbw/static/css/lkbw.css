@@ -54,7 +54,7 @@
 /* Flickity block */
 
 .carousel {
-  background: #EEE;
+  background: white;
 }
 
 .carousel-cell {
@@ -79,32 +79,69 @@
   background: white;
 }
 
-.carousel-cell img {
+.carousel-cell {
+
+  height: 500px;
+  width: 100%;
   display: block;
-  max-height: 80vh;
-  height: 200px;
-  max-width: 80vw;
+
+  /* center images in cells with flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-cell img {
+  max-height: 500px;
+  height: 100%;
   width: auto;
 }
 
 .carousel.is-fullscreen .carousel-cell {
+  width: 100%;
   height: 100%;
+
 }
 
-@media screen and (min-width: 500px) {
+.carousel.is-fullscreen .carousel-cell img {
+  max-height: 100%;
+  max-width: 100%;
+  height: 100%;
+  width: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .carousel-cell {
+    height: 250px;
+  }
   .carousel-cell img {
-    height: 200px;
+    height: 250px;
   }
 }
 
-@media screen and (min-width: 501px) and (max-width: 1000px) {
+@media only screen and (min-width: 501px) and (max-width: 800px) {
+  .carousel-cell {
+    height: 300px;
+  }
+  .carousel-cell img {
+    height: 300px;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1200px) {
+  .carousel-cell {
+    height: 400px;
+  }
   .carousel-cell img {
     height: 400px;
   }
 }
 
-@media screen and ( min-width: 1001px ) {
+@media screen and ( min-width: 1201px ) {
+  .carousel-cell {
+    height: 500px;
+  }
   .carousel-cell img {
-    height: 800px;
+    height: 500px;
   }
 }

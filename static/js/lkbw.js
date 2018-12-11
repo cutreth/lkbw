@@ -35,6 +35,7 @@ $grid.infiniteScroll({
 var $carousel = $('.carousel').flickity({
   imagesLoaded: true,
   percentPosition: false,
+  fullscreen: true,
 });
 
 var $caption = $('.caption');
@@ -53,4 +54,21 @@ $carousel.on( 'scroll.flickity', function() {
     var x = ( slide.target + flkty.x ) * -1/3;
     img.style[ transformProp ] = 'translateX(' + x  + 'px)';
   });
+});
+
+
+// jQuery
+$carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
+
+    if (isFullscreen) {
+        $('#mainNav').css('z-index', 0);
+        $('#imageViewer').css('padding-top', '35px');
+    } else {
+        $('#mainNav').css('z-index', 1030);
+    }
+});
+
+$carousel.on( 'select.flickity', function() {
+  // set image caption using img's alt
+  $caption.text( flkty.selectedElement.firstElementChild.alt );
 });

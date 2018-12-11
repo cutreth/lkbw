@@ -31,7 +31,7 @@
           <div class="col-lg-3 d-flex justify-content-lg-end">
             <form class="form-inline my-2 my-lg-0" action="{% slugurl "search" %}" method="get">
               <input class="form-control mr-sm-2 w-50" type="search" aria-label="Search" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-              <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Search</button>
+              <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
             </form>
           </div>
         </div>
@@ -90,25 +90,6 @@
       {% if blogpages.has_next %}
         <a class="pagination_next" href="?page={{ blogpages.next_page_number }}"></a>
       {% endif %}
-    </div>
-
-    <div class="carousel">
-      {% for post in blogpages %}
-      {% with post=post.specific %}
-        <div class="carousel-cell">
-          {% image post.banner_image max-800x800 as pic %}
-            <a href="{{ post.url }}">
-              <img
-                 src="{{ pic.url|cdn_url }}"
-                 width="{{ pic.width }}"
-                 height="{{ pic.height }}"
-                 alt="{{ pic.alt }}"
-                 id="myImg{{ id_prefix }}"
-              />
-            </a>
-        </div>
-      {% endwith %}
-      {% endfor %}
     </div>
 
 {% endblock %}
