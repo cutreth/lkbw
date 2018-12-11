@@ -37,6 +37,8 @@ var $carousel = $('.carousel').flickity({
   percentPosition: false,
 });
 
+var $caption = $('.caption');
+
 var $imgs = $carousel.find('.carousel-cell img');
 // get transform property
 var docStyle = document.documentElement.style;
