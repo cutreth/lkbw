@@ -54,7 +54,7 @@
 /* Flickity block */
 
 .carousel {
-  background: #EEE;
+  background: white;
 }
 
 .carousel-cell {
@@ -87,24 +87,14 @@
   width: auto;
 }
 
-.carousel.is-fullscreen .carousel-cell {
-  height: 100%;
-}
-
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
   .carousel-cell img {
     height: 200px;
   }
 }
 
-@media screen and (min-width: 501px) and (max-width: 1000px) {
+@media screen and ( min-width: 701px ) {
   .carousel-cell img {
     height: 400px;
-  }
-}
-
-@media screen and ( min-width: 1001px ) {
-  .carousel-cell img {
-    height: 800px;
   }
 }
