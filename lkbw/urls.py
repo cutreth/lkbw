@@ -2,12 +2,15 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.http import HttpResponse
+from django.views.generic.base import RedirectView
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from blog import views
+
+favicon_view = RedirectView.as_view(url='/static/favicon/favicon.ico', permanent=True)
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -17,6 +20,7 @@ urlpatterns = [
 
     url(r'^api/deploy/$', views.deploy, name='deploy'),
     url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
+	url(r'^favicon.ico', favicon_view),
 
 
     # For anything not caught by a more specific rule above, hand over to
