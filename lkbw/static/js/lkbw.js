@@ -90,6 +90,11 @@ $grid.infiniteScroll({
   history: false,
 });
 
+// Safari fixe
+$('.grid').on( 'append.infiniteScroll', function( event, response, path, items ) {
+	$('.grid').masonry('layout');
+});
+
 // Flickity
 
 var $carousel = $('.carousel').flickity({

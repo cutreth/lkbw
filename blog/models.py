@@ -49,7 +49,7 @@ class BlogHomePage(Page):
 
         blogpages = self.get_descendants().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
 
-        paginator = Paginator(blogpages, 10)
+        paginator = Paginator(blogpages, 5)
 
         page = request.GET.get('page')
         try:
