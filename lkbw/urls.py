@@ -8,7 +8,8 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from blog import views
+from blog import views as blog_views
+from quiz import urls as quiz_urls
 
 favicon_view = RedirectView.as_view(url='/static/favicon/favicon.ico', permanent=True)
 
@@ -18,9 +19,10 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^api/deploy/$', views.deploy, name='deploy'),
+    url('^quiz/', include(quiz_urls)),
+    url(r'^api/deploy/$', blog_views.deploy, name='deploy'),
     url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
-	url(r'^favicon.ico', favicon_view),
+    url(r'^favicon.ico', favicon_view),
 
 
     # For anything not caught by a more specific rule above, hand over to
