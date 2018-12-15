@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
     'whitenoise.runserver_nostatic',
     'blog',
+    'quiz',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
