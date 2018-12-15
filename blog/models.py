@@ -33,8 +33,7 @@ class BlogHomePage(Page):
         ('tracker', blocks.Tracker()),
     ], null=True, blank=True)
 
-    content_panels = Page.content_panels +\
-                     [
+    content_panels = Page.content_panels + [
                          StreamFieldPanel('body'),
                      ]
 
