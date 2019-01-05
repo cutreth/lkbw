@@ -29,8 +29,8 @@ def question(request, category_id):
     if question_count == 0:
         return HttpResponse("No valid questions")
 
-    question_id = randint(1, question_count)
-    question_str = str(question_id)
+    question_id = randint(0, question_count - 1)
+    question_str = str(question_list[question_id].id)
 
     redirect_path = '/django-admin/quiz/question/'
     return redirect(redirect_path + question_str)
