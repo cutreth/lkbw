@@ -17,6 +17,7 @@ Pillow==5.2.0
 pytz==2018.5
 requests==2.20.0
 requests-aws4auth==0.9
+sendinblue==2.0.5.1
 six==1.11.0
 Unidecode==1.0.22
 urllib3==1.23
