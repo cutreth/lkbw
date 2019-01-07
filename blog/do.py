@@ -25,3 +25,29 @@ def geosgeometry_str_to_struct(value):
         'x': result.group(2),
         'y': result.group(3),
     }
+
+
+def send_email(to, email, subject, template):
+
+    from mailin import Mailin
+    from django.conf import settings
+    from django.template.loader import render_to_string
+    from blog.models import Page
+
+    page = Page.objects.get(id=37).specific
+
+    context = {'page': page,
+               'self': page,
+               }
+
+    body = render_to_string(template, context)
+
+    m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
+    data = {"to": {email: to},
+            "from": ["kevin@lilkevbigworld.com", "Lil Kev"],
+            "subject": subject,
+            "html": body,
+            }
+
+    result = m.send_email(data)
+    print(result)
