@@ -32,9 +32,12 @@ def send_email(to, email, subject, template):
     from mailin import Mailin
     from django.conf import settings
     from django.template.loader import render_to_string
+    from blog.models import Page
 
-    context = {'foo': 'bar',
-               'page': "one",
+    page = Page.objects.get(id=37).specific
+
+    context = {'page': page,
+               'self': page,
                }
 
     body = render_to_string(template, context)
