@@ -35,3 +35,20 @@ def deploy(request):
         return HttpResponse('Deploying')
     else:
         return HttpResponse('Not master')
+
+
+def unsubscribe(request):
+
+    from blog.forms import UnsubscribeForm
+    from django.shortcuts import render, redirect
+
+    if request.method == 'POST':
+        form = UnsubscribeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('https://www.lilkevbigworld.com')
+
+    else:
+        form = UnsubscribeForm()
+
+    return render(request, 'unsubscribe.html', {'form': form})

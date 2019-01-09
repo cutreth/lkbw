@@ -34,7 +34,7 @@ def trigger_email(request, page):
 
     from mailin import Mailin
     from django.conf import settings
-    from blog.models import BlogEmailPage
+    from blog.models import BlogEmailPage, Profile
     from django.template.loader import render_to_string
     from django.http import HttpRequest
     from datetime import datetime
@@ -54,51 +54,27 @@ def trigger_email(request, page):
     template = page.get_template(request)
     context = page.get_context(request)
 
-    subject = page.title
-    body = render_to_string(template, context)
+    recipients = Profile.objects.filter(active=True)
 
-    to = 'KY'
-    email = 'kikot.world@gmail.com'
+    for receiver in recipients:
+        to = receiver.first_name + ' ' + receiver.last_name
+        email = receiver.email
 
-    m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
-    data = {"to": {email: to},
-            "from": ["kevin@lilkevbigworld.com", "Lil Kev"],
-            "subject": subject,
-            "html": body,
-            }
-    result = m.send_email(data)
+        subject = page.title
+        context['secret_key'] = receiver.secret_key
+
+        body = render_to_string(template, context)
+
+        m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
+        data = {"to": {email: to},
+                "from": ["kevin@lilkevbigworld.com", "Lil Kev"],
+                "subject": subject,
+                "html": body,
+                }
+        result = m.send_email(data)
 
     page = page.specific
     page.sent_date = datetime.now()
     page.save()
 
     return None
-
-
-def send_email(to, email, subject, email_id):
-
-    from mailin import Mailin
-    from django.conf import settings
-    from django.template.loader import render_to_string
-    from blog.models import Page
-    from django.http import HttpRequest
-
-    request = HttpRequest()
-    request.method = 'GET'
-
-    page = Page.objects.get(id=email_id).specific
-
-    template = page.get_template(request)
-    context = page.get_context(request)
-
-    body = render_to_string(template, context)
-
-    m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
-    data = {"to": {email: to},
-            "from": ["kevin@lilkevbigworld.com", "Lil Kev"],
-            "subject": subject,
-            "html": body,
-            }
-
-    result = m.send_email(data)
-    print(result)
