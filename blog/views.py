@@ -4,9 +4,10 @@ import hmac
 from hashlib import sha1
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.encoding import force_bytes
+
 
 @csrf_exempt
 def deploy(request):

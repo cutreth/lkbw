@@ -392,7 +392,7 @@ class BlogEmailPage(Page):
     parent_page_types = [BlogSearchPage]
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
+
     ]
 
     content_panels = Page.content_panels + [
@@ -457,8 +457,6 @@ class BlogEmailPage(Page):
             heading='Post Five',
             classname='collapsible collapsed'
         ),
-
-
 
     ]
 
