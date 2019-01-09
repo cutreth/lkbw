@@ -69,7 +69,7 @@ a[x-apple-data-detectors] {
       <td style="padding:0;Margin:0;">
        <table cellpadding="0" cellspacing="0" border="0" align="center" width="600" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
          <tr style="border-collapse:collapse;">
-          <td cellpadding="0" cellspacing="0" border="0" height="0" style="padding:0;Margin:0;line-height:1px;min-width:600px;"> <img src="https://esputnik.com/repository/applications/images/blank.gif" width="600" height="1" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;max-height:0px;min-height:0px;min-width:600px;width:600px;" alt=""> </td>
+          <td cellpadding="0" cellspacing="0" border="0" height="0" style="padding:0;Margin:0;line-height:1px;min-width:600px;"> <img src="" width="600" height="1" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;max-height:0px;min-height:0px;min-width:600px;width:600px;" alt=""> </td>
          </tr>
        </table> </td>
      </tr>
@@ -114,7 +114,8 @@ a[x-apple-data-detectors] {
                        </table> </td>
                      </tr>
                      <tr style="border-collapse:collapse;">
-                      <td style="padding:0;Margin:0;position:relative;" align="center"> <img class="adapt-img" src="https://nldby.stripocdn.email/content/guids/bannerImgGuid/images/43941546870172944.png" alt="5" title="5" width="100%" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></td>
+                      {% image page.banner_image width-600 as banner_image %}
+                      <td style="padding:0;Margin:0;position:relative;" align="center"> <img class="adapt-img" src={{ banner_image.url }} alt="" title="" width="100%" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></td>
                      </tr>
                      <tr style="border-collapse:collapse;">
                       <td class="es-m-txt-c" esdev-links-color="#e3f2ec" align="center" style="padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px;"> <h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#E3F2EC;">THIS IS WHERE THE SUBJECT SHOULD GO</h1> </td>
