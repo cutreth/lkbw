@@ -474,6 +474,7 @@ class BlogEmailPage(Page):
         root_url = 'https://www.lilkevbigworld.com'
 
         context['homepage_url'] = root_url
+        context['email_url'] = root_url + self.get_url()
 
         if (self.post_one is True) & (self.post_one_page is not None):
             context['post_one_url'] = root_url + self.post_one_page.get_url()
