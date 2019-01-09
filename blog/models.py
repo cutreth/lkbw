@@ -467,3 +467,21 @@ class BlogEmailPage(Page):
     settings_panels = Page.settings_panels + [
 
     ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        context['homepage_url'] = self.get_site().root_page.get_full_url()
+
+        if (self.post_one is True) & (self.post_one_page is not None):
+            context['post_one_url'] = self.post_one_page.get_full_url()
+        if (self.post_two is True) & (self.post_two_page is not None):
+            context['post_two_url'] = self.post_two_page.get_full_url()
+        if (self.post_three is True) & (self.post_three_page is not None):
+            context['post_three_url'] = self.post_three_page.get_full_url()
+        if (self.post_four is True) & (self.post_four_page is not None):
+            context['post_four_url'] = self.post_four_page.get_full_url()
+        if (self.post_five is True) & (self.post_five_page is not None):
+            context['post_five_url'] = self.post_five_page.get_full_url()
+
+        return context
