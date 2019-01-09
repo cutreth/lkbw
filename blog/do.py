@@ -27,7 +27,7 @@ def geosgeometry_str_to_struct(value):
     }
 
 
-def send_email(to, email, subject):
+def send_email(to, email, subject, email_id):
 
     from mailin import Mailin
     from django.conf import settings
@@ -38,7 +38,7 @@ def send_email(to, email, subject):
     request = HttpRequest()
     request.method = 'GET'
 
-    page = Page.objects.get(id=42).specific
+    page = Page.objects.get(id=email_id).specific
 
     template = page.get_template(request)
     context = page.get_context(request)
