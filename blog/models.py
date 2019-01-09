@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.search.models import Query
@@ -253,3 +253,217 @@ class BlogPostPage(Page):
         context['hide_intro'] = hide_intro
 
         return context
+
+
+class BlogEmailPage(Page):
+
+    post_date = models.DateField("Post date")
+    intro = models.CharField(max_length=250)
+    banner_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    post_one = models.BooleanField(default=False)
+    post_two = models.BooleanField(default=False)
+    post_three = models.BooleanField(default=False)
+    post_four = models.BooleanField(default=False)
+    post_five = models.BooleanField(default=False)
+
+    post_one_intro = models.CharField(max_length=250, null=True, blank=True)
+    post_two_intro = models.CharField(max_length=250, null=True, blank=True)
+    post_three_intro = models.CharField(max_length=250, null=True, blank=True)
+    post_four_intro = models.CharField(max_length=250, null=True, blank=True)
+    post_five_intro = models.CharField(max_length=250, null=True, blank=True)
+
+
+    post_one_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_two_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_three_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_four_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_five_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    post_one_img_tall = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_one_img_wide_a = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_one_img_wide_b = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_two_img_wide_a = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_two_img_wide_b = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_three_img_tall_a = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_three_img_tall_b = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_three_img_tall_c = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_four_img_wide_a = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_four_img_wide_b = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_four_img_tall = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_five_img_wide = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    post_five_img_square = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    parent_page_types = [BlogSearchPage]
+
+    search_fields = Page.search_fields + [
+
+    ]
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('banner_image'),
+        FieldPanel('intro'),
+        FieldPanel('post_date'),
+        MultiFieldPanel(
+            [
+                FieldPanel('post_one'),
+                PageChooserPanel('post_one_page', 'blog.BlogPostPage'),
+                FieldPanel('post_one_intro'),
+                ImageChooserPanel('post_one_img_tall'),
+                ImageChooserPanel('post_one_img_wide_a'),
+                ImageChooserPanel('post_one_img_wide_b'),
+            ],
+            heading='Post One',
+            classname='collapsible collapsed'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('post_two'),
+                PageChooserPanel('post_two_page', 'blog.BlogPostPage'),
+                FieldPanel('post_two_intro'),
+                ImageChooserPanel('post_two_img_wide_a'),
+                ImageChooserPanel('post_two_img_wide_b'),
+            ],
+            heading='Post Two',
+            classname='collapsible collapsed'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('post_three'),
+                PageChooserPanel('post_three_page', 'blog.BlogPostPage'),
+                FieldPanel('post_three_intro'),
+                ImageChooserPanel('post_three_img_tall_a'),
+                ImageChooserPanel('post_three_img_tall_b'),
+                ImageChooserPanel('post_three_img_tall_c'),
+            ],
+            heading='Post Three',
+            classname='collapsible collapsed'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('post_four'),
+                PageChooserPanel('post_four_page', 'blog.BlogPostPage'),
+                FieldPanel('post_four_intro'),
+                ImageChooserPanel('post_four_img_wide_a'),
+                ImageChooserPanel('post_four_img_wide_b'),
+                ImageChooserPanel('post_four_img_tall'),
+            ],
+            heading='Post Four',
+            classname='collapsible collapsed'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('post_five'),
+                PageChooserPanel('post_five_page', 'blog.BlogPostPage'),
+                FieldPanel('post_five_intro'),
+                ImageChooserPanel('post_five_img_wide'),
+                ImageChooserPanel('post_five_img_square'),
+            ],
+            heading='Post Five',
+            classname='collapsible collapsed'
+        ),
+
+    ]
+
+    promote_panels = [
+
+                     ] + Page.promote_panels
+
+    settings_panels = Page.settings_panels + [
+
+    ]
