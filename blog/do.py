@@ -33,7 +33,7 @@ def send_email(to, email, subject, email_id):
     from django.conf import settings
     from django.template.loader import render_to_string
     from blog.models import Page
-    from django.http import HttpRequest, Http404
+    from django.http import HttpRequest
 
     request = HttpRequest()
     request.method = 'GET'
