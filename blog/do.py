@@ -27,18 +27,21 @@ def geosgeometry_str_to_struct(value):
     }
 
 
-def send_email(to, email, subject, template):
+def send_email(to, email, subject):
 
     from mailin import Mailin
     from django.conf import settings
     from django.template.loader import render_to_string
     from blog.models import Page
+    from django.http import HttpRequest, Http404
 
-    page = Page.objects.get(id=37).specific
+    request = HttpRequest()
+    request.method = 'GET'
 
-    context = {'page': page,
-               'self': page,
-               }
+    page = Page.objects.get(id=42).specific
+
+    template = page.get_template(request)
+    context = page.get_context(request)
 
     body = render_to_string(template, context)
 
