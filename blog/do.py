@@ -29,6 +29,29 @@ def geosgeometry_str_to_struct(value):
 
 
 @hooks.register('after_create_page')
+def seed_email(request, page):
+
+    from blog.models import BlogEmailPage
+
+    is_email = bool(True) if page.specific_class == BlogEmailPage else bool(False)
+    if not is_email:
+        return None
+
+    is_publishing = bool(request.POST.get('action-publish'))
+    if is_publishing is True:
+        return None
+
+    is_sent = bool(False) if page.sent_date is None else bool(True)
+    if is_sent is True:
+        return None
+
+    # Email page, not publishing, not sent
+    # OK, now seed post fields
+
+    return None
+
+
+@hooks.register('after_create_page')
 @hooks.register('after_edit_page')
 def trigger_email(request, page):
 
