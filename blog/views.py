@@ -57,11 +57,6 @@ def email(request):
             }
     result = m.send_email(data)
 
-    from logging import error
-
-    error(result)
-    error(body)
-
     return HttpResponse('OK')
 
 
