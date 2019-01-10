@@ -257,7 +257,7 @@ class BlogPostPage(Page):
 
 class BlogEmailPage(Page):
 
-    post_date = models.DateField("Post date")
+    sent_date = models.DateField("Sent date", null=True, blank=True)
     intro = models.CharField(max_length=250)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -398,7 +398,6 @@ class BlogEmailPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('banner_image'),
         FieldPanel('intro'),
-        FieldPanel('post_date'),
         MultiFieldPanel(
             [
                 FieldPanel('post_one'),
@@ -461,7 +460,7 @@ class BlogEmailPage(Page):
     ]
 
     promote_panels = [
-
+                         FieldPanel('sent_date'),
                      ] + Page.promote_panels
 
     settings_panels = Page.settings_panels + [
@@ -488,3 +487,24 @@ class BlogEmailPage(Page):
             context['post_five_url'] = root_url + self.post_five_page.get_url()
 
         return context
+
+
+class Profile(models.Model):
+
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email = models.EmailField()
+    secret_key = models.CharField(max_length=20, default='01234567899876543210')
+    last_updated = models.DateField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
+    def save(self, *args, **kwargs):
+        from hashlib import blake2b
+        data = bytearray()
+        data.extend(map(ord, self.first_name + self.last_name + self.email + str(self.active)))
+        secret_key = blake2b(data, digest_size=10).hexdigest()
+        self.secret_key = secret_key
+        super().save(*args, **kwargs)

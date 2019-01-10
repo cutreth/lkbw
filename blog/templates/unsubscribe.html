@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <br>
+      <h3>Sorry to see you go!</h3>
+      To unsubscribe, these fields must match your registration details exactly.
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

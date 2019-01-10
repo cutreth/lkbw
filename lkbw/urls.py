@@ -19,10 +19,12 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url('^quiz/', include(quiz_urls)),
+    url(r'^quiz/', include(quiz_urls)),
     url(r'^api/deploy/$', blog_views.deploy, name='deploy'),
     url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
     url(r'^favicon.ico', favicon_view),
+    url(r'^unsubscribe/$', blog_views.unsubscribe, name='unsubscribe'),
+    url(r'^subscribe/$', blog_views.subscribe, name='subscribe'),
 
 
     # For anything not caught by a more specific rule above, hand over to

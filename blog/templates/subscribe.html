@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <br>
+      <h3>Welcome to the blog!</h3>
+      Please complete all of the fields and sit tight for the next email send.
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
