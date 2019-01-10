@@ -40,7 +40,19 @@ def deploy(request):
 @csrf_exempt
 def email(request):
 
-    payload = json.loads(request.body)
+    to = 'Lil Kev'
+    email = 'email@lilkevbigworld.com'
+
+    subject = 'SiB Web Hook'
+    body = json.loads(request.body)
+
+    m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
+    data = {"to": {email: to},
+            "from": ["kevin@lilkevbigworld.com", "Lil Kev"],
+            "subject": subject,
+            "html": body,
+            }
+    result = m.send_email(data)
 
     return HttpResponse('OK')
 
