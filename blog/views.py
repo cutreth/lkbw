@@ -47,7 +47,7 @@ def email(request):
     email = 'email@lilkevbigworld.com'
 
     subject = 'SiB Web Hook'
-    body = json.loads(request.body)
+    body = json.dumps(request.body)
 
     m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
     data = {"to": {email: to},
@@ -61,7 +61,7 @@ def email(request):
 
     error(result)
     error(body)
-    
+
     return HttpResponse('OK')
 
 
