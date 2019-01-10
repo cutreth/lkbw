@@ -21,6 +21,7 @@ urlpatterns = [
 
     url(r'^quiz/', include(quiz_urls)),
     url(r'^api/deploy/$', blog_views.deploy, name='deploy'),
+    url(r'^api/email/$', blog_views.email, name='email'),
     url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
     url(r'^favicon.ico', favicon_view),
     url(r'^unsubscribe/$', blog_views.unsubscribe, name='unsubscribe'),

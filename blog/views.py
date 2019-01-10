@@ -37,6 +37,16 @@ def deploy(request):
         return HttpResponse('Not master')
 
 
+@csrf_exempt
+def email(request):
+
+    payload = json.loads(request.body)
+
+
+    return HttpResponse('OK')
+
+
+
 def subscribe(request):
 
     from blog.models import Profile

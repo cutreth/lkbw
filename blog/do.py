@@ -44,10 +44,10 @@ def trigger_email(request, page):
         return None
 
     is_publishing = bool(request.POST.get('action-publish'))
-    is_sent = bool(False) if page.sent_date is None else bool(True)
-    
     if is_publishing is False:
         return None
+
+    is_sent = bool(False) if page.sent_date is None else bool(True)
     if is_sent is True:
         return None
 
