@@ -40,6 +40,9 @@ def deploy(request):
 @csrf_exempt
 def email(request):
 
+    from mailin import Mailin
+    from django.conf import settings
+
     to = 'Lil Kev'
     email = 'email@lilkevbigworld.com'
 
