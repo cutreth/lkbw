@@ -42,9 +42,7 @@ def email(request):
 
     payload = json.loads(request.body)
 
-
     return HttpResponse('OK')
-
 
 
 def subscribe(request):
