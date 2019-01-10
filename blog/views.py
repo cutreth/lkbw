@@ -37,15 +37,58 @@ def deploy(request):
         return HttpResponse('Not master')
 
 
+def subscribe(request):
+
+    from blog.models import Profile
+    from blog.forms import SubscribeForm
+    from django.shortcuts import render, redirect
+
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            profile = Profile.objects.filter(email=form.cleaned_data.get('email')).first()
+            if profile is None:
+                form.save()
+                return redirect('https://www.lilkevbigworld.com')
+            else:
+                if (profile.first_name == form.cleaned_data.get('first_name')) & (profile.last_name == form.cleaned_data.get('last_name')):
+                    profile.active = True
+                    profile.save()
+                else:
+                    error = 'Name mismatch'
+                    context = {'error': error}
+                    return render(request, 'error.html', context)
+            return redirect('https://www.lilkevbigworld.com')
+
+    else:
+        form = SubscribeForm()
+
+    return render(request, 'subscribe.html', {'form': form})
+
+
 def unsubscribe(request):
 
+    from blog.models import Profile
     from blog.forms import UnsubscribeForm
     from django.shortcuts import render, redirect
 
     if request.method == 'POST':
         form = UnsubscribeForm(request.POST)
         if form.is_valid():
-            form.save()
+            profile = Profile.objects.filter(email=form.cleaned_data.get('email'), first_name=form.cleaned_data.get('first_name'), last_name=form.cleaned_data.get('last_name')).first()
+            if profile is not None:
+                secret_key = request.GET.get('key')
+                if secret_key == profile.secret_key:
+                    profile.active = False
+                    profile.save()
+                else:
+                    error = 'Key mismatch'
+                    context = {'error': error}
+                    return render(request, 'error.html', context)
+            else:
+                error = 'Profile not found'
+                context = {'error': error}
+                return render(request, 'error.html', context)
             return redirect('https://www.lilkevbigworld.com')
 
     else:

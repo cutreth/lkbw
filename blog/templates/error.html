@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <br>
+      <h3>Error!</h3>
+      {{ error }}
+      <br>
+      <br>
+      If this issue persists, contact <a href="mailto:error@lilkevbigworld.com">error@lilkevbigworld.com</a> for help.
+      <br>
+      <br>
+      <button class="btn btn-primary p-2 my-2 my-sm-0" onclick="goBack()">Go Back</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+{% endblock %}
