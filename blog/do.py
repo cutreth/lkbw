@@ -36,6 +36,8 @@ def seed_email(request, page):
     is_email = bool(True) if page.specific_class == BlogEmailPage else bool(False)
     if not is_email:
         return None
+    else:
+        page = page.specific
 
     is_publishing = bool(request.POST.get('action-publish'))
     if is_publishing is True:
@@ -47,6 +49,10 @@ def seed_email(request, page):
 
     # Email page, not publishing, not sent
     # OK, now seed post fields
+
+    if (page.post_one is True) & (page.post_onePage is not None):
+        1
+        #
 
     return None
 
