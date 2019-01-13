@@ -28,7 +28,7 @@ def geosgeometry_str_to_struct(value):
     }
 
 
-@hooks.register('after_create_page')
+# @hooks.register('after_create_page')
 def seed_email(request, page):
 
     from blog.models import BlogEmailPage
@@ -36,8 +36,8 @@ def seed_email(request, page):
     is_email = bool(True) if page.specific_class == BlogEmailPage else bool(False)
     if not is_email:
         return None
-    else:
-        page = page.specific
+
+    page = page.specific
 
     is_publishing = bool(request.POST.get('action-publish'))
     if is_publishing is True:
@@ -47,12 +47,28 @@ def seed_email(request, page):
     if is_sent is True:
         return None
 
-    # Email page, not publishing, not sent
-    # OK, now seed post fields
+    if (page.post_one is True) & (page.post_one_page is not None):
 
-    if (page.post_one is True) & (page.post_onePage is not None):
-        1
-        #
+        post_one = page.post_one_page.specific
+
+        for block in post_one.body:
+            if block.block_type == 'text':
+                rtf = block.value['text'].source
+                rtf = rtf[:250] if len(rtf) >250 else rtf
+                page.post_one_intro = rtf
+                page.save()
+                # id=19: page.body[0].value['text'].source
+                # this needs to be converted from RTF and then shrunk to 250 characters
+                break
+
+        for block in post_one.body:
+            if block.block_type == 'flickity':
+                img_one = block.value['pictures'][0]['image']
+                page.post_one_img_tall = img_one
+                page.save()
+                # id=19: page.body[7].value['pictures'] (this is a list; add [0], etc. to iterate)
+                # page.body[7].value['pictures'][0]['image'] links to the core picture
+                break
 
     return None
 
