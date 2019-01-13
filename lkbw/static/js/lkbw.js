@@ -88,6 +88,7 @@ $grid.infiniteScroll({
   outlayer: msnry,
   prefill: true,
   history: false,
+  scrollThreshold: 600,
 });
 
 // Safari fixe
