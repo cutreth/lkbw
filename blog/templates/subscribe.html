@@ -1,20 +1,50 @@
 {% extends "base.html" %}
 
+{% block extra_css %}{% endblock %}
+
 {% block content %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <br>
-      <h3>Welcome to the blog!</h3>
-      Please complete all of the fields and sit tight for the next email send.
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Submit</button>
-      </form>
-    </div>
-  </div>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <container class="container-fluid">
+        <div class="col-2 mr-4">
+          <a class="navbar-brand d-flex justify-content-start" href=https://www.lilkevbigworld.com/>Lil Kev Big World</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </container>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>Subscribe</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <h3>Welcome to the blog!</h3>
+            Please complete all of the fields and sit tight for the next email send.
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Submit</button>
+            </form>
+          </div>
+		</div>
+      </div>
+    </article>
 
 {% endblock %}

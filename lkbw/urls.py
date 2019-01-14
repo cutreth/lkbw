@@ -16,7 +16,7 @@ favicon_view = RedirectView.as_view(url='/static/favicon/favicon.ico', permanent
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
 
-    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^lkbw-admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^quiz/', include(quiz_urls)),
