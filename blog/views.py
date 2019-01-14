@@ -79,7 +79,7 @@ def subscribe(request):
                     profile.active = True
                     profile.save()
                 else:
-                    error = 'Name mismatch'
+                    error = 'An existing subscription with that email address already exists but the names you entered do not match. Please try again with the same names that you subscribed with originally.'
                     context = {'error': error}
                     return render(request, 'error.html', context)
             return redirect('https://www.lilkevbigworld.com')
@@ -106,11 +106,11 @@ def unsubscribe(request):
                     profile.active = False
                     profile.save()
                 else:
-                    error = 'Key mismatch'
+                    error = 'Your subscription key does not match. Please try again, navigating to this page via the "Unsubscribe" link in the most recent email that you have received.'
                     context = {'error': error}
                     return render(request, 'error.html', context)
             else:
-                error = 'Profile not found'
+                error = 'An existing subscription matching your email address and names cannot be found. Please try again with the same information that you used to subscribe originally.'
                 context = {'error': error}
                 return render(request, 'error.html', context)
             return redirect('https://www.lilkevbigworld.com')
