@@ -8,6 +8,10 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.search.models import Query
 
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
+
 import blog.blocks as blocks
 
 
@@ -183,6 +187,10 @@ class BlogSectionPage(Page):
         return context
 
 
+class BlogPostTag(TaggedItemBase):
+    content_object = ParentalKey('blog.BlogPostPage', on_delete=models.CASCADE, related_name='tagged_posts')
+
+
 class BlogPostPage(Page):
     post_date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
@@ -207,6 +215,8 @@ class BlogPostPage(Page):
         ('tracker', blocks.Tracker()),
     ], null=True, blank=True)
 
+    tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
+
     parent_page_types = [BlogSectionPage]
 
     search_fields = Page.search_fields + [
@@ -222,6 +232,7 @@ class BlogPostPage(Page):
 
     promote_panels = [
                          ImageChooserPanel('banner_image'),
+                         FieldPanel('tags'),
                      ] + Page.promote_panels
 
     settings_panels = Page.settings_panels + [
