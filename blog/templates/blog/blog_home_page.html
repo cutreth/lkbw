@@ -76,7 +76,7 @@
         {% for post in blogpages %}
           {% with post=post.specific %}
             <div class="grid-item">
-              {% image post.banner_image max-800x800 as pic %}
+              {% image post.banner_image fill-800x600 as pic %}
                 <a href="{{ post.url }}">
                   <img
                      src="{{ pic.url|cdn_url }}"
