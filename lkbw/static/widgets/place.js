@@ -39,7 +39,6 @@ function GeoField(options) {
 GeoField.prototype.initMap = function(mapEl, defaultLocation) {
     var map = new google.maps.Map(mapEl, {
         zoom: this.defaultZoom,
-        // Add check if zoomField contains data
         center: defaultLocation,
     });
 
@@ -261,6 +260,19 @@ GeoField.prototype.parseStrToLatLng = function(value) {
     return latLng
 }
 
+GeoField.prototype.getZoomLevel = function() {
+
+    var zoom = this.zoomField.val();
+
+    if (zoom == null || zoom == undefined) {
+        zoom = this.defaultZoom;
+    }
+
+    zoom = parseInt(zoom);
+
+    return zoom
+}
+
 GeoField.prototype.updateMapFromCoords = function(latLng) {
     this.setMapPosition(latLng);
 }
@@ -268,6 +280,9 @@ GeoField.prototype.updateMapFromCoords = function(latLng) {
 GeoField.prototype.setMapPosition = function(latLng) {
     this.marker.setPosition(latLng);
     this.map.setCenter(latLng);
+
+    var zoomLevel = this.getZoomLevel();
+    this.map.setZoom(zoomLevel);
 }
 
 GeoField.prototype.writeLocation = function(latLng) {
