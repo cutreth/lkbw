@@ -264,7 +264,7 @@ GeoField.prototype.getZoomLevel = function() {
 
     var zoom = this.zoomField.val();
 
-    if (zoom == null || zoom == undefined) {
+    if (zoom == null || zoom == undefined || zoom == "") {
         zoom = this.defaultZoom;
     }
 
