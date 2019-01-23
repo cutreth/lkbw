@@ -149,3 +149,7 @@
 .header-image {
     height: 80vh;
 }
+
+.square-corners {
+    border-radius: 0;
+}
