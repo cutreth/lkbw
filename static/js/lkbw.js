@@ -26,7 +26,8 @@ function initMap() {
       map: map,
       label: '',
       title: payload.item(i).attributes.title.value,
-      data: '<a href=' + payload.item(i).attributes.page.value + ' style="text-decoration:underline;">' + payload.item(i).attributes.caption.value + '</a>',
+      data: payload.item(i).attributes.caption.value,
+      url: payload.item(i).attributes.page.value,
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         strokeColor: '#7b2500',
@@ -50,7 +51,11 @@ function initMap() {
   var blank_content = ''
   google.maps.event.addListener(marker,'click', (function(marker,blank_content,infowindow){
     return function() {
-      infowindow.setContent(marker.data);
+      var content = marker.data;
+      if (data.url != '') {
+        content = '<a href=' + marker.url + ' style="text-decoration:underline;">' + marker.data + '</a>'
+      }
+      infowindow.setContent(content);
       infowindow.open(map,marker);
     };
   })(marker,blank_content,infowindow));
