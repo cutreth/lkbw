@@ -4,7 +4,7 @@
 
 <div id="payload" class="invisible">
   {% for stop in value.stops %}
-  <div class="data" lat="{{ stop.place.lat }}" lng="{{ stop.place.lng }}" title="{{ stop.title }}" caption="{{ stop.caption }}" page="{% pageurl stop.page %}">
+  <div class="data" lat="{{ stop.place.lat }}" lng="{{ stop.place.lng }}" title="{{ stop.title }}" caption="{{ stop.caption }}" page="{% if stop.page %}{% pageurl stop.page %}{% endif %}">
   </div>
  {% endfor %}
 </div>
