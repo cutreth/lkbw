@@ -31,7 +31,9 @@ function initMap() {
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         strokeColor: '#7b2500',
-        strokeWeight: 5,
+        strokeWeight: 6,
+        fillColor: '#7b2500',
+        fillOpacity: 1,
       }
     });
 
