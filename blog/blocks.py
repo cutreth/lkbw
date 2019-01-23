@@ -307,7 +307,7 @@ class PlaceStructValue(blocks.StructValue):
 
 class Place(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
-    place = blocks.CharBlock(required=False)
+    place = blocks.CharBlock()
     zoom = blocks.CharBlock(required=False)
     location = PlaceBlock(address_field='address', place_field='place', zoom_field='zoom')
     satellite = blocks.BooleanBlock(required=False)
