@@ -60,6 +60,7 @@ GeoField.prototype.initEvents = function() {
         self.setMapPosition(event.latLng);
         self.updateLatLng(event.latLng);
         self.writeLocation(event.latLng);
+        self.clearGeocodes(event.latLng);
     });
 
     google.maps.event.addListener(this.marker, "click", function(event) {
@@ -286,6 +287,10 @@ GeoField.prototype.writePlace = function(qId) {
     this.placeField.val(value);
 }
 
+GeoField.prototype.clearGeocodes = function(latLng) {
+    this.placeField.val("")
+    this.addressField.val("")
+}
 
 function initializeGeoFields() {
     $(".geo-field").each(function(index, el) {
