@@ -52,7 +52,7 @@ function initMap() {
   google.maps.event.addListener(marker,'click', (function(marker,blank_content,infowindow){
     return function() {
       var content = marker.data;
-      if (data.url != '') {
+      if (marker.url != '') {
         content = '<a href=' + marker.url + ' style="text-decoration:underline;">' + marker.data + '</a>'
       }
       infowindow.setContent(content);
