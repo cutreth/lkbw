@@ -29,11 +29,11 @@ function initMap() {
       data: payload.item(i).attributes.caption.value,
       url: payload.item(i).attributes.page.value,
       icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        strokeColor: '#7b2500',
-        strokeWeight: 6,
+        path: 'M 0,-4 4,0 0,4 -4,0  Z',
         fillColor: '#7b2500',
         fillOpacity: 1,
+        strokeColor: '#7b2500',
+        strokeWeight: 2
       }
     });
 
