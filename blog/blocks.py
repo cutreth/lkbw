@@ -278,9 +278,8 @@ class LocationStructValue(blocks.StructValue):
 class Location(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
     place = blocks.CharBlock(required=False)
-    new_zoom = blocks.CharBlock(required=False)
-    location = PlaceBlock(address_field='address', place_field='place', zoom_field='new_zoom')
-    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
+    zoom = blocks.CharBlock(required=False)
+    location = PlaceBlock(address_field='address', place_field='place', zoom_field='zoom')
     satellite = blocks.BooleanBlock(required=False)
     date = blocks.DateBlock(required=False)
 
@@ -309,9 +308,8 @@ class PlaceStructValue(blocks.StructValue):
 class Place(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
     place = blocks.CharBlock(required=False)
-    new_zoom = blocks.CharBlock(required=False)
-    location = PlaceBlock(address_field='address', place_field='place', zoom_field='new_zoom')
-    zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
+    zoom = blocks.CharBlock(required=False)
+    location = PlaceBlock(address_field='address', place_field='place', zoom_field='zoom')
     satellite = blocks.BooleanBlock(required=False)
     date = blocks.DateBlock(required=False)
 
