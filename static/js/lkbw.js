@@ -88,6 +88,12 @@ $grid.infiniteScroll({
   outlayer: msnry,
   prefill: true,
   history: false,
+  scrollThreshold: 800,
+});
+
+// Safari fixe
+$('.grid').on( 'append.infiniteScroll', function( event, response, path, items ) {
+	$('.grid').masonry('layout');
 });
 
 // Flickity

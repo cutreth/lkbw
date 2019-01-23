@@ -16,10 +16,6 @@
   bottom: 10px;
 }
 
-.flickity-enabled.is-fullscreen .flickity-page-dots .dot {
-  background: white;
-}
-
 /* prevent page scrolling when flickity is fullscreen */
 html.is-flickity-fullscreen {
   overflow: hidden;

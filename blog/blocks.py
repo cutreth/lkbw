@@ -63,7 +63,7 @@ class Flickity(blocks.StructBlock):
         [
             ('image', ImageChooserBlock()),
             ('caption', blocks.CharBlock(required=False)),
-            ('date', blocks.DateBlock(Required=False)),
+            ('date', blocks.DateBlock(required=False)),
         ]
     ))
 
@@ -77,7 +77,7 @@ class Gallery(blocks.StructBlock):
         [
             ('image', ImageChooserBlock()),
             ('caption', blocks.CharBlock(required=False)),
-            ('date', blocks.DateBlock(Required=False)),
+            ('date', blocks.DateBlock(required=False)),
         ]
     ))
 
@@ -91,7 +91,7 @@ class Picture(blocks.StructBlock):
         [
             ('image', ImageChooserBlock()),
             ('caption', blocks.CharBlock(required=False)),
-            ('date', blocks.DateBlock(Required=False)),
+            ('date', blocks.DateBlock(required=False)),
         ]
     )
 
