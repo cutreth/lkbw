@@ -9,11 +9,12 @@ function GeoField(options) {
         parseFloat(defaultLocation.lng)
     );
 
-    this.zoom = options.zoom;
+    this.defaultZoom = options.defaultZoom;
     this.srid = options.srid;
     this.sourceField = $(options.sourceSelector);
     this.addressField = $(options.addressSelector);
     this.placeField =  $(options.placeSelector);
+    this.zoomField = $(options.zoomSelector);
     this.latLngField = $(options.latLngDisplaySelector);
     this.geocoder = new google.maps.Geocoder();
 
@@ -37,7 +38,8 @@ function GeoField(options) {
 
 GeoField.prototype.initMap = function(mapEl, defaultLocation) {
     var map = new google.maps.Map(mapEl, {
-        zoom: this.zoom,
+        zoom: this.defaultZoom,
+        // Add check if zoomField contains data
         center: defaultLocation,
     });
 
@@ -55,6 +57,12 @@ GeoField.prototype.initEvents = function() {
     var self = this;
 
     google.maps.event.addListener(this.marker, "dragend", function(event) {
+        self.setMapPosition(event.latLng);
+        self.updateLatLng(event.latLng);
+        self.writeLocation(event.latLng);
+    });
+
+    google.maps.event.addListener(this.marker, "click", function(event) {
         self.setMapPosition(event.latLng);
         self.updateLatLng(event.latLng);
         self.writeLocation(event.latLng);
@@ -267,6 +275,9 @@ GeoField.prototype.writeLocation = function(latLng) {
     var value = 'SRID=' + this.srid + ';POINT(' + lng + ' ' +lat+')';
 
     this.sourceField.val(value);
+
+    var zoomLevel = this.map.getZoom();
+    this.zoomField.val(zoomLevel);
 }
 
 GeoField.prototype.writePlace = function(qId) {
@@ -289,8 +300,9 @@ function initializeGeoFields() {
             mapEl: el,
             sourceSelector: $(data.sourceSelector),
             placeSelector: $(data.placeSelector),
+            zoomSelector: $(data.zoomSelector),
             latLngDisplaySelector: $(data.latLngDisplaySelector),
-            zoom: data.zoom,
+            defaultZoom: data.defaultZoom,
             srid: data.srid,
         }
 

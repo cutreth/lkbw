@@ -103,15 +103,17 @@ class Picture(blocks.StructBlock):
 class PlaceField(forms.HiddenInput):
     address_field = None
     place_field = None
+    zoom_field = None
     id_prefix = 'id_'
     srid = None
 
     def __init__(self, *args, **kwargs):
         self.address_field = kwargs.pop('address_field', self.address_field)
         self.place_field = kwargs.pop('place_field', self.place_field)
+        self.zoom_field = kwargs.pop('zoom_field', self.zoom_field)
         self.srid = kwargs.pop('srid', self.srid)
         self.id_prefix = kwargs.pop('id_prefix', self.id_prefix)
-        self.zoom = kwargs.pop('zoom', settings.GEO_WIDGET_ZOOM)
+        self.default_zoom = kwargs.pop('default_zoom', settings.GEO_WIDGET_ZOOM)
 
         super(PlaceField, self).__init__(*args, **kwargs)
 
@@ -153,14 +155,18 @@ class PlaceField(forms.HiddenInput):
         place_selector = '#{}{}{}'.format(self.id_prefix,
                                             namespace,
                                             self.place_field)
+        zoom_selector = '#{}{}{}'.format(self.id_prefix,
+                                            namespace,
+                                            self.zoom_field)
 
         data = {
             'sourceSelector': source_selector,
             'defaultLocation': settings.GEO_WIDGET_DEFAULT_LOCATION,
             'addressSelector': address_selector,
             'placeSelector': place_selector,
+            'zoomSelector': zoom_selector,
             'latLngDisplaySelector': '#_id_{}_latlng'.format(name),
-            'zoom': self.zoom,
+            'defaultZoom': self.default_zoom,
             'srid': self.srid,
         }
 
@@ -203,11 +209,12 @@ class PlaceField(forms.HiddenInput):
 
 
 class PlaceBlock(blocks.FieldBlock):
-    def __init__(self, address_field=None, place_field=None, required=True, help_text=None,
+    def __init__(self, address_field=None, place_field=None, zoom_field=None, required=True, help_text=None,
                  **kwargs):
         self.field_options = {}
         self.address_field = address_field
         self.place_field = place_field
+        self.zoom_field = zoom_field
         super(PlaceBlock, self).__init__(**kwargs)
 
     @cached_property
@@ -217,6 +224,7 @@ class PlaceBlock(blocks.FieldBlock):
             id_prefix='',
             address_field=self.address_field,
             place_field=self.place_field,
+            zoom_field=self.zoom_field,
         )}
         field_kwargs.update(self.field_options)
         return forms.CharField(**field_kwargs)
@@ -270,7 +278,8 @@ class LocationStructValue(blocks.StructValue):
 class Location(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
     place = blocks.CharBlock(required=False)
-    location = PlaceBlock(address_field='address', place_field='place')
+    new_zoom = blocks.CharBlock(required=False)
+    location = PlaceBlock(address_field='address', place_field='place', zoom_field='new_zoom')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
     date = blocks.DateBlock(required=False)
@@ -300,7 +309,8 @@ class PlaceStructValue(blocks.StructValue):
 class Place(blocks.StructBlock):
     address = blocks.CharBlock(required=False)
     place = blocks.CharBlock(required=False)
-    location = PlaceBlock(address_field='address', place_field='place')
+    new_zoom = blocks.CharBlock(required=False)
+    location = PlaceBlock(address_field='address', place_field='place', zoom_field='new_zoom')
     zoom = blocks.IntegerBlock(required=False, min_value=0, max_value=19, default=8)
     satellite = blocks.BooleanBlock(required=False)
     date = blocks.DateBlock(required=False)
