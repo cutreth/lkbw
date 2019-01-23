@@ -2,12 +2,12 @@
 
 <div id="map" class="embed-responsive embed-responsive-4by3"></div>
 
-{% for place in value.places %}
 <div id="payload" class="invisible">
-  <div class="data" lat="{{ place.lat }}" lng="{{ place.lng }}" address="{{ place }}">
+  {% for stop in value.stops %}
+  <div class="data" lat="{{ stop.place.lat }}" lng="{{ stop.place.lng }}" title="{{ stop.title }}" caption="{{ stop.caption }}" page="{% pageurl stop.page %}">
   </div>
+ {% endfor %}
 </div>
-{% endfor %}
 
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key={{ value.key }}&callback=initMap">

@@ -168,8 +168,8 @@ BASE_URL = 'https://www.lilkevbigworld.com'
 
 
 # Mapping settings
-WAGTAIL_ADDRESS_MAP_CENTER = "Chicago, IL"
+WAGTAIL_ADDRESS_MAP_CENTER = "Singapore"
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
 
-GEO_WIDGET_DEFAULT_LOCATION = {'lat': 41.8781, 'lng': -87.6298}
+GEO_WIDGET_DEFAULT_LOCATION = {'lat': 1.3521, 'lng': 103.8198}
 GEO_WIDGET_ZOOM = 8
