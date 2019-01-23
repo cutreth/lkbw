@@ -327,7 +327,12 @@ class TrackerStructValue(blocks.StructValue):
 
 
 class Tracker(blocks.StructBlock):
-    places = blocks.ListBlock(PlaceBlock())
+    stops = blocks.ListBlock(blocks.StructBlock([
+        ('place', PlaceBlock()),
+        ('title', blocks.CharBlock(required=False)),
+        ('caption', blocks.CharBlock(required=False)),
+        ('page', blocks.PageChooserBlock(required=False))
+    ]))
 
     class Meta:
         template = 'blog/blocks/tracker.html'

@@ -25,8 +25,13 @@ function initMap() {
       position: latLng,
       map: map,
       label: '',
-      title: String(i + 1),
-      data: payload.item(i).attributes.address.value,
+      title: payload.item(i).attributes.title.value,
+      data: '<a href=' + payload.item(i).attributes.page.value + ' style="text-decoration:underline;">' + payload.item(i).attributes.caption.value + '</a>',
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        strokeColor: '#7b2500',
+        strokeWeight: 5,
+      }
     });
 
     if (i == 0) {
@@ -38,9 +43,8 @@ function initMap() {
     var flightPath = new google.maps.Polyline({
       path: path,
       geodesic: true,
-      strokeColor: '#FF0000',
-      strokeOpacity: 1.0,
-      strokeWeight: 2
+      strokeColor: '#a15900',
+      strokeWeight: 2,
     });
 
   var blank_content = ''
