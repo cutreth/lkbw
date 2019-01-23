@@ -260,29 +260,21 @@ GeoField.prototype.parseStrToLatLng = function(value) {
     return latLng
 }
 
-GeoField.prototype.getZoomLevel = function() {
-
-    var zoom = this.zoomField.val();
-
-    if (zoom == null || zoom == undefined || zoom == "") {
-        zoom = this.defaultZoom;
-    }
-
-    zoom = parseInt(zoom);
-
-    return zoom
-}
-
 GeoField.prototype.updateMapFromCoords = function(latLng) {
     this.setMapPosition(latLng);
+
+    // Only set zoom if it isn't the default
+    var zoomField = parseInt(this.zoomField.val());
+    var defaultZoom = parseInt(this.defaultZoom);
+
+    if (zoomField != defaultZoom && !isNaN(zoomField)) {
+        this.map.setZoom(zoomField);
+    }
 }
 
 GeoField.prototype.setMapPosition = function(latLng) {
     this.marker.setPosition(latLng);
     this.map.setCenter(latLng);
-
-    var zoomLevel = this.getZoomLevel();
-    this.map.setZoom(zoomLevel);
 }
 
 GeoField.prototype.writeLocation = function(latLng) {
@@ -292,6 +284,7 @@ GeoField.prototype.writeLocation = function(latLng) {
 
     this.sourceField.val(value);
 
+    // Get zoom from map and write to field
     var zoomLevel = this.map.getZoom();
     this.zoomField.val(zoomLevel);
 }
