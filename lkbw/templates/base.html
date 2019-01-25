@@ -27,7 +27,7 @@
         <script src="{% static '/js/infinite-scroll.pkgd.min.js' %}"></script>
         <script src="{% static '/js/flickity.pkgd.min.js' %}"></script>
         <script src="{% static '/js/fullscreen.js' %}"></script>
-        <script src="{% static '/js/tracker.js' %}"></script>
+        <script src="{% static '/js/lkbw-early.js' %}"></script>
 
         <meta charset="utf-8" />
 
@@ -73,7 +73,7 @@
         {% block content %}{% endblock %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/lkbw.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/lkbw-late.js' %}"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
