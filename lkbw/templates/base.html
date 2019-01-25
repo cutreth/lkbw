@@ -28,8 +28,6 @@
         <script src="{% static '/js/flickity.pkgd.min.js' %}"></script>
         <script src="{% static '/js/fullscreen.js' %}"></script>
 
-        <script type="text/javascript" src="{% static 'js/lkbw.js' %}"></script>
-
         <meta charset="utf-8" />
 
         <title>
@@ -71,9 +69,10 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
-
         {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/lkbw.js' %}"></script>
+
+        {% block content %}{% endblock %}
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
