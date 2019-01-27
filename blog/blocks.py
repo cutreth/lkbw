@@ -63,7 +63,6 @@ class Flickity(blocks.StructBlock):
         [
             ('image', ImageChooserBlock()),
             ('caption', blocks.CharBlock(required=False)),
-            ('date', blocks.DateBlock(required=False)),
         ]
     ))
 
