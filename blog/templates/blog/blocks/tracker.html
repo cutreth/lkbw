@@ -1,14 +1,17 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags block_tags %}
 
-<div id="map" class="embed-responsive embed-responsive-4by3"></div>
+{% id_prefix as id_prefix %}
 
-<div id="payload" class="invisible">
+<div id="map{{ id_prefix }}" class="embed-responsive embed-responsive-4by3"></div>
+
+<div id="prefix{{ id_prefix }}" class="invisible prefix tracker" prefix="{{ id_prefix }}"></div>
+
+<div id="data{{ id_prefix }}" class="invisible">
   {% for stop in value.stops %}
-  <div class="data" lat="{{ stop.spot.lat }}" lng="{{ stop.spot.lng }}" title="{{ stop.title }}" caption="{{ stop.caption }}" page="{% if stop.page %}{% pageurl stop.page %}{% endif %}">
+  <div class="payload" lat="{{ stop.spot.lat }}" lng="{{ stop.spot.lng }}" title="{{ stop.title }}" caption="{{ stop.caption }}" page="{% if stop.page %}{% pageurl stop.page %}{% endif %}">
   </div>
  {% endfor %}
 </div>
 
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key={{ value.key }}&callback=initMap">
+<script src="https://maps.googleapis.com/maps/api/js?key={{ value.key }}">
 </script>
