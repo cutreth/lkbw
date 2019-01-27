@@ -328,7 +328,9 @@ class TrackerStructValue(blocks.StructValue):
 
 class Tracker(blocks.StructBlock):
     stops = blocks.ListBlock(blocks.StructBlock([
-        ('place', PlaceBlock()),
+        ('address', blocks.CharBlock(required=False)),
+        ('place', blocks.CharBlock(required=False)),
+        ('spot', PlaceBlock(address_field='address', place_field='place')),
         ('title', blocks.CharBlock(required=False)),
         ('caption', blocks.CharBlock(required=False)),
         ('page', blocks.PageChooserBlock(required=False))
