@@ -89,7 +89,7 @@ img::-moz-selection {
 }
 
 #mainNav {
-  position: absolute;
+  position: fixed;
   border-bottom: 1px solid #e9ecef;
   background-color: white;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
