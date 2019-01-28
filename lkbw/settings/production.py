@@ -61,7 +61,7 @@ WAGTAILSEARCH_BACKENDS = {
 
 # PRD infastructure settings
 
-ALLOWED_HOSTS = ['https://www.hannahandkevin.net']
+ALLOWED_HOSTS = ['www.hannahandkevin.net']
 
 DATABASES = {
     'default': {
