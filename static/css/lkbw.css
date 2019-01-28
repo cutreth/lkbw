@@ -77,6 +77,7 @@
 /* fill-in selected dot */
 .flickity-page-dots .dot.is-selected {
   background: black;
+  border: 2px solid white;
 }
 
 .carousel-cell {
