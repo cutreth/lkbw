@@ -73,7 +73,7 @@ def subscribe(request):
             profile = Profile.objects.filter(email=form.cleaned_data.get('email')).first()
             if profile is None:
                 form.save()
-                return redirect('https://www.lilkevbigworld.com')
+                return redirect('https://www.hannahandkevin.net')
             else:
                 if (profile.first_name == form.cleaned_data.get('first_name')) & (profile.last_name == form.cleaned_data.get('last_name')):
                     profile.active = True
@@ -82,7 +82,7 @@ def subscribe(request):
                     error = 'An existing subscription with that email address already exists but the names you entered do not match. Please try again with the same names that you subscribed with originally.'
                     context = {'error': error}
                     return render(request, 'error.html', context)
-            return redirect('https://www.lilkevbigworld.com')
+            return redirect('https://www.hannahandkevin.net')
 
     else:
         form = SubscribeForm()
@@ -113,7 +113,7 @@ def unsubscribe(request):
                 error = 'An existing subscription matching your email address and names cannot be found. Please try again with the same information that you used to subscribe originally.'
                 context = {'error': error}
                 return render(request, 'error.html', context)
-            return redirect('https://www.lilkevbigworld.com')
+            return redirect('https://www.hannahandkevin.net')
 
     else:
         form = UnsubscribeForm()
