@@ -72,11 +72,11 @@
   height: 12px;
   opacity: 1;
   background: transparent;
-  border: 2px solid white;
+  border: 2px solid gray;
 }
 /* fill-in selected dot */
 .flickity-page-dots .dot.is-selected {
-  background: white;
+  background: black;
 }
 
 .carousel-cell {
