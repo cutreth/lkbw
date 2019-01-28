@@ -115,8 +115,8 @@ def trigger_email(request, page):
 
         m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
         data = {"to": {email: to},
-                "from": ["email@lilkevbigworld.com", "Lil Kev Big World"],
-                "replyto": ["reply@lilkevbigworld.com", "Lil Kev Big World"],
+                "from": ["email@hannahandkevin.net", "Lil Kev Big World"],
+                "replyto": ["reply@hannahandkevin.net", "Lil Kev Big World"],
                 "subject": subject,
                 "html": body,
                 }

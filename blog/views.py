@@ -44,15 +44,15 @@ def email(request):
     from django.conf import settings
 
     to = 'Lil Kev'
-    email = 'email@lilkevbigworld.com'
+    email = 'email@hannahandkevin.net'
 
     subject = 'SiB Web Hook'
     body = str(request.body)
 
     m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
     data = {"to": {email: to},
-            "from": ["email@lilkevbigworld.com", "Lil Kev Big World"],
-            "replyto": ["reply@lilkevbigworld.com", "Lil Kev Big World"],
+            "from": ["email@hannahandkevin.net", "Lil Kev Big World"],
+            "replyto": ["reply@hannahandkevin.net", "Lil Kev Big World"],
             "subject": subject,
             "html": body,
             }
