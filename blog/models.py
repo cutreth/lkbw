@@ -477,7 +477,7 @@ class BlogEmailPage(Page):
     def get_context(self, request):
         context = super().get_context(request)
 
-        root_url = 'https://www.lilkevbigworld.com'
+        root_url = 'https://www.hannahandkevin.net'
 
         context['homepage_url'] = root_url
         context['email_url'] = root_url + self.get_url()
