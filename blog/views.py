@@ -51,8 +51,8 @@ def email(request):
 
     m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
     data = {"to": {email: to},
-            "from": ["email@hannahandkevin.net", "Lil Kev Big World"],
-            "replyto": ["reply@hannahandkevin.net", "Lil Kev Big World"],
+            "from": ["email@hannahandkevin.net", "H&K Away"],
+            "replyto": ["reply@hannahandkevin.net", "H&K Away"],
             "subject": subject,
             "html": body,
             }
