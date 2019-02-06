@@ -238,14 +238,26 @@ class BlogPostPage(Page):
     def get_context(self, request):
         context = super().get_context(request)
 
-        sect_page = request.GET.get('sect_page')
-        context['sect_page'] = sect_page
+        blogpages = self.get_parent().get_children().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
 
-        search_page = request.GET.get('search_page')
-        search_query = request.GET.get('search_query')
+        index = 0
+        for page in blogpages:
+            if page.specific == self:
+                break
+            index += 1
 
-        context['search_page'] = search_page
-        context['search_query'] = search_query
+        try:
+            older_page = blogpages[index - 1]
+        except:
+            older_page = ''
+
+        try:
+            newer_page = blogpages[index + 1]
+        except:
+            newer_page = ''
+
+        context['older_page'] = older_page
+        context['newer_page'] = newer_page
 
         homepage = self.get_site().root_page
         menupages = BlogSectionPage.objects.all().child_of(homepage).live().in_menu().order_by('order')
