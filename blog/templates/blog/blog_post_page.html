@@ -71,6 +71,16 @@
               <br>
 		    {% endfor %}
 
+            <!-- Pager -->
+            <div class="clearfix">
+              {% if older_page %}
+                  <a href="{% pageurl older_page %}" class="btn btn-primary float-left">Older post</a>
+              {% endif %}
+              {% if newer_page %}
+                  <a href="{% pageurl newer_page %}" class="btn btn-primary float-right">Newer post</a>
+              {% endif %}
+            </div>
+
           </div>
 		</div>
       </div>
