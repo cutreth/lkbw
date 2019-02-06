@@ -247,12 +247,12 @@ class BlogPostPage(Page):
             index += 1
 
         try:
-            older_page = blogpages[index - 1]
+            older_page = blogpages[index + 1]
         except:
             older_page = ''
 
         try:
-            newer_page = blogpages[index + 1]
+            newer_page = blogpages[index - 1]
         except:
             newer_page = ''
 
