@@ -132,24 +132,23 @@ if (gridCheck) {
 
 // Flickity
 
-var carouselCheck = document.getElementsByClassName('carousel');
+$('.carousel-container').each( function (i, container) {
+    var $container = $(container);
 
-if (carouselCheck.length > 0) {
-
-    var $carousel = $('.carousel').flickity({
+    var $carousel = $container.find('.carousel').flickity({
       imagesLoaded: true,
       percentPosition: false,
       fullscreen: true,
     });
 
-    var $caption = $('.caption');
+    var $caption = $container.find('.caption');
 
-    var $imgs = $carousel.find('.carousel-cell img');
-    // get transform property
+    var $imgs = $container.find('.carousel-cell img');
+
     var docStyle = document.documentElement.style;
     var transformProp = typeof docStyle.transform == 'string' ?
       'transform' : 'WebkitTransform';
-    // get Flickity instance
+
     var flkty = $carousel.data('flickity');
 
     $carousel.on( 'scroll.flickity', function() {
@@ -160,8 +159,6 @@ if (carouselCheck.length > 0) {
       });
     });
 
-
-    //
     $carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
 
         if (isFullscreen) {
@@ -178,4 +175,4 @@ if (carouselCheck.length > 0) {
       capt.text( flkty.selectedElement.firstElementChild.alt );
     });
 
-}
+});
