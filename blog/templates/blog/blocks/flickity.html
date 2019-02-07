@@ -6,19 +6,23 @@
 
 </style>
 
-<div class="carousel" id="imageViewer">
-  {% for picture in value.pictures %}
-    <div class="carousel-cell">
-      {% image picture.image height-800 as pic %}
-        <img
-          src="{{ pic.url|cdn_url }}"
-          width="{{ pic.width }}"
-          height="{{ pic.height }}"
-          alt="{{ picture.caption }}"
-          id="#myImg{{ id_prefix }}"
-        />
-    </div>
-  {% endfor %}
-</div>
+<div class="carousel-container">
 
-<p class="caption" id="myImg{{ id_prefix }}"></p>
+    <div class="carousel" id="imageViewer">
+      {% for picture in value.pictures %}
+        <div class="carousel-cell">
+          {% image picture.image height-800 as pic %}
+            <img
+              src="{{ pic.url|cdn_url }}"
+              width="{{ pic.width }}"
+              height="{{ pic.height }}"
+              alt="{{ picture.caption }}"
+              id="#myImg{{ id_prefix }}"
+            />
+        </div>
+      {% endfor %}
+    </div>
+
+    <p class="caption" id="myImg{{ id_prefix }}"></p>
+
+</div>
