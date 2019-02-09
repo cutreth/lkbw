@@ -8,6 +8,9 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerE
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.encoding import force_bytes
 
+from django.contrib.syndication.views import Feed
+from blog.models import BlogHomePage, BlogPostPage
+
 
 @csrf_exempt
 def deploy(request):
@@ -119,3 +122,23 @@ def unsubscribe(request):
         form = UnsubscribeForm()
 
     return render(request, 'unsubscribe.html', {'form': form})
+
+
+class rss(Feed):
+    title = 'H&K Away'
+    link = '/rss/'
+    description = ''
+
+    def items(self):
+        homepage = BlogHomePage.objects.all()[0]
+        blogpages = homepage.get_descendants().live().type(BlogPostPage).order_by('-blogpostpage__post_date', 'title')
+        return blogpages
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.specific.intro
+
+    def item_link(self, item):
+        return item.url
