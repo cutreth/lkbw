@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^favicon.ico', favicon_view),
     url(r'^unsubscribe/$', blog_views.unsubscribe, name='unsubscribe'),
     url(r'^subscribe/$', blog_views.subscribe, name='subscribe'),
+    url(r'^rss/$', blog_views.rss(), name='rss'),
 
 
     # For anything not caught by a more specific rule above, hand over to

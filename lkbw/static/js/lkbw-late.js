@@ -23,24 +23,64 @@ function initMap() {
     });
 
     for (var i = 0; i < payload.length; i++) {
+      var start = {
+          path: 'M 0,-4 4,0 0,4 -4,0  Z',
+          fillColor: '#007d1b',
+          fillOpacity: 1,
+          strokeColor: '#007d1b',
+          strokeWeight: 2
+      };
+      var middle = {
+          path: 'M 0,-4 4,0 0,4 -4,0  Z',
+          fillColor: '#7b006b',
+          fillOpacity: 1,
+          strokeColor: '#7b006b',
+          strokeWeight: 2
+      };
+      var stop = {
+          path: 'M 0,-4 4,0 0,4 -4,0  Z',
+          fillColor: '#d91200',
+          fillOpacity: 1,
+          strokeColor: '#d91200',
+          strokeWeight: 2
+      };
+
       var lat = payload.item(i).attributes.lat.value;
       var lng = payload.item(i).attributes.lng.value;
       var latLng = new google.maps.LatLng(lat, lng);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map[prefix],
-        label: '',
-        title: payload.item(i).attributes.title.value,
-        data: payload.item(i).attributes.caption.value,
-        url: payload.item(i).attributes.page.value,
-        icon: {
-          path: 'M 0,-4 4,0 0,4 -4,0  Z',
-          fillColor: '#7b2500',
-          fillOpacity: 1,
-          strokeColor: '#7b2500',
-          strokeWeight: 2
-        }
-      });
+
+
+      if (i == 0) {
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map[prefix],
+            label: '',
+            title: payload.item(i).attributes.title.value,
+            data: payload.item(i).attributes.caption.value,
+            url: payload.item(i).attributes.page.value,
+            icon: start
+          });
+      } else if (i == (payload.length - 1)) {
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map[prefix],
+            label: '',
+            title: payload.item(i).attributes.title.value,
+            data: payload.item(i).attributes.caption.value,
+            url: payload.item(i).attributes.page.value,
+            icon: stop
+          });
+      } else {
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map[prefix],
+            label: '',
+            title: payload.item(i).attributes.title.value,
+            data: payload.item(i).attributes.caption.value,
+            url: payload.item(i).attributes.page.value,
+            icon: middle
+          });
+      }
 
       if (i == 0) {
         var path = []
@@ -51,7 +91,7 @@ function initMap() {
       var flightPath = new google.maps.Polyline({
         path: path,
         geodesic: true,
-        strokeColor: '#a15900',
+        strokeColor: '#aabd00',
         strokeWeight: 2,
       });
 
@@ -59,11 +99,13 @@ function initMap() {
     google.maps.event.addListener(marker,'click', (function(marker,blank_content,infowindow){
       return function() {
         var content = marker.data;
-        if (marker.url != '') {
-          content = '<a href=' + marker.url + ' style="text-decoration:underline;">' + marker.data + '</a>'
+        if (content != '') {
+            if (marker.url != '') {
+              content = '<a href=' + marker.url + ' style="text-decoration:underline;">' + marker.data + '</a>'
+            }
+            infowindow.setContent(content);
+            infowindow.open(map,marker);
         }
-        infowindow.setContent(content);
-        infowindow.open(map,marker);
       };
     })(marker,blank_content,infowindow));
 
