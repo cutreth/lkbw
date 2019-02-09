@@ -59,11 +59,13 @@ function initMap() {
     google.maps.event.addListener(marker,'click', (function(marker,blank_content,infowindow){
       return function() {
         var content = marker.data;
-        if (marker.url != '') {
-          content = '<a href=' + marker.url + ' style="text-decoration:underline;">' + marker.data + '</a>'
+        if (content != '') {
+            if (marker.url != '') {
+              content = '<a href=' + marker.url + ' style="text-decoration:underline;">' + marker.data + '</a>'
+            }
+            infowindow.setContent(content);
+            infowindow.open(map,marker);
         }
-        infowindow.setContent(content);
-        infowindow.open(map,marker);
       };
     })(marker,blank_content,infowindow));
 
