@@ -126,7 +126,7 @@ def unsubscribe(request):
 
 class rss(Feed):
     title = 'H&K Away'
-    link = '/rss/'
+    link = ''
     description = ''
 
     def items(self):
