@@ -8,14 +8,14 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\DjangoKey.txt") as key:
+with open(r"C:\Users\Kevin\OneDrive\Documents\KY's Documents\GitHub\DjangoKey.txt") as key:
     SECRET_KEY = key.read().strip()
 
-with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\GoogleKey.txt") as key:
+with open(r"C:\Users\Kevin\OneDrive\Documents\KY's Documents\GitHub\GoogleKey.txt") as key:
     WAGTAIL_ADDRESS_MAP_KEY = key.read().strip()
     GOOGLE_MAPS_V3_APIKEY = WAGTAIL_ADDRESS_MAP_KEY
 
-with open("D:\KY\OneDrive\Documents\KY's Documents\GitHub\EmailKey.txt") as key:
+with open(r"C:\Users\Kevin\OneDrive\Documents\KY's Documents\GitHub\EmailKey.txt") as key:
     EMAIL_KEY = key.read().strip()
 
 AWS_CLOUDFRONT_URL = ''  # Need this defined explicitly as null in dev to support "if" statement in block_tags
