@@ -172,7 +172,9 @@ $('.carousel-container').each( function (i, container) {
     $carousel.on( 'select.flickity', function() {
       // set image caption using img's alt
       var capt = $(flkty.selectedElement.firstElementChild.id);
-      capt.text( flkty.selectedElement.firstElementChild.alt );
+      var txt = flkty.selectedElement.firstElementChild.alt;
+      if (txt == '') {txt = '\u200B'}
+      capt.text(txt);
     });
 
 });
