@@ -29,5 +29,11 @@ def spotify_uri(value):
 
     value = value.replace("spotify:","")
     value = value.replace(":","/")
+    return value
 
+
+@register.filter
+def email_source(value):
+
+    value = value + "?utm_source=email"
     return value
