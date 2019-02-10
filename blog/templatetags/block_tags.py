@@ -22,3 +22,12 @@ def cdn_url(value):
         value = value.replace(old_url, aws_url)
 
     return value
+
+
+@register.filter
+def spotify_uri(value):
+
+    value = value.replace("spotify:","")
+    value = value.replace(":","/")
+
+    return value

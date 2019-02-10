@@ -33,6 +33,7 @@ class BlogHomePage(Page):
         ('location', blocks.Location()),
         ('place', blocks.Place()),
         ('tracker', blocks.Tracker()),
+        ('spotify', blocks.Spotify()),
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
@@ -209,6 +210,7 @@ class BlogPostPage(Page):
         ('location', blocks.Location()),
         ('place', blocks.Place()),
         ('tracker', blocks.Tracker()),
+        ('spotify', blocks.Spotify()),
     ], null=True, blank=True)
 
     tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
