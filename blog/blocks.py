@@ -42,6 +42,14 @@ class Aside(blocks.StructBlock):
         icon = 'openquote'
 
 
+class Spotify(blocks.StructBlock):
+    spotify = blocks.CharBlock()
+
+    class Meta:
+        template = 'blog/blocks/spotify.html'
+        icon = 'media'
+
+
 class Date(blocks.StructBlock):
     date = blocks.DateBlock()
 
