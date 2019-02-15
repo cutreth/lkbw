@@ -21,4 +21,4 @@ class ContactForm(forms.Form):
     name = forms.CharField()
     email = forms.EmailField()
     subject = forms.CharField()
-    message = forms.CharField(widget=forms.Textarea(attrs={'rows': 22, 'cols': 10}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'rows': 10, 'cols': 22}))
