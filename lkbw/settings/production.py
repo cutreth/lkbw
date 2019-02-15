@@ -37,7 +37,7 @@ AWS_SECRET_ACCESS_KEY = AWS_SECRET_KEY
 AWS_STORAGE_BUCKET_NAME = 'lkbw'
 
 AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=2592000',
+    'CacheControl': 'max-age=31536000',
 }
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
