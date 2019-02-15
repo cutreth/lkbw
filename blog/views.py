@@ -131,15 +131,16 @@ def contact(request):
 
     from blog.forms import ContactForm
     from django.shortcuts import render, redirect
+    from django.utils.html import linebreaks
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahanekevin.net': 'Hannah'}
+            to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahandkevin.net': 'Hannah'}
             from_name = form.cleaned_data.get('name')
             from_email = form.cleaned_data.get('email')
             subject = form.cleaned_data.get('subject')
-            body = form.cleaned_data.get('message')
+            body = linebreaks(form.cleaned_data.get('message'))
 
             m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
             data = {"to": to,
