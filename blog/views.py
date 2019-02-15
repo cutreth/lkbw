@@ -140,7 +140,7 @@ def contact(request):
             now = time.time()
             last_comment = request.session.get('last_comment', 0)
             request.session['last_comment'] = now
-            
+
             if now - last_comment > 60:
                 to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahandkevin.net': 'Hannah'}
                 from_name = form.cleaned_data.get('name')
