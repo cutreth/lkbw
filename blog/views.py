@@ -135,7 +135,7 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahanekevin.net': 'Hannah'}
+            to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahandkevin.net': 'Hannah'}
             from_name = form.cleaned_data.get('name')
             from_email = form.cleaned_data.get('email')
             subject = form.cleaned_data.get('subject')
