@@ -126,6 +126,7 @@ def unsubscribe(request):
 
 def contact(request):
 
+    import time
     from mailin import Mailin
     from django.conf import settings
 
@@ -136,21 +137,30 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahandkevin.net': 'Hannah'}
-            from_name = form.cleaned_data.get('name')
-            from_email = form.cleaned_data.get('email')
-            subject = form.cleaned_data.get('subject')
-            body = linebreaks(form.cleaned_data.get('message'))
+            now = time.time()
+            last_comment = request.session.get('last_comment', 0)
+            request.session['last_comment'] = now
+            
+            if now - last_comment > 60:
+                to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahandkevin.net': 'Hannah'}
+                from_name = form.cleaned_data.get('name')
+                from_email = form.cleaned_data.get('email')
+                subject = form.cleaned_data.get('subject')
+                body = linebreaks(form.cleaned_data.get('message'))
 
-            m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
-            data = {"to": to,
-                    "from": ["email@hannahandkevin.net", from_name],
-                    "replyto": [from_email, from_name],
-                    "subject": subject,
-                    "html": body,
-                    }
-            result = m.send_email(data)
-            return redirect('https://www.hannahandkevin.net')
+                m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
+                data = {"to": to,
+                        "from": ["email@hannahandkevin.net", from_name],
+                        "replyto": [from_email, from_name],
+                        "subject": subject,
+                        "html": body,
+                        }
+                result = m.send_email(data)
+                return redirect('https://www.hannahandkevin.net')
+            else:
+                error = 'There is a one minute wait timer between sends. Please go back, wait a moment, and try again.'
+                context = {'error': error}
+                return render(request, 'error.html', context)
 
     else:
         form = ContactForm()
