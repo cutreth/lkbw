@@ -4,7 +4,7 @@ import hmac
 from hashlib import sha1
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError, Http404
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.encoding import force_bytes
 
@@ -122,6 +122,39 @@ def unsubscribe(request):
         form = UnsubscribeForm()
 
     return render(request, 'unsubscribe.html', {'form': form})
+
+
+def contact(request):
+
+    from mailin import Mailin
+    from django.conf import settings
+
+    from blog.forms import ContactForm
+    from django.shortcuts import render, redirect
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahanekevin.net': 'Hannah'}
+            from_name = form.cleaned_data.get('name')
+            from_email = form.cleaned_data.get('email')
+            subject = form.cleaned_data.get('subject')
+            body = form.cleaned_data.get('message')
+
+            m = Mailin("https://api.sendinblue.com/v2.0", settings.EMAIL_KEY)
+            data = {"to": to,
+                    "from": ["email@hannahandkevin.net", from_name],
+                    "replyto": [from_email, from_name],
+                    "subject": subject,
+                    "html": body,
+                    }
+            result = m.send_email(data)
+            return redirect('https://www.hannahandkevin.net')
+
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
 
 
 class rss(Feed):
