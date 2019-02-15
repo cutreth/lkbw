@@ -288,7 +288,6 @@ class Location(blocks.StructBlock):
     zoom = blocks.CharBlock(required=False)
     location = PlaceBlock(address_field='address', place_field='place', zoom_field='zoom')
     satellite = blocks.BooleanBlock(required=False)
-    date = blocks.DateBlock(required=False)
 
     class Meta:
         template = 'blog/blocks/location.html'
@@ -318,7 +317,6 @@ class Place(blocks.StructBlock):
     zoom = blocks.CharBlock(required=False)
     location = PlaceBlock(address_field='address', place_field='place', zoom_field='zoom')
     satellite = blocks.BooleanBlock(required=False)
-    date = blocks.DateBlock(required=False)
 
     class Meta:
         template = 'blog/blocks/place.html'
