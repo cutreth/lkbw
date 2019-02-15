@@ -156,7 +156,7 @@ MEDIA_URL = '/media/'
 # Whitenoise
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
+WHITENOISE_MAX_AGE = 86400
 
 # Wagtail settings
 
