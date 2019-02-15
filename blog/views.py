@@ -4,7 +4,7 @@ import hmac
 from hashlib import sha1
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError, Http404
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.encoding import force_bytes
 
@@ -122,6 +122,24 @@ def unsubscribe(request):
         form = UnsubscribeForm()
 
     return render(request, 'unsubscribe.html', {'form': form})
+
+
+def contact(request):
+
+    from blog.forms import ContactForm
+    from django.shortcuts import render, redirect
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            #form.save()
+            #replace this with email functionality from send failure webhook
+            return redirect('https://www.hannahandkevin.net')
+
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
 
 
 class rss(Feed):
