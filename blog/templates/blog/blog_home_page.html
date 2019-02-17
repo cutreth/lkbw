@@ -78,8 +78,9 @@
         <div class="grid-sizer"></div>
         {% for post in blogpages %}
           {% with post=post.specific %}
-            <div class="grid-item">
-              {% image post.banner_image fill-500x375 as pic %}
+            {% image post.banner_image fill-500x375 as pic %}
+            {% if pic %}
+              <div class="grid-item">
                 <a href="{{ post.url }}">
                   <img
                      src="{{ pic.url|cdn_url }}"
@@ -89,7 +90,8 @@
                      id="myImg{{ id_prefix }}"
                   />
                 </a>
-            </div>
+              </div>
+            {% endif %}
           {% endwith %}
         {% endfor %}
       </div>
