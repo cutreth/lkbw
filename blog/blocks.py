@@ -70,7 +70,7 @@ class Embed(blocks.StructBlock):
     embed = blocks.RawHTMLBlock()
 
     class Meta:
-        template = 'block/blocks/embed.html'
+        template = 'blog/blocks/embed.html'
         icon = 'placeholder'
 
 
