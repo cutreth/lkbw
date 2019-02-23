@@ -71,9 +71,9 @@
                 {% with result=result.specific %}
                   <a href="{% pageurl result %}">
                     <h2 class="post-title">{{ result }}</h2>
-                    <h3 class="post-subtitle">{{ post.intro }}</h3>
+                    <h3 class="post-subtitle">{{ result.intro }}</h3>
                   </a>
-                  <p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>
+                  <p class="post-meta">Posted by {{ result.owner }} on {{ result.post_date }}</p>
                 {% endwith %}
               {% endfor %}
             </div>
