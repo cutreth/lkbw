@@ -97,7 +97,7 @@ class BlogSearchPage(Page):
 
         # Search
         if search_query:
-            search_results = Page.objects.live().type(BlogPostPage).search(search_query)
+            search_results = BlogPostPage.objects.live().search(search_query)
             query = Query.get(search_query)
 
             # Record hit
