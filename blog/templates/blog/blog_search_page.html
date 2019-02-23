@@ -68,24 +68,22 @@
 
             <div class="post-preview">
               {% for result in search_results %}
+                {% with result=result.specific %}
                   <a href="{% pageurl result %}">
-                    <h3>{{ result }}</h3>
+                    <h2 class="post-title">{{ result }}</h2>
+                    <h3 class="post-subtitle">{{ post.intro }}</h3>
                   </a>
-                  <p class="post-meta">
-                    {% if result.search_description %}
-                      {{ result.search_description }}
-                    {% else %}
-                      <br>
-                    {% endif %}
-                  </p>
+                  <p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>
+                {% endwith %}
               {% endfor %}
             </div>
+            <hr>
 
+            <!-- Pager -->
             <div class="clearfix">
               {% if search_results.has_previous %}
                 <a href="{% pageurl page %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}" class="btn btn-primary float-left">Previous</a>
               {% endif %}
-
               {% if search_results.has_next %}
                 <a href="{% pageurl page %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}" class="btn btn-primary float-right">Next</a>
               {% endif %}

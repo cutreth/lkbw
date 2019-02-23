@@ -67,7 +67,7 @@
 		  {% for post in blogpages %}
 		    {% with post=post.specific %}
 			  <div class="post-preview">
-			    <a href="{% pageurl post %}{% if sect_page %}?sect_page={{ sect_page }}{% endif %}">
+			    <a href="{% pageurl post %}">
 				  <h2 class="post-title">{{ post.title }}</h2>
 				  {% if page.hide_intro is False %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
 				</a>
@@ -79,7 +79,6 @@
 
           <!-- Pager -->
           <div class="clearfix">
-
             {% if blogpages.has_previous %}
                 <a href="?page={{ blogpages.previous_page_number }}" class="btn btn-primary float-left">Older Posts</a>
             {% endif %}
