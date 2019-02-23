@@ -66,6 +66,14 @@ class Caption(blocks.StructBlock):
         icon = 'form'
 
 
+class Embed(blocks.StructBlock):
+    embed = blocks.RawHTMLBlock()
+
+    class Meta:
+        template = 'block/blocks/embed.html'
+        icon = 'placeholder'
+
+
 class Flickity(blocks.StructBlock):
     pictures = blocks.ListBlock(blocks.StructBlock(
         [
