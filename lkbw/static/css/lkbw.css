@@ -71,7 +71,7 @@
   width: 12px;
   height: 12px;
   opacity: 1;
-  background: transparent;
+  background: whitesmoke;
   border: 2px solid gray;
 }
 /* fill-in selected dot */
