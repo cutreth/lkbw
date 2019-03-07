@@ -185,10 +185,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td class="es-m-p20b" width="271" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_one_img_tall %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_one_img_tall fill-270x407 as post_one_img_tall %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_one_img_tall.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="271"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -197,14 +199,18 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="279" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_one_img_wide_a %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_one_img_wide_a fill-280x200 as post_one_img_wide_a %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_one_img_wide_a.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="279"> </a> </td>
                      </tr>
+                     {% endif %}
+                     {% if page.post_one_img_wide_b %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_one_img_wide_b fill-280x200 as post_one_img_wide_b %}
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_one_img_wide_b.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="279"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -216,9 +222,11 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="560" valign="top" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_one_intro %}
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-left:20px;padding-right:20px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#333333;"><span class="product-description">{{ page.post_one_intro }}</span></p> </td>
                      </tr>
+                     {% endif %}
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;padding-top:5px;"> <span class="es-button-border" style="border-style:solid;border-color:#333333;background:#0085A1;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-left-color:#2CB543;"><a href={{ post_one_url|email_source }} class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none !important;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;color:#FFFFFF;border-style:solid;border-color:#0085A1;border-width:8px 30px 8px 30px;display:inline-block;background:#0085A1;border-radius:5px;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;">Read the post</a></span></td>
                      </tr>
@@ -274,9 +282,11 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td class="es-m-p20b" width="274" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_two_intro %}
                      <tr style="border-collapse:collapse;">
                       <td class="es-m-txt-c" align="right" style="padding:0;Margin:0;padding-bottom:5px;padding-top:10px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#333333;"><span class="product-description">{{ page.post_two_intro }}</p> </td>
                      </tr>
+                     {% endif %}
                      <tr style="border-collapse:collapse;">
                       <td align="right" style="padding:0;Margin:0;padding-top:10px;"> <span class="es-button-border" style="border-style:solid;border-color:#333333;background:#0085A1;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-left-color:#2CB543;"><a href={{ post_two_url|email_source }} class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none !important;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;color:#FFFFFF;border-style:solid;border-color:#0085A1;border-width:8px 30px 8px 30px;display:inline-block;background:#0085A1;border-radius:5px;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;">Read the post</a></span></td>
                      </tr>
@@ -288,10 +298,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="276" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_two_img_wide_a %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_two_img_wide_a fill-276x182 as post_two_img_wide_a %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_two_img_wide_a.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="276"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -303,10 +315,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="560" valign="top" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_two_img_wide_b %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_two_img_wide_b fill-560x360 as post_two_img_wide_b %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_two_img_wide_b.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table> </td>
@@ -347,9 +361,11 @@ a[x-apple-data-detectors] {
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;"> <h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#333333;">{{ page.post_three_page }}</h1> </td>
                      </tr>
+                     {% if page.post_three_intro %}
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-left:20px;padding-right:20px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#333333;"><span class="product-description">{{ page.post_three_intro }}</span></p> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table> </td>
@@ -361,10 +377,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td class="es-m-p0r es-m-p20b" width="180" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_three_img_tall_a %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_three_img_tall_a fill-180x280 as post_three_img_tall_a %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_three_img_tall_a.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="180"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                   <td class="es-hidden" width="10" style="padding:0;Margin:0;"></td>
                  </tr>
@@ -374,10 +392,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td class="es-m-p20b" width="180" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_three_img_tall_b %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_three_img_tall_b fill-180x280 as post_three_img_tall_b %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_three_img_tall_b.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="180"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -386,10 +406,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="180" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_three_img_tall_c %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_three_img_tall_c fill-180x280 as post_three_img_tall_c %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_three_img_tall_c.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="180"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -455,14 +477,18 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td class="es-m-p20b" width="278" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_four_img_wide_1 %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_four_img_wide_a fill-280x170 as post_four_img_wide_a %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_four_img_wide_a.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="278"> </a> </td>
                      </tr>
+                     {% endif %}
+                     {% if page.post_four_img_wide_b %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_four_img_wide_b fill-280x170 as post_four_img_wide_b %}
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_four_img_wide_b.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="278"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -471,10 +497,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="272" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_four_img_tall %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_four_img_tall fill-270x345 as post_four_img_tall %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_four_img_tall.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="272"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -486,9 +514,11 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="560" valign="top" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_four_intro %}
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;padding-bottom:5px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#333333;"><span class="product-description">{{ page.post_four_intro }}</span></p> </td>
                      </tr>
+                     {% endif %}
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;"> <span class="es-button-border" style="border-style:solid;border-color:#333333;background:#0085A1;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-left-color:#2CB543;"><a href={{ post_four_url|email_source }} class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none !important;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;color:#FFFFFF;border-style:solid;border-color:#0085A1;border-width:8px 30px 8px 30px;display:inline-block;background:#0085A1;border-radius:5px;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;">Read the post</a></span></td>
                      </tr>
@@ -532,10 +562,12 @@ a[x-apple-data-detectors] {
                      <tr style="border-collapse:collapse;">
                       <td align="center" style="padding:0;Margin:0;"> <h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#333333;">{{ page.post_five_page }}<br></h1> </td>
                      </tr>
+                     {% if page.post_five_img_wide %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_five_img_wide fill-560x375 as post_five_img_wide %}
                       <td align="center" style="padding:0;Margin:0;padding-top:15px;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img" src={{ post_five_img_wide.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table> </td>
@@ -547,10 +579,12 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td class="es-m-p0r es-m-p20b" width="180" valign="top" align="center" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_five_img_square %}
                      <tr style="border-collapse:collapse;">
                       {% image page.post_five_img_square fill-180x180 as post_five_img_square %}
                       <td align="center" style="padding:0;Margin:0;"> <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:none;color:#999999;"> <img class="adapt-img img-01" src={{ post_five_img_square.url|cdn_url }} alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="180"> </a> </td>
                      </tr>
+                     {% endif %}
                    </table> </td>
                  </tr>
                </table>
@@ -559,9 +593,11 @@ a[x-apple-data-detectors] {
                  <tr style="border-collapse:collapse;">
                   <td width="360" align="left" style="padding:0;Margin:0;">
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                     {% if page.post_five_intro %}
                      <tr style="border-collapse:collapse;">
                       <td class="es-m-txt-c" align="left" style="padding:0;Margin:0;padding-top:5px;padding-bottom:10px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#333333;"><span class="product-description">{{ page.post_five_intro }}</span></p> </td>
                      </tr>
+                     {% endif %}
                      <tr style="border-collapse:collapse;">
                       <td align="left" style="padding:0;Margin:0;padding-top:10px;"> <span class="es-button-border" style="border-style:solid;border-color:#333333;background:#0085A1;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-left-color:#2CB543;"><a href={{ post_five_url|email_source }} class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none !important;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;color:#FFFFFF;border-style:solid;border-color:#0085A1;border-width:8px 30px 8px 30px;display:inline-block;background:#0085A1;border-radius:5px;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;">Read the post</a></span></td>
                      </tr>
