@@ -33,7 +33,7 @@ def spotify_uri(value):
 
 
 @register.filter
-def email_source(value):
+def email_source(value, arg):
 
-    value = value + "?utm_source=email"
+    value = value + "?utm_source=" + arg + "&utm_medium=email"
     return value
