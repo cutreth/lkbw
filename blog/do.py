@@ -63,6 +63,9 @@ def trigger_email(request, page):
         to = receiver.first_name + ' ' + receiver.last_name
         email = receiver.email
 
+        if to != 'Preston Davis':
+            continue
+
         subject = page.title
         context['secret_key'] = receiver.secret_key
 
