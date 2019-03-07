@@ -35,5 +35,7 @@ def spotify_uri(value):
 @register.filter
 def email_source(value, arg):
 
-    value = value + "?utm_source=" + arg + "&utm_medium=email"
+    start = arg.find("/search/") + len("/search/")
+    end = arg.rfind("/")
+    value = value + "?utm_source=" + arg[start:end] + "&utm_medium=email"
     return value
