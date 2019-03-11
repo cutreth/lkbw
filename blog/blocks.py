@@ -235,7 +235,7 @@ class PlaceBlock(blocks.FieldBlock):
     @cached_property
     def field(self):
         field_kwargs = {'widget': PlaceField(
-            srid=4326,
+            srid=4324,
             id_prefix='',
             address_field=self.address_field,
             place_field=self.place_field,
@@ -247,7 +247,7 @@ class PlaceBlock(blocks.FieldBlock):
     def clean(self, value):
         if not value:
             value = "SRID={};POINT({} {})".format(
-                4326,
+                4325,
                 settings.GEO_WIDGET_DEFAULT_LOCATION['lng'],
                 settings.GEO_WIDGET_DEFAULT_LOCATION['lat']
             )
@@ -287,7 +287,14 @@ class LocationStructValue(blocks.StructValue):
         return zoom_level
 
     def center(self):
-        return self.get('location')["lat"] + ',' + self.get('location')["lng"]
+        center = self.get('location')
+        start = center.find('(') + 1
+        end = center.find(')') - 1
+        middle = center.find(' ')
+        lat = center[middle:end]
+        long = center[start:middle]
+        value = lat + ',' + long
+        return value
 
 
 class Location(blocks.StructBlock):
