@@ -193,7 +193,7 @@ class BlogPostTag(TaggedItemBase):
 
 class BlogPostPage(Page):
     post_date = models.DateField("Post date")
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=250, null=True, blank=True)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -281,7 +281,7 @@ class BlogPostPage(Page):
 class BlogEmailPage(Page):
 
     sent_date = models.DateField("Sent date", null=True, blank=True)
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=500)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -295,11 +295,11 @@ class BlogEmailPage(Page):
     post_four = models.BooleanField(default=False)
     post_five = models.BooleanField(default=False)
 
-    post_one_intro = models.CharField(max_length=250, null=True, blank=True)
-    post_two_intro = models.CharField(max_length=250, null=True, blank=True)
-    post_three_intro = models.CharField(max_length=250, null=True, blank=True)
-    post_four_intro = models.CharField(max_length=250, null=True, blank=True)
-    post_five_intro = models.CharField(max_length=250, null=True, blank=True)
+    post_one_intro = models.CharField(max_length=500, null=True, blank=True)
+    post_two_intro = models.CharField(max_length=500, null=True, blank=True)
+    post_three_intro = models.CharField(max_length=500, null=True, blank=True)
+    post_four_intro = models.CharField(max_length=500, null=True, blank=True)
+    post_five_intro = models.CharField(max_length=500, null=True, blank=True)
 
 
     post_one_page = models.ForeignKey(

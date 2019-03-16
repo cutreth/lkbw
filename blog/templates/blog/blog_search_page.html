@@ -71,7 +71,7 @@
                 {% with result=result.specific %}
                   <a href="{% pageurl result %}">
                     <h2 class="post-title">{{ result }}</h2>
-                    <h3 class="post-subtitle">{{ result.intro }}</h3>
+                    {% if result.intro is not None %}<h3 class="post-subtitle">{{ result.intro }}</h3>{% endif %}
                   </a>
                   <p class="post-meta">Posted by {{ result.owner }} on {{ result.post_date }}</p>
                   <hr>
