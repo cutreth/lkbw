@@ -69,7 +69,7 @@
 			  <div class="post-preview">
 			    <a href="{% pageurl post %}">
 				  <h2 class="post-title">{{ post.title }}</h2>
-				  {% if page.hide_intro is False %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}
+				  {% if page.hide_intro is False %}{% if post.intro is not None %}<h3 class="post-subtitle">{{ post.intro }}</h3>{% endif %}{% endif %}
 				</a>
 				{% if page.hide_date is False %}<p class="post-meta">Posted by {{ post.owner }} on {{ post.post_date }}</p>{% endif %}
 			  </div>
