@@ -102,7 +102,7 @@ def unsubscribe(request):
     if request.method == 'POST':
         form = UnsubscribeForm(request.POST)
         if form.is_valid():
-            profile = Profile.objects.filter(email=form.cleaned_data.get('email'), first_name=form.cleaned_data.get('first_name'), last_name=form.cleaned_data.get('last_name')).first()
+            profile = Profile.objects.filter(email=form.cleaned_data.get('email')).first()
             if profile is not None:
                 secret_key = request.GET.get('key')
                 if secret_key == profile.secret_key:
@@ -113,7 +113,7 @@ def unsubscribe(request):
                     context = {'error': error}
                     return render(request, 'error.html', context)
             else:
-                error = 'An existing subscription matching your email address and names cannot be found. Please try again with the same information that you used to subscribe originally.'
+                error = 'An existing subscription matching your email address and name cannot be found. Please try again with the same information that you used to subscribe originally.'
                 context = {'error': error}
                 return render(request, 'error.html', context)
             return redirect('https://www.hannahandkevin.net')
