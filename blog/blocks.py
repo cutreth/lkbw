@@ -288,11 +288,15 @@ class LocationStructValue(blocks.StructValue):
 
     def center(self):
         center = self.get('location')
-        start = center.find('(') + 1
-        end = center.find(')') - 1
-        middle = center.find(' ')
-        lat = center[middle:end]
-        long = center[start:middle]
+        if type(center) is dict:
+            lat = center['lat']
+            long = center['lng']
+        else:
+            start = center.find('(') + 1
+            end = center.find(')') - 1
+            middle = center.find(' ')
+            lat = center[middle:end]
+            long = center[start:middle]
         value = lat + ',' + long
         return value
 
