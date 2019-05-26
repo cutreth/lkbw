@@ -127,6 +127,7 @@ def unsubscribe(request):
 def contact(request):
 
     import time
+    import requests
     from mailin import Mailin
     from django.conf import settings
 
@@ -137,9 +138,25 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+
+            ''' Begin reCAPTCHA validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            data = {
+                'secret': settings.CAPTCHA_KEY,
+                'response': recaptcha_response
+            }
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result = r.json()
+            ''' End reCAPTCHA validation '''
+
             now = time.time()
             last_comment = request.session.get('last_comment', 0)
             request.session['last_comment'] = now
+
+            if not result['success']:
+                error = 'Are you a robot? Google seems to think so...'
+                context = {'error': error}
+                return render(request, 'error.html', context)
 
             if now - last_comment > 60:
                 to = {'kevin@hannahandkevin.net': 'Kevin', 'hannah@hannahandkevin.net': 'Hannah'}
