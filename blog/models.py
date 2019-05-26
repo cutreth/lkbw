@@ -281,7 +281,8 @@ class BlogPostPage(Page):
 class BlogEmailPage(Page):
 
     sent_date = models.DateField("Sent date", null=True, blank=True)
-    intro = models.CharField(max_length=500)
+    debug_mode = models.BooleanField(default=False)
+    intro = models.CharField(max_length=1000)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -295,11 +296,11 @@ class BlogEmailPage(Page):
     post_four = models.BooleanField(default=False)
     post_five = models.BooleanField(default=False)
 
-    post_one_intro = models.CharField(max_length=500, null=True, blank=True)
-    post_two_intro = models.CharField(max_length=500, null=True, blank=True)
-    post_three_intro = models.CharField(max_length=500, null=True, blank=True)
-    post_four_intro = models.CharField(max_length=500, null=True, blank=True)
-    post_five_intro = models.CharField(max_length=500, null=True, blank=True)
+    post_one_intro = models.CharField(max_length=1000, null=True, blank=True)
+    post_two_intro = models.CharField(max_length=1000, null=True, blank=True)
+    post_three_intro = models.CharField(max_length=1000, null=True, blank=True)
+    post_four_intro = models.CharField(max_length=1000, null=True, blank=True)
+    post_five_intro = models.CharField(max_length=1000, null=True, blank=True)
 
 
     post_one_page = models.ForeignKey(
@@ -484,6 +485,7 @@ class BlogEmailPage(Page):
 
     promote_panels = [
                          FieldPanel('sent_date'),
+                         FieldPanel('debug_mode'),
                      ] + Page.promote_panels
 
     settings_panels = Page.settings_panels + [
