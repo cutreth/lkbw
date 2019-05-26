@@ -18,6 +18,9 @@ with open('/home/lkbw/private/GithubKey.txt') as key:
 with open('/home/lkbw/private/EmailKey.txt') as key:
     EMAIL_KEY = key.read().strip()
 
+with open('/home/lkbw/private/CaptchaKey.txt') as key:
+    CAPTCHA_KEY = key.read().strip()
+
 # Wagtail search settings
 
 with open('/home/lkbw/private/AwsAccessKey.txt') as key:

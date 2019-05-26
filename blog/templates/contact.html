@@ -38,6 +38,8 @@
             <br>
             <form method="post">
               {% csrf_token %}
+              <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+              <div class="g-recaptcha" data-sitekey="6LfcjKUUAAAAAOpHOuF50WskkNbKAIbwLu2UCzo8"></div>
               <table>
                 {{ form.as_table }}
               </table>
