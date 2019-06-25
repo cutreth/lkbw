@@ -19,6 +19,12 @@ p a {
   text-decoration: underline;
 }
 
+li a {
+  text-decoration: underline;
+}
+
+
+
 h1,
 h2,
 h3,
@@ -113,6 +119,7 @@ img::-moz-selection {
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 992px) {
