@@ -183,7 +183,7 @@ img::-moz-selection {
 }
 
 header.masthead {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   background: no-repeat center center;
   background-color: #868e96;
   background-attachment: scroll;
@@ -204,7 +204,7 @@ header.masthead .overlay {
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-  padding: 25vh 15px;
+  padding: 20vh 10px;
   color: white;
 }
 
@@ -212,7 +212,7 @@ header.masthead .site-heading {
   header.masthead .page-heading,
   header.masthead .post-heading,
   header.masthead .site-heading {
-    padding: 25vh 15px;
+    padding: 20vh 10px;
   }
 }
 
