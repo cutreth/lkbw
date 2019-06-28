@@ -203,11 +203,27 @@ $('.carousel-container').each( function (i, container) {
 
     $carousel.on( 'fullscreenChange.flickity', function( event, isFullscreen ) {
 
+        var capt = $(flkty.selectedElement.firstElementChild.id);
         if (isFullscreen) {
             $('#mainNav').css('z-index', 0);
             $('#imageViewer').css('padding-top', '35px');
+            $('#imageViewer').css('padding-bottom', '70px');
+            capt.css('z-index', 2);
+            capt.css('position', 'fixed');
+            capt.css('bottom', '20px');
+            capt.css('left', 0);
+            capt.css('right', 0);
+            capt.css('color', 'white');
         } else {
             $('#mainNav').css('z-index', 1030);
+            $('#imageViewer').css('padding-top', '');
+            $('#imageViewer').css('padding-bottom', '');
+            capt.css('z-index', '');
+            capt.css('position', '');
+            capt.css('bottom', '');
+            capt.css('left', '');
+            capt.css('right', '');
+            capt.css('color', '');
         }
     });
 
