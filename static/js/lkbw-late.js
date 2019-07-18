@@ -91,7 +91,7 @@ function initMap() {
       var flightPath = new google.maps.Polyline({
         path: path,
         geodesic: true,
-        strokeColor: '#aabd00',
+        strokeColor: '#d9b100',
         strokeWeight: 2,
       });
 
