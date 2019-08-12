@@ -35,7 +35,7 @@ class Text(blocks.StructBlock):
 
 
 class Aside(blocks.StructBlock):
-    aside = blocks.TextBlock()
+    aside = blocks.RichTextBlock()
 
     class Meta:
         template = 'blog/blocks/aside.html'
@@ -59,7 +59,7 @@ class Date(blocks.StructBlock):
 
 
 class Caption(blocks.StructBlock):
-    caption = blocks.TextBlock()
+    caption = blocks.RichTextBlock()
 
     class Meta:
         template = 'blog/blocks/caption.html'
