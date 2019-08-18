@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField
@@ -200,6 +202,7 @@ class BlogPostPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    search_key = models.CharField(max_length=250, null=True, blank=True)
 
     body = StreamField([
         ('header', blocks.Header()),
@@ -222,6 +225,7 @@ class BlogPostPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
+        index.SearchField('search_key', boost=20),
     ]
 
     content_panels = Page.content_panels + [
@@ -236,7 +240,7 @@ class BlogPostPage(Page):
                      ] + Page.promote_panels
 
     settings_panels = Page.settings_panels + [
-
+        FieldPanel('search_key'),
     ]
 
     def get_context(self, request):
@@ -276,6 +280,14 @@ class BlogPostPage(Page):
         context['hide_intro'] = hide_intro
 
         return context
+
+
+@receiver(post_save, sender=BlogPostPage)
+def update_search_key(sender, instance, **kwargs):
+    search_key = '#' + str(instance.pk)
+    if instance.search_key != search_key:
+        instance.search_key = search_key
+        instance.save_revision()
 
 
 class BlogEmailPage(Page):
