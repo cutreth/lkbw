@@ -26,6 +26,31 @@
   height: auto;
 }
 
+.popup {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 80%;
+  height: auto;
+  color: #fff;
+  background-color: #000;
+  padding: 10px 10px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity .66s;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.grid-item:hover .popup {
+  opacity: .66;
+  transition: opacity .75s;
+}
+
 @media only screen and (max-width: 500px) {
     .grid-sizer,
     .grid-item {
