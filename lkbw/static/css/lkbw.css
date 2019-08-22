@@ -47,8 +47,8 @@
 }
 
 .grid-item:hover .popup {
-  opacity: .66;
-  transition: opacity .75s;
+  opacity: .75;
+  transition: opacity .66s;
 }
 
 @media only screen and (max-width: 500px) {
