@@ -11,6 +11,9 @@ from blog.models import BlogPostPage
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
+# Currently running at 6 PM to load blog posts.
+# Update to also fire at 8 AM for general pictures.
+
 
 def background_sleep():
     max_wait = 60 * 29
@@ -21,7 +24,7 @@ def background_sleep():
 def check_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 16) | False:  # Don't forget to reset flag to FALSE
+    if (hour == 18) | False:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
