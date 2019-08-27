@@ -9,7 +9,7 @@ from random import randrange
 from instapy_cli import client
 from blog.models import BlogPostPage
 from django.conf import settings
-
+from django.core.management.base import BaseCommand
 
 def background_sleep():
     max_wait = 60 * 29
@@ -62,10 +62,14 @@ def publish_post(post):
     os.remove(image_path)
 
 
-if check_time():
-    thread = threading.Thread(target=background_sleep)
-    thread.start()
-    thread.join()
-    post = get_post()
-    if post:
-        publish_post(post)
+class Command(BaseCommand):
+
+    def handle(self, *args, **options):
+        if check_time():
+            thread = threading.Thread(target=background_sleep)
+            thread.start()
+            thread.join()
+            post = get_post()
+            if post:
+                publish_post(post)
+        return None
