@@ -7,7 +7,7 @@ import urllib.request
 from datetime import datetime
 from random import randrange
 from instapy_cli import client
-from lkbw.blog.models import BlogPostPage
+from blog.models import BlogPostPage
 from django.conf import settings
 
 
@@ -20,7 +20,7 @@ def background_sleep():
 def check_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 16) | True:  # Don't forget to reset flag to FALSE
+    if (hour == 16) | False:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
@@ -62,11 +62,10 @@ def publish_post(post):
     os.remove(image_path)
 
 
-def main():
-    if check_time():
-        thread = threading.Thread(target=background_sleep)
-        thread.start()
-        thread.join()
-        post = get_post()
-        if post:
-            publish_post(post)
+if check_time():
+    thread = threading.Thread(target=background_sleep)
+    thread.start()
+    thread.join()
+    post = get_post()
+    if post:
+        publish_post(post)
