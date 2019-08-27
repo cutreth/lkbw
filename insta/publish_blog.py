@@ -20,7 +20,7 @@ def background_sleep():
 def check_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 16) | True:  # Don't forget to reset flag to FALSE
+    if (hour == 16) | False:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
