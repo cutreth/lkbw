@@ -53,7 +53,9 @@ def publish_post(post):
     password = settings.INSTA_KEY.split('|')[1]
     cookie_file = settings.INSTA_KEY.split('|')[2]
 
-    with client(username, password, cookie_file=cookie_file, write_cookie_file=True) as cli:
+    cookie_path = 'temp/' + cookie_file
+
+    with client(username, password, cookie_file=cookie_path, write_cookie_file=True) as cli:
         cli.upload(image_path, caption)
 
     now = datetime.now(pytz.timezone("America/Chicago"))
