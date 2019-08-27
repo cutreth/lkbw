@@ -44,10 +44,13 @@ def publish_post(post):
     image = post.banner_image
     image_path = 'temp/' + image.title
     rendition_url = image.get_rendition('max-1080x1080').url
-    # root_url = post.get_url_parts()[1]
-    # image_url = root_url + rendition_url
-    image_url = rendition_url
+    s3_url = 'https://lkbw.s3.amazonaws.com/images/'
+    cf_url = 'https://d1e9v6y517kw0o.cloudfront.net/'
+    image_url = rendition_url.replace(s3_url,cf_url)
 
+    opener = urllib.request.build_opener()
+    opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
+    urllib.request.install_opener(opener)
     urllib.request.urlretrieve(image_url, image_path)
 
     username = settings.INSTA_KEY.split('|')[0]
