@@ -11,6 +11,7 @@ from blog.models import BlogPostPage
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
+
 def background_sleep():
     max_wait = 60 * 29
     actual_wait = randrange(0, max_wait)
