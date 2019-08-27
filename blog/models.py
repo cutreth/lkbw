@@ -202,6 +202,8 @@ class BlogPostPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    insta_flag = models.BooleanField(default=False)
+    insta_instant = models.DateTimeField(null=True, blank=True)
     search_key = models.CharField(max_length=250, null=True, blank=True)
 
     body = StreamField([
@@ -236,6 +238,8 @@ class BlogPostPage(Page):
 
     promote_panels = [
                          ImageChooserPanel('banner_image'),
+                         FieldPanel('insta_flag'),
+                         FieldPanel('insta_instant'),
                          FieldPanel('tags'),
                      ] + Page.promote_panels
 
