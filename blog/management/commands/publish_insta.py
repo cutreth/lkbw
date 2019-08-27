@@ -42,7 +42,7 @@ def publish_post(post):
     caption = title + ': ' + intro + ' | ' + 'To read this post, click the link in my bio and search for: ' + search_key
 
     image = post.banner_image
-    image_path = 'temp/' + image.title
+    image_path = image.title
     rendition_url = image.get_rendition('max-1080x1080').url
     s3_url = 'https://lkbw.s3.amazonaws.com/images/'
     cf_url = 'https://d1e9v6y517kw0o.cloudfront.net/'
@@ -57,7 +57,7 @@ def publish_post(post):
     password = settings.INSTA_KEY.split('|')[1]
     cookie_file = settings.INSTA_KEY.split('|')[2]
 
-    cookie_path = 'temp/' + cookie_file
+    cookie_path = cookie_file
 
     with client(username, password, cookie_file=cookie_path, write_cookie_file=True) as cli:
         cli.upload(image_path, caption)
