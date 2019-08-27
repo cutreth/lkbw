@@ -288,7 +288,7 @@ class BlogPostPage(Page):
 
 @receiver(post_save, sender=BlogPostPage)
 def update_search_key(sender, instance, **kwargs):
-    search_key = '#' + str(instance.pk)
+    search_key = '*' + str(instance.pk)
     if instance.search_key != search_key:
         instance.search_key = search_key
         instance.save_revision()

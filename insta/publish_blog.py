@@ -20,13 +20,17 @@ def background_sleep():
 def check_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 16) | False:  # Don't forget to reset flag to FALSE
+    if (hour == 16) | True:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
 
 def get_post():
-    next_post = BlogPostPage.objects.live().filter(insta_flag=True, insta_instant=None).order_by('post_date')[0]
+    post_list = BlogPostPage.objects.live().filter(insta_flag=True, insta_instant=None).order_by('post_date')
+    if len(post_list):
+        next_post = post_list[0]
+    else:
+        next_post = None
     return next_post
 
 
@@ -58,9 +62,11 @@ def publish_post(post):
     os.remove(image_path)
 
 
-if check_time():
-    thread = threading.Thread(target=background_sleep)
-    thread.start()
-    thread.join()
-    post = get_post()
-    publish_post(post)
+def main():
+    if check_time():
+        thread = threading.Thread(target=background_sleep)
+        thread.start()
+        thread.join()
+        post = get_post()
+        if post:
+            publish_post(post)
