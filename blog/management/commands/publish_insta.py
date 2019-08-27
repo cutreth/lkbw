@@ -39,7 +39,7 @@ def publish_post(post):
     title = post.title
     intro = post.intro
     search_key = post.search_key
-    caption = title + ': ' + intro + ' | ' + 'To read this post, click the link in my bio and search for: ' + search_key
+    caption = "Blog post:\n" + title + "\n" + intro + "\n\n" + "To read this post, check out the link in my bio and search for: " + search_key
 
     image = post.banner_image
     image_path = image.title
