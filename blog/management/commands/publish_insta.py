@@ -14,14 +14,14 @@ from django.core.management.base import BaseCommand
 
 def background_sleep():
     max_wait = 60 * 29
-    actual_wait = randrange(0, max_wait)
+    actual_wait = randrange(0, 5)  # Don't forget to replace upper bound with max_wait
     time.sleep(actual_wait)
 
 
 def check_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 16) | False:  # Don't forget to reset flag to FALSE
+    if (hour == 16) | True:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
