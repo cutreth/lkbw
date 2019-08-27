@@ -44,8 +44,9 @@ def publish_post(post):
     image = post.banner_image
     image_path = 'temp/' + image.title
     rendition_url = image.get_rendition('max-1080x1080').url
-    root_url = post.get_url_parts()[1]
-    image_url = root_url + rendition_url
+    # root_url = post.get_url_parts()[1]
+    # image_url = root_url + rendition_url
+    image_url = rendition_url
 
     urllib.request.urlretrieve(image_url, image_path)
 
