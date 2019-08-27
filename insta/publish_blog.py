@@ -7,7 +7,7 @@ import urllib.request
 from datetime import datetime
 from random import randrange
 from instapy_cli import client
-from blog.models import BlogPostPage
+from lkbw.blog.models import BlogPostPage
 from django.conf import settings
 
 
