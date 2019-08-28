@@ -12,6 +12,8 @@ from blog import views as blog_views
 from quiz import urls as quiz_urls
 
 favicon_view = RedirectView.as_view(url='/static/favicon/favicon.ico', permanent=True)
+appleiconpre_view = RedirectView.as_view(url='/static/favicon/apple-touch-icon-precomposed.png', permanent=True)
+appleicon_view = RedirectView.as_view(url='/static/favicon/apple-touch-icon.png', permanent=True)
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -24,6 +26,8 @@ urlpatterns = [
     url(r'^api/email/$', blog_views.email, name='email'),
     url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"), name="robots_file"),
     url(r'^favicon.ico', favicon_view),
+    url(r'^apple-touch-icon-precomposed.png', appleiconpre_view),
+    url(r'^apple-touch-icon.png', appleicon_view),
     url(r'^unsubscribe/$', blog_views.unsubscribe, name='unsubscribe'),
     url(r'^subscribe/$', blog_views.subscribe, name='subscribe'),
     url(r'^contact/$', blog_views.contact, name='contact'),
