@@ -41,8 +41,17 @@ def get_post():
 def publish_post(post):
     title = post.title
     intro = post.intro
+    comment = post.insta_comment
+    tags = post.insta_tags
     search_key = post.search_key
-    caption = "Blog post:\n" + title + "\n" + intro + "\n\n" + "To read this post, check out the link in my bio and search for: " + search_key
+    if comment:
+        caption = comment + "\n\n"
+    else:
+        caption = "Blog post:\n\n"
+    caption = caption + title + "\n" + intro + "\n\n"
+    caption = caption + "Click the link in my bio and scroll to this image or from the menu search for: " + search_key
+    if tags:
+        caption = caption + "\n\n" + tags
 
     image = post.banner_image
     image_path = image.title
