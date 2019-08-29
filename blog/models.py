@@ -204,7 +204,7 @@ class BlogPostPage(Page):
     )
     insta_flag = models.BooleanField(default=False)
     insta_instant = models.DateTimeField(null=True, blank=True)
-    insta_comment = models.CharField(max_length=250, null=True, blank=True)
+    insta_comment = models.CharField(max_length=1500, null=True, blank=True)
     insta_tags = models.CharField(max_length=250, null=True, blank=True)
     search_key = models.CharField(max_length=250, null=True, blank=True)
 
@@ -532,6 +532,34 @@ class BlogEmailPage(Page):
             context['post_five_url'] = root_url + self.post_five_page.get_url()
 
         return context
+
+
+class BlogInstaPage(Page):
+    insta_flag = models.BooleanField(default=False)
+    insta_instant = models.DateTimeField(null=True, blank=True)
+    insta_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    insta_comment = models.CharField(max_length=2000, null=True, blank=True)
+
+    parent_page_types = [BlogSearchPage]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('insta_flag'),
+        FieldPanel('insta_instant'),
+        ImageChooserPanel('insta_image'),
+        FieldPanel('insta_comment'),
+
+    ]
+
+    promote_panels = [
+                     ] + Page.promote_panels
+
+    settings_panels = Page.settings_panels + [
+    ]
 
 
 class Profile(models.Model):
