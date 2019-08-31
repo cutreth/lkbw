@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^subscribe/$', blog_views.subscribe, name='subscribe'),
     url(r'^contact/$', blog_views.contact, name='contact'),
     url(r'^rss/$', blog_views.rss(), name='rss'),
+    url(r'^unused/$', blog_views.unused, name='unused'),
 
 
     # For anything not caught by a more specific rule above, hand over to

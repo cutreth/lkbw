@@ -4,11 +4,13 @@ import hmac
 from hashlib import sha1
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.encoding import force_bytes
+from django.shortcuts import render
 
 from django.contrib.syndication.views import Feed
+from wagtail.images.models import Image
 from blog.models import BlogHomePage, BlogPostPage
 
 
@@ -186,6 +188,31 @@ def contact(request):
         form = ContactForm()
 
     return render(request, 'contact.html', {'form': form})
+
+
+def unused(request):
+
+    if not request.user.id:
+        raise Http404
+
+    published_posts = BlogPostPage.objects.live()
+    image_list = list(Image.objects.all())
+
+    for post in published_posts:
+        image = post.banner_image
+        if image in image_list:
+            image_list.remove(image)
+
+        for block in post.body.stream_data:
+            if block['type'] == 'flickity':
+                for picture in block['value']['pictures']:
+                    image_id = picture['image']
+                    image = Image.objects.get(pk=image_id)
+                    if image in image_list:
+                        image_list.remove(image)
+
+    context = {'unused_images': image_list}
+    return render(request, 'unused.html', context)
 
 
 class rss(Feed):
