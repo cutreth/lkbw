@@ -21,7 +21,7 @@ def background_sleep():
 def post_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 18) | False:  # Don't forget to reset flag to FALSE
+    if (hour == 17) | False:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
@@ -29,7 +29,7 @@ def post_time():
 def image_time():
     time_ok = False
     hour = datetime.now(pytz.timezone("America/Chicago")).hour
-    if (hour == 6) | False:  # Don't forget to reset flag to FALSE
+    if (hour == 7) | (hour == 12) | False:  # Don't forget to reset flag to FALSE
         time_ok = True
     return time_ok
 
