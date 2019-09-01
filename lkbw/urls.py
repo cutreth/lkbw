@@ -32,7 +32,8 @@ urlpatterns = [
     url(r'^subscribe/$', blog_views.subscribe, name='subscribe'),
     url(r'^contact/$', blog_views.contact, name='contact'),
     url(r'^rss/$', blog_views.rss(), name='rss'),
-
+    url(r'^unused/$', blog_views.unused, name='unused'),
+    url(r'^insta/$', blog_views.insta, name='insta'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

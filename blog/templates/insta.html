@@ -1,0 +1,27 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% if post_list %}
+    {% for post in post_list %}
+        {% image post.banner_image max-400x400 %}
+        <br>
+        {{ post.insta_comment }}
+        <br>
+        {{ post.insta_tags }}
+        <br><br>
+    {% endfor %}
+{% else %}
+    <p>No posts</p>
+{% endif %}
+
+<br><br><br>
+
+{% if image_list %}
+    {% for image in image_list %}
+        {% image image.insta_image max-400x400 %}
+        <br>
+        {{ image.insta_comment }}
+        <br><br>
+    {% endfor %}
+{% else %}
+    <p>No images</p>
+{% endif %}

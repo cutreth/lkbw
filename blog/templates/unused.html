@@ -1,0 +1,12 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% if unused_images %}
+    {% for picture in unused_images %}
+        {% image picture max-400x400 %}
+        <br>
+        {{ picture.id }}
+        <br><br>
+    {% endfor %}
+{% else %}
+    <p>No unused images</p>
+{% endif %}
