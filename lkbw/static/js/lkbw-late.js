@@ -227,7 +227,7 @@ $('.carousel-container').each( function (i, container) {
         }
 
         var img = $(flkty.selectedElement).find('img');
-        // img[0].style.verticalAlign = 'baseline';
+        img[0].style.verticalAlign = 'baseline';
         img[0].style.verticalAlign = 'middle';
 
     });
@@ -240,7 +240,7 @@ $('.carousel-container').each( function (i, container) {
       capt.text(txt);
 
       var img = $(flkty.selectedElement).find('img');
-      // img[0].style.verticalAlign = 'baseline';
+      img[0].style.verticalAlign = 'baseline';
       img[0].style.verticalAlign = 'middle';
     });
 
