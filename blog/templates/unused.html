@@ -1,5 +1,11 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
+{% if collection %}
+    <h1>{{ collection }}</h1>
+{% else %}
+    <h1>All Collections</h1>
+{% endif %}
+
 {% if unused_images %}
     {% for picture in unused_images %}
         {% image picture max-800x600 %}
