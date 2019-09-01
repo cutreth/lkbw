@@ -11,7 +11,7 @@ from django.shortcuts import render
 
 from django.contrib.syndication.views import Feed
 from wagtail.images.models import Image
-from blog.models import BlogHomePage, BlogPostPage
+from blog.models import BlogHomePage, BlogPostPage, BlogInstaPage
 
 
 @csrf_exempt
@@ -213,6 +213,18 @@ def unused(request):
 
     context = {'unused_images': image_list}
     return render(request, 'unused.html', context)
+
+
+def insta(request):
+
+    if not request.user.id:
+        raise Http404
+
+    post_list = BlogPostPage.objects.live().filter(insta_flag=True, insta_instant=None).order_by('post_date')
+    image_list = BlogInstaPage.objects.live().filter(insta_flag=True, insta_instant=None)
+
+    context = {'posts': post_list, 'images': image_list}
+    return render(request, 'insta.html', context)
 
 
 class rss(Feed):
