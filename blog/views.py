@@ -223,7 +223,7 @@ def insta(request):
     post_list = BlogPostPage.objects.live().filter(insta_flag=True, insta_instant=None).order_by('post_date')
     image_list = BlogInstaPage.objects.live().filter(insta_flag=True, insta_instant=None)
 
-    context = {'posts': post_list, 'images': image_list}
+    context = {'post_list': post_list, 'image_list': image_list}
     return render(request, 'insta.html', context)
 
 
