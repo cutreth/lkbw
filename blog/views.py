@@ -11,7 +11,8 @@ from django.shortcuts import render
 
 from django.contrib.syndication.views import Feed
 from wagtail.images.models import Image
-from blog.models import BlogHomePage, BlogPostPage, BlogInstaPage
+from wagtail.core.models import Collection, CollectionMember
+from blog.models import BlogHomePage, BlogPostPage, BlogInstaPage, BlogSectionPage
 
 
 @csrf_exempt
@@ -195,8 +196,26 @@ def unused(request):
     if not request.user.id:
         raise Http404
 
+    published_sections = BlogSectionPage.objects.live()
     published_posts = BlogPostPage.objects.live()
-    image_list = list(Image.objects.all())
+
+    collection_filter = request.GET.get('collection')
+
+    if collection_filter:
+        collection = Collection.objects.filter(id=collection_filter)
+    else:
+        collection = None
+
+    if collection:
+        image_list = list(Image.objects.filter(collection__in=collection))
+        collection = collection.first()
+    else:
+        image_list = list(Image.objects.all())
+
+    for section in published_sections:
+        image = section.banner_image
+        if image in image_list:
+            image_list.remove(image)
 
     for post in published_posts:
         image = post.banner_image
@@ -211,7 +230,7 @@ def unused(request):
                     if image in image_list:
                         image_list.remove(image)
 
-    context = {'unused_images': image_list}
+    context = {'unused_images': image_list, 'collection': collection}
     return render(request, 'unused.html', context)
 
 

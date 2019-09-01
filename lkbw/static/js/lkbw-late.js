@@ -225,6 +225,11 @@ $('.carousel-container').each( function (i, container) {
             capt.css('right', '');
             capt.css('color', '');
         }
+
+        var img = $(flkty.selectedElement).find('img');
+        // img[0].style.verticalAlign = 'baseline';
+        img[0].style.verticalAlign = 'middle';
+
     });
 
     $carousel.on( 'select.flickity', function() {
@@ -233,6 +238,10 @@ $('.carousel-container').each( function (i, container) {
       var txt = flkty.selectedElement.firstElementChild.alt;
       if (txt == '') {txt = '\u200B'}
       capt.text(txt);
+
+      var img = $(flkty.selectedElement).find('img');
+      // img[0].style.verticalAlign = 'baseline';
+      img[0].style.verticalAlign = 'middle';
     });
 
 });
