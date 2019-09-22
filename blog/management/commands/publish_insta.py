@@ -140,6 +140,10 @@ class Command(BaseCommand):
             post = get_post()
             if post:
                 publish_post(post)
+            else:
+                image = get_image()
+                if image:
+                    publish_image(image)
         if image_time():
             thread = threading.Thread(target=background_sleep)
             thread.start()
