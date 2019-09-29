@@ -303,6 +303,7 @@ class BlogEmailPage(Page):
     sent_date = models.DateField("Sent date", null=True, blank=True)
     debug_mode = models.BooleanField(default=False)
     intro = models.CharField(max_length=1000)
+    link = models.CharField(max_length=1000, null=True, blank=True)
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -442,6 +443,7 @@ class BlogEmailPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('banner_image'),
         FieldPanel('intro'),
+        FieldPanel('link'),
         MultiFieldPanel(
             [
                 FieldPanel('post_one'),
