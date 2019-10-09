@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top" id="mainNav">
+      <container class="container-fluid">
+        <div class="col-2 mr-4">
+          <a class="navbar-brand d-flex justify-content-start" href=https://www.hannahandkevin.net/>H&K Away</a>
+        </div>
+      </container>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead header-image">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Email Frequency</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <h3>Do you want an email for each post?</h3>
+            If so, just check the last box below. Tired of getting an email for each post?
+            Then resubmit this form with that last box unchecked.
+            <br>
+            <br>
+            <form method="post">
+              {% csrf_token %}
+              <table>
+                {{ form.as_table }}
+              </table>
+              <br>
+              <button class="btn btn-primary p-2 my-2 my-sm-0" type="submit">Submit</button>
+            </form>
+            <br>
+            <br>
+          </div>
+		</div>
+      </div>
+    </article>
+
+{% endblock %}
