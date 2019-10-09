@@ -134,6 +134,9 @@ a[x-apple-data-detectors] {
                        </table> </td>
                      </tr>
                      <tr style="border-collapse:collapse;">
+                      {{ banner_image_url }}
+                      <br>
+                      {{ banner_image_url.url|cdn_url }}
                       <td style="padding:0;Margin:0;position:relative;" align="center"> <img class="adapt-img" src={{ banner_image_url.url|cdn_url }} alt="" title="" width="100%" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"></td>
                      </tr>
                      <tr style="border-collapse:collapse;">

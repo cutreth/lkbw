@@ -11,6 +11,11 @@ def post_send(sender, **kwargs):
     from datetime import datetime
 
     page = kwargs['instance']
+
+    is_sent = bool(False) if page.sent_date is None else bool(True)
+    if is_sent is True:
+        return None
+
     subject = page.title + ' | ' + page.intro
 
     root_url = 'https://www.hannahandkevin.net'
@@ -44,14 +49,14 @@ def post_send(sender, **kwargs):
     page.sent_date = datetime.now()
     page.save()
 
-    pass
+    return None
 
 
 def email_send(sender, **kwargs):
 
     print(sender)
 
-    pass
+    return None
 
 
 page_published.connect(post_send, sender=BlogPostPage)
