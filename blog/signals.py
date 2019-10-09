@@ -23,7 +23,9 @@ def post_send(sender, **kwargs):
     post_url = root_url + page.get_url() + "?utm_source=post-send&utm_medium=email"
 
     banner_image = page.banner_image.get_rendition('fill-580x280').url
-    banner_image_url = root_url + banner_image
+    aws_url = settings.AWS_CLOUDFRONT_URL
+    old_url = settings.MEDIA_URL + 'images/'
+    banner_image_url = banner_image.replace(old_url, aws_url)
 
     context = {"banner_image_url": banner_image_url, "homepage_url": homepage_url, "post_url": post_url}
 
