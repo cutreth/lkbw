@@ -12,12 +12,15 @@ def post_send(sender, **kwargs):
 
     page = kwargs['instance']
     subject = page.title + ' | ' + page.intro
-    banner_image = page.banner_image
-    banner_image_url = banner_image.get_rendition('fill-580x280').url
-    homepage_url = "https://www.hannahandkevin.net" + "?utm_source=post-send&utm_medium=email"
-    post_url = page.full_url + "?utm_source=post-send&utm_medium=email"
 
-    context = {"banner_image_url": banner_image_url, "banner_image": banner_image, "homepage_url": homepage_url, "post_url": post_url}
+    root_url = 'https://www.hannahandkevin.net'
+    homepage_url = root_url + "?utm_source=post-send&utm_medium=email"
+    post_url = root_url + page.get_url() + "?utm_source=post-send&utm_medium=email"
+
+    banner_image = page.banner_image.get_rendition('fill-580x280').url
+    banner_image_url = root_url + banner_image
+
+    context = {"banner_image_url": banner_image_url, "homepage_url": homepage_url, "post_url": post_url}
 
     body = render_to_string('post_email.html', context)
 
