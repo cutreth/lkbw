@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^apple-touch-icon.png', appleicon_view),
     url(r'^unsubscribe/$', blog_views.unsubscribe, name='unsubscribe'),
     url(r'^subscribe/$', blog_views.subscribe, name='subscribe'),
-    url(r'^settings/$', blog_views.settings, name='settings'),
+    url(r'^settings/$', blog_views.email_settings, name='settings'),
     url(r'^contact/$', blog_views.contact, name='contact'),
     url(r'^rss/$', blog_views.rss(), name='rss'),
     url(r'^unused/$', blog_views.unused, name='unused'),

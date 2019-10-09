@@ -130,7 +130,7 @@ def unsubscribe(request):
     return render(request, 'unsubscribe.html', {'form': form})
 
 
-def settings(request):
+def email_settings(request):
 
     from blog.models import Profile
     from blog.forms import EmailPerPostForm
