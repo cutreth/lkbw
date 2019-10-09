@@ -202,6 +202,7 @@ class BlogPostPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    sent_date = models.DateField("Sent date", null=True, blank=True)
     insta_flag = models.BooleanField(default=False)
     insta_instant = models.DateTimeField(null=True, blank=True)
     insta_comment = models.CharField(max_length=1500, null=True, blank=True)
@@ -240,6 +241,7 @@ class BlogPostPage(Page):
 
     promote_panels = [
                          ImageChooserPanel('banner_image'),
+                         FieldPanel('sent_date'),
                          FieldPanel('insta_flag'),
                          FieldPanel('insta_comment'),
                          FieldPanel('insta_tags'),
@@ -571,6 +573,7 @@ class Profile(models.Model):
     email = models.EmailField()
     secret_key = models.CharField(max_length=20, default='01234567899876543210')
     last_updated = models.DateField(auto_now=True)
+    email_per_post = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
 
     def __str__(self):

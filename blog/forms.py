@@ -16,6 +16,13 @@ class UnsubscribeForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email',)
 
 
+class EmailPerPostForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'email', 'email_per_post',)
+
+
 class ContactForm(forms.Form):
 
     name = forms.CharField()

@@ -130,6 +130,41 @@ def unsubscribe(request):
     return render(request, 'unsubscribe.html', {'form': form})
 
 
+def settings(request):
+
+    from blog.models import Profile
+    from blog.forms import EmailPerPostForm
+    from django.shortcuts import render, redirect
+
+    if request.method == 'POST':
+        form = EmailPerPostForm(request.POST)
+        if form.is_valid():
+            profile = Profile.objects.filter(email=form.cleaned_data.get('email')).first()
+            if profile is not None:
+                form_first = form.cleaned_data.get('first_name')
+                form_last = form.cleaned_data.get('last_name')
+                profile_first = profile.first_name
+                profile_last = profile.last_name
+                if (form_first == profile_first) & (form_last == profile_last):
+                    email_per_post = form.cleaned_data.get('email_per_post')
+                    profile.email_per_post = email_per_post
+                    profile.save()
+                else:
+                    error = 'An existing subscription matching that email address and name cannot be found. Hint: match the email recipient name.'
+                    context = {'error': error}
+                    return render(request, 'error.html', context)
+            else:
+                error = 'An existing subscription matching that email address cannot be found.'
+                context = {'error': error}
+                return render(request, 'error.html', context)
+            return redirect('https://www.hannahandkevin.net')
+
+    else:
+        form = EmailPerPostForm()
+
+    return render(request, 'settings.html', {'form': form})
+
+
 def contact(request):
 
     import time
