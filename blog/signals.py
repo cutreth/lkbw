@@ -27,7 +27,7 @@ def post_send(sender, **kwargs):
     old_url = settings.MEDIA_URL + 'images/'
     banner_image_url = banner_image.replace(old_url, aws_url)
 
-    context = {"banner_image_url": banner_image_url, "homepage_url": homepage_url, "post_url": post_url}
+    context = {"banner_image_url": banner_image_url, "homepage_url": homepage_url, "post_url": post_url, "root_url": root_url}
 
     body = render_to_string('post_email.html', context)
 
